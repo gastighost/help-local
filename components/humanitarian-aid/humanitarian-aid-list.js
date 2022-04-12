@@ -6,7 +6,7 @@ function HumanitarianAidList(props) {
   return (
     <ul className={styles.center}>
       {info.map((sale) => {
-        return <HumanitarianAidItem info={sale} />;
+        return <HumanitarianAidItem key={sale._id} info={sale} />;
       })}
     </ul>
   );
