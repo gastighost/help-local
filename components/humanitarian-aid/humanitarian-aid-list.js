@@ -6,7 +6,11 @@ function HumanitarianAidList(props) {
   return (
     <ul className={styles.center}>
       {info.map((sale) => {
-        return <li><HumanitarianAidItem key={sale._id} info={sale} /></li>;
+        return (
+          <li key={sale._id}>
+            <HumanitarianAidItem info={sale} />
+          </li>
+        );
       })}
     </ul>
   );
