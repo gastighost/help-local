@@ -1,5 +1,6 @@
 import Head from "next/head";
 import clientPromise from "../lib/mongodb";
+import Link from "next/link";
 
 export default function Home({ isConnected }) {
   return (
@@ -19,11 +20,18 @@ export default function Home({ isConnected }) {
           </h2>
         )}
 
-        <h2>Accomodation</h2>
-        <h2>Jobs</h2>
-        <h2>Education</h2>
-        <h2>Humanitarian Aid</h2>
-        <h2>Social Media</h2>
+        <Link href="/jobs">
+          <h2>Jobs</h2>
+        </Link>
+        <Link href="/education">
+          <h2>Education</h2>
+        </Link>
+        <Link href="/humanitarian-aid">
+          <h2>Humanitarian Aid</h2>
+        </Link>
+        <Link href="social-media">
+          <h2>Social Media</h2>
+        </Link>
       </main>
     </div>
   );
