@@ -5,7 +5,7 @@ import JobsList from "../../components/jobs/jobs-list";
 // Generating dummy data for jobs
 // to be deleted once database is set up
 const jobCategories = ["Minijob", "Part-time", "Full-time"];
-const randomElement = (array) => Math.floor(Math.random() * array.length);
+const randomElement = (array) => array[Math.floor(Math.random() * array.length)];
 
 const sampleJobs = [
   {
