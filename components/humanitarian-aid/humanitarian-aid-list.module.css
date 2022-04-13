@@ -1,5 +1,4 @@
 .center {
-  width:40%;
-  margin:auto;
+  display: grid;
   list-style-type: none;
 }
