@@ -6,7 +6,6 @@ import CategoryFilterBar from "../../components/ui/filter-bar";
 
 function HumanitarianAidIndex(props) {
   const { sales } = props;
-  console.log(sales);
   return (
     <div className={styles.center}>
       <CategoryFilterBar />
