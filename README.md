@@ -1,4 +1,4 @@
-## Example app using MongoDB
+## Help Local App using MongoDB
 
 [MongoDB](https://www.mongodb.com/) is a general purpose, document-based, distributed database built for modern application developers and for the cloud era. This application connects to and makes use of MongoDB as the backend for this Next.js app.
 
