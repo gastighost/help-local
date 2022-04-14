@@ -13,12 +13,12 @@ function MainNavigation() {
       </div>
       <nav>
         <ul>
-          {/* <li>
-            <Link href='/'></Link>
-          </li> */}
-          {/* <li>
-            // <Link href='../new-movie'>Add New Movie</Link>
-          </li> */}
+          <li>
+            <Link href='/auth'>Login</Link>
+          </li>
+          <li>
+            <button>Logout</button>
+          </li>
         </ul>
       </nav>
     </header>
