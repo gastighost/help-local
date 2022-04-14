@@ -1,6 +1,5 @@
-import { connectToDatabase } from '../../util/mongodb';
+import { connectToDatabase } from '../../../util/mongodb.js';
 import { hashPassword } from '../../../lib/auth';
-import clientPromise from '../../../lib/mongodb';
 
 async function handler(req, res) {
   if (req.method === 'POST') {
@@ -20,8 +19,7 @@ async function handler(req, res) {
       });
     }
 
-    const client = await connectToDatabase();
-    const db = client.db();
+    const { db } = await connectToDatabase();
 
     const hashedPassword = await hashPassword(password);
 
@@ -30,7 +28,7 @@ async function handler(req, res) {
       password: hashedPassword,
     });
 
-    res.status(201).json({ message: 'Created user!' });
+    res.status(200).json({ message: 'Created user!' });
   }
 }
 
