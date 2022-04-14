@@ -1,4 +1,3 @@
-import styles from "./humanitarian-aid-item.module.css";
 import Card from "../ui/card";
 
 function HumanitarianAidItem(props) {
