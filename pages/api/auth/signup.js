@@ -3,6 +3,7 @@ import { hashPassword } from '../../../lib/auth';
 
 async function handler(req, res) {
   if (req.method === 'POST') {
+    
     const data = req.body;
 
     const { email, password } = data;
@@ -19,7 +20,17 @@ async function handler(req, res) {
       });
     }
 
-    const { db } = await connectToDatabase();
+    const { db, client } = await connectToDatabase();
+
+    const existingUser = await db.collection('users').findOne({email: email})
+
+    if (existingUser) {
+      res.status(422).json({ message: 'User already exists'});
+      /* Originally wanted to close server connection here with client.close() 
+      but if we do and if the user already exists and the visitor tries to 
+      sign up with a unique email without refreshing the client, the visitor will receive a 500 error */
+      return;
+    }
 
     const hashedPassword = await hashPassword(password);
 
@@ -27,8 +38,7 @@ async function handler(req, res) {
       email: email,
       password: hashedPassword,
     });
-
-    res.status(200).json({ message: 'Created user!' });
+    res.status(201).json({ message: 'Created user!' });
   }
 }
 

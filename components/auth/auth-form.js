@@ -1,13 +1,14 @@
 import { useState, useRef } from 'react';
+import { signIn } from 'next-auth/client';
 import classes from './auth-form.module.css';
 
 async function createUser(email, password) {
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
-    body: JSON.stringify({email, password}),
+    body: JSON.stringify({ email, password }),
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   });
 
   const data = await response.json();
@@ -33,10 +34,16 @@ function AuthForm() {
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
-    // Can add additional validation here later if needed. 
+    // Can add additional validation here later if needed.
 
     if (isLogin) {
-      // Log user in
+      const result = await signIn('credentials', { 
+        redirect: false, 
+        email: enteredEmail, 
+        password: enteredPassword,
+      });
+
+      console.log(result);
     } else {
       try {
         const result = await createUser(enteredEmail, enteredPassword);
@@ -52,17 +59,22 @@ function AuthForm() {
       <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
       <form onSubmit={submitHandler}>
         <div className={classes.control}>
-          <label htmlFor='email'>Email</label>
-          <input type='email' id='email' required ref={emailInputRef} />
+          <label htmlFor="email">Email</label>
+          <input type="email" id="email" required ref={emailInputRef} />
         </div>
         <div className={classes.control}>
-          <label htmlFor='password'>Password</label>
-          <input type='password' id='password' required ref={passwordInputRef} />
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            required
+            ref={passwordInputRef}
+          />
         </div>
         <div className={classes.actions}>
           <button>{isLogin ? 'Login' : 'Create Account'}</button>
           <button
-            type='button'
+            type="button"
             className={classes.toggle}
             onClick={switchAuthModeHandler}
           >
