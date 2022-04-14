@@ -1,11 +1,13 @@
 import { Fragment } from "react";
 import Link from "next/link";
 import JobsList from "../../components/jobs/jobs-list";
+import CategoryFilterBar from "../../components/ui/filter-bar";
 
 // Generating dummy data for jobs
 // to be deleted once database is set up
 const jobCategories = ["Minijob", "Part-time", "Full-time"];
-const randomElement = (array) => array[Math.floor(Math.random() * array.length)];
+const randomElement = (array) =>
+  array[Math.floor(Math.random() * array.length)];
 
 const sampleJobs = [
   {
@@ -16,9 +18,10 @@ const sampleJobs = [
     weeklyHours: 35,
     requirements: "physically fit, being able to do shift-time work",
     language: "German",
-    description: "Sorting, moving and other physical work at a supermarket warehouse",
+    description:
+      "Sorting, moving and other physical work at a supermarket warehouse",
     company: "REWE",
-    key: 1
+    key: 1,
   },
   {
     category: randomElement(jobCategories),
@@ -26,11 +29,12 @@ const sampleJobs = [
     location: "Berlin",
     monthlySalary: 2500,
     weeklyHours: 35,
-    requirements: "Experience with Ruby on Rails, React or similar web dev frameworks",
+    requirements:
+      "Experience with Ruby on Rails, React or similar web dev frameworks",
     language: "English",
     description: "Setting up a new website with a startup",
     company: "Le Brother",
-    key: 2
+    key: 2,
   },
   {
     category: randomElement(jobCategories),
@@ -42,13 +46,14 @@ const sampleJobs = [
     language: "German",
     description: "Cashier work at a supermarket",
     company: "Edeka",
-    key: 3
-  }
-]
+    key: 3,
+  },
+];
 
 function JobsIndex() {
   return (
     <div>
+      <CategoryFilterBar />
       <h1>Jobs Index</h1>
       <JobsList jobs={sampleJobs} />
       <Link href="/">
