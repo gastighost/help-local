@@ -1,15 +1,37 @@
 import { Fragment } from "react";
 import Link from "next/link";
+import { connectToDatabase } from "../../util/mongodb";
+import EducationList from "../../components/education/EducationList";
 
-function EducationIndex() {
+function EducationIndex(props) {
+  const { sales } = props;
   return (
     <Fragment>
-      <h1>Education Index</h1>
+      <h1>Education Listings</h1>
+      <EducationList info={sales} />
       <Link href="/">
         <a>Back to home</a>
       </Link>
     </Fragment>
   );
 }
+
+export async function getServerSideProps(context) {
+  const { db } = await connectToDatabase();
+
+  const sales = await db
+    .collection("sales")
+    .find({})
+    .sort({ metacritic: -1 })
+    .limit(20)
+    .toArray();
+
+  return {
+    props: {
+      sales: JSON.parse(JSON.stringify(sales)),
+    },
+  };
+}
+
 
 export default EducationIndex;
