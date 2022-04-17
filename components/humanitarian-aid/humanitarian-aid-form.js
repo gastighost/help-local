@@ -1,6 +1,9 @@
 import { useRef } from "react";
+import { useRouter } from "next/router";
 
 function HumanitarianAidForm() {
+  const router = useRouter();
+
   const categoryInputRef = useRef();
   const titleInputRef = useRef();
   const amountInputRef = useRef();
@@ -39,7 +42,8 @@ function HumanitarianAidForm() {
         });
       })
       .then((data) => {
-        console.log(data.message);
+        console.log(data.message, data.aid);
+        router.push("/humanitarian-aid/" + data.aid._id);
       })
       .catch((error) => {
         console.log(error.message);

@@ -10,13 +10,13 @@ function HumanitarianAidShowPage(props) {
       <h1>Humanitarian Show Page!</h1>
       <h2>Category: {selectedAid.category}</h2>
       <h3>Title: {selectedAid.title}</h3>
-      <p>Amount: {selectedAid.amount.$numberDecimal}</p>
+      <p>Amount: {selectedAid.amount}</p>
       <p>Drop off location: {selectedAid.location}</p>
       <p>Hours: {selectedAid.hours}</p>
       <p>Taken?{selectedAid.taken}</p>
       <p>Taken by: {selectedAid.taken_by}</p>
       <p>Chat active? {selectedAid.chat_active}</p>
-      <Link href="/humanitarian-aid">Back to humanitarian page</Link>
+      <Link href="/humanitarian-aid">Back to humanitarian items</Link>
     </div>
   );
 }

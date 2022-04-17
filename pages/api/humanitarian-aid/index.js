@@ -30,7 +30,7 @@ async function handler(req, res) {
       return;
     }
 
-    res.status(201).json({ message: "Aid created!" });
+    res.status(201).json({ message: "Aid created!", aid: newAid });
   }
   client.close();
 }
