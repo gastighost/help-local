@@ -143,7 +143,7 @@
   "resolved" "https://registry.npmjs.org/bson/-/bson-1.1.6.tgz"
   "version" "1.1.6"
 
-"bson@^4.6.2":
+"bson@^4.2.2", "bson@^4.6.2":
   "integrity" "sha512-VeJKHShcu1b/ugl0QiujlVuBepab714X9nNyBdA1kfekuDGecxgpTA2Z6nYbagrWFeiIyzSWIOzju3lhj+RNyQ=="
   "resolved" "https://registry.npmjs.org/bson/-/bson-4.6.2.tgz"
   "version" "4.6.2"
@@ -227,7 +227,7 @@
   "resolved" "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.3.tgz"
   "version" "1.0.3"
 
-"debug@^4.3.1":
+"debug@^4.3.1", "debug@4.x":
   "integrity" "sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ=="
   "resolved" "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz"
   "version" "4.3.4"
@@ -388,6 +388,11 @@
     "jwa" "^1.4.1"
     "safe-buffer" "^5.0.1"
 
+"kareem@2.3.5":
+  "integrity" "sha512-qxCyQtp3ioawkiRNQr/v8xw9KIviMSSNmy+63Wubj7KmMn3g7noRXIZB4vPCAP+ETi2SR8eH6CvmlKZuGpoHOg=="
+  "resolved" "https://registry.npmjs.org/kareem/-/kareem-2.3.5.tgz"
+  "version" "2.3.5"
+
 "lodash.includes@^4.3.0":
   "integrity" "sha1-YLuYqHy5I8aMoeUTJUgzFISfVT8="
   "resolved" "https://registry.npmjs.org/lodash.includes/-/lodash.includes-4.3.0.tgz"
@@ -468,7 +473,7 @@
   optionalDependencies:
     "saslprep" "^1.0.0"
 
-"mongodb@^4.1.3":
+"mongodb@^4.1.3", "mongodb@4.5.0":
   "integrity" "sha512-A2l8MjEpKojnhbCM0MK3+UOGUSGvTNNSv7AkP1fsT7tkambrkkqN/5F2y+PhzsV0Nbv58u04TETpkaSEdI2zKA=="
   "resolved" "https://registry.npmjs.org/mongodb/-/mongodb-4.5.0.tgz"
   "version" "4.5.0"
@@ -480,7 +485,32 @@
   optionalDependencies:
     "saslprep" "^1.0.3"
 
-"ms@^2.1.1":
+"mongoose@^6.3.0":
+  "integrity" "sha512-3x2pEGlZ5SorqcL0/hmUIAzzHIh6a/VIAEv3zAmc93qDtSz3WBbF8PwYYHcXm6Awfck9/zFOV9KIUEE+HjVepA=="
+  "resolved" "https://registry.npmjs.org/mongoose/-/mongoose-6.3.0.tgz"
+  "version" "6.3.0"
+  dependencies:
+    "bson" "^4.2.2"
+    "kareem" "2.3.5"
+    "mongodb" "4.5.0"
+    "mpath" "0.8.4"
+    "mquery" "4.0.2"
+    "ms" "2.1.3"
+    "sift" "16.0.0"
+
+"mpath@0.8.4":
+  "integrity" "sha512-DTxNZomBcTWlrMW76jy1wvV37X/cNNxPW1y2Jzd4DZkAaC5ZGsm8bfGfNOthcDuRJujXLqiuS6o3Tpy0JEoh7g=="
+  "resolved" "https://registry.npmjs.org/mpath/-/mpath-0.8.4.tgz"
+  "version" "0.8.4"
+
+"mquery@4.0.2":
+  "integrity" "sha512-oAVF0Nil1mT3rxty6Zln4YiD6x6QsUWYz927jZzjMxOK2aqmhEz5JQ7xmrKK7xRFA2dwV+YaOpKU/S+vfNqKxA=="
+  "resolved" "https://registry.npmjs.org/mquery/-/mquery-4.0.2.tgz"
+  "version" "4.0.2"
+  dependencies:
+    "debug" "4.x"
+
+"ms@^2.1.1", "ms@2.1.3":
   "integrity" "sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA=="
   "resolved" "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz"
   "version" "2.1.3"
@@ -757,6 +787,11 @@
   dependencies:
     "inherits" "^2.0.1"
     "safe-buffer" "^5.0.1"
+
+"sift@16.0.0":
+  "integrity" "sha512-ILTjdP2Mv9V1kIxWMXeMTIRbOBrqKc4JAXmFMnFq3fKeyQ2Qwa3Dw1ubcye3vR+Y6ofA0b9gNDr/y2t6eUeIzQ=="
+  "resolved" "https://registry.npmjs.org/sift/-/sift-16.0.0.tgz"
+  "version" "16.0.0"
 
 "smart-buffer@^4.2.0":
   "integrity" "sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg=="
