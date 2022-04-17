@@ -1,4 +1,4 @@
-import { connectToDatabase } from "../../util/mongodb";
+import { getAllDocuments } from "../../util/mongodb";
 import Link from "next/link";
 import styles from "../../styles/Home.module.css";
 import HumanitarianAidList from "../../components/humanitarian-aid/humanitarian-aid-list";
@@ -6,7 +6,6 @@ import CategoryFilterBar from "../../components/ui/filter-bar";
 
 function HumanitarianAidIndex(props) {
   const { aid } = props;
-  console.log(aid);
   return (
     <div className={styles.center}>
       <CategoryFilterBar />
@@ -20,13 +19,7 @@ function HumanitarianAidIndex(props) {
 }
 
 export async function getServerSideProps(context) {
-  const { db } = await connectToDatabase();
-
-  const aid = await db
-    .collection("humanitarian-aid")
-    .find({})
-    .sort({ metacritic: -1 })
-    .toArray();
+  const aid = await getAllDocuments("humanitarian-aid");
 
   return {
     props: {

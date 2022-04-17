@@ -1,12 +1,10 @@
-import { ObjectId } from "mongodb";
-import { connectToDatabase } from "../../util/mongodb";
+import { findDocumentById } from "../../util/mongodb";
 
 import Link from "next/link";
 
 function HumanitarianAidShowPage(props) {
   const { aid } = props;
   const selectedAid = aid[0];
-  console.log(selectedAid);
   return (
     <div>
       <h1>Humanitarian Show Page!</h1>
@@ -25,15 +23,9 @@ function HumanitarianAidShowPage(props) {
 
 export async function getServerSideProps(context) {
   const { params } = context;
-
   const { aidId } = params;
 
-  const { db } = await connectToDatabase();
-
-  const aid = await db
-    .collection("humanitarian-aid")
-    .find({ _id: ObjectId(aidId) })
-    .toArray();
+  const aid = await findDocumentById("humanitarian-aid", aidId);
 
   return {
     props: {
