@@ -10,6 +10,9 @@ function HumanitarianAidIndex(props) {
     <div className={styles.center}>
       <CategoryFilterBar />
       <h1>Humanitarian Aid</h1>
+      <Link href="/humanitarian-aid/new-aid">
+        <a>Create new item</a>
+      </Link>
       <HumanitarianAidList info={aid} />
       <Link href="/">
         <a>Back to home</a>

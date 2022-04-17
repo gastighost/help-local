@@ -6,7 +6,7 @@ function HumanitarianAidItem(props) {
     <Card>
       <h2>Category: {info.category}</h2>
       <h3>Title: {info.title}</h3>
-      <p>Amount: {info.amount.$numberDecimal}</p>
+      <p>Amount: {info.amount}</p>
       <p>Hours: {info.hours}</p>
     </Card>
   );
