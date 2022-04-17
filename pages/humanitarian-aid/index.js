@@ -5,12 +5,13 @@ import HumanitarianAidList from "../../components/humanitarian-aid/humanitarian-
 import CategoryFilterBar from "../../components/ui/filter-bar";
 
 function HumanitarianAidIndex(props) {
-  const { sales } = props;
+  const { aid } = props;
+  console.log(aid);
   return (
     <div className={styles.center}>
       <CategoryFilterBar />
       <h1>Humanitarian Aid</h1>
-      <HumanitarianAidList info={sales} />
+      <HumanitarianAidList info={aid} />
       <Link href="/">
         <a>Back to home</a>
       </Link>
@@ -21,16 +22,15 @@ function HumanitarianAidIndex(props) {
 export async function getServerSideProps(context) {
   const { db } = await connectToDatabase();
 
-  const sales = await db
-    .collection("sales")
+  const aid = await db
+    .collection("humanitarian-aid")
     .find({})
     .sort({ metacritic: -1 })
-    .limit(20)
     .toArray();
 
   return {
     props: {
-      sales: JSON.parse(JSON.stringify(sales)),
+      aid: JSON.parse(JSON.stringify(aid)),
     },
   };
 }

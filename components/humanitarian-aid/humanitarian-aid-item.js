@@ -4,11 +4,10 @@ function HumanitarianAidItem(props) {
   const { info } = props;
   return (
     <Card>
-      <h2>Category: {info.purchaseMethod}</h2>
-      <h3>Title: {info.items[0].name}</h3>
-      <p>Amount: {info.items.length}</p>
-      <p>Drop off location: {info.storeLocation}</p>
-      <p>Hours: {info.customer.satisfaction}</p>
+      <h2>Category: {info.category}</h2>
+      <h3>Title: {info.title}</h3>
+      <p>Amount: {info.amount.$numberDecimal}</p>
+      <p>Hours: {info.hours}</p>
     </Card>
   );
 }
