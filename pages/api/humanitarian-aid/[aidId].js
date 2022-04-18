@@ -1,4 +1,8 @@
-import { connectToDatabase, deleteDocumentById } from "../../../util/mongodb";
+import {
+  connectToDatabase,
+  deleteDocumentById,
+  editDocumentById,
+} from "../../../util/mongodb";
 
 async function handler(req, res) {
   let clientOpened;
@@ -20,6 +24,27 @@ async function handler(req, res) {
       return;
     }
     res.status(201).json({ selectedResult });
+  }
+
+  if (req.method === "PATCH") {
+    const { category, title, amount, location, hours, id } = req.body;
+
+    const newAid = {
+      category,
+      title,
+      amount: parseFloat(amount),
+      location,
+      hours,
+    };
+    console.log(newAid);
+    let selectedResult;
+    try {
+      selectedResult = await editDocumentById("humanitarian-aid", id, newAid);
+    } catch (error) {
+      res.status(500).json({ message: "Updating document failed!" });
+      return;
+    }
+    res.status(201).json({ selectedResult, aidId: id });
   }
 }
 

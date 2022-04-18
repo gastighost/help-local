@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 
 function EditDeleteButtons(props) {
   const router = useRouter();
-  const { id } = props;
+  const { id, handleEditOn } = props;
 
   function deleteHandler(event) {
     event.preventDefault();
@@ -35,7 +35,7 @@ function EditDeleteButtons(props) {
   return (
     <div>
       <button onClick={deleteHandler}>Delete this item</button>
-      <button>Update this item</button>
+      <button onClick={handleEditOn}>Update this item</button>
     </div>
   );
 }
