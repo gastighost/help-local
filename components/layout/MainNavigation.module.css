@@ -41,3 +41,11 @@
 .link {
   cursor: pointer;
 }
+
+.badge {
+  background-color: #cc2062;
+  color: white;
+  border-radius: 12px;
+  padding: 0 .5rem;
+  margin-left: 0.5rem;
+}

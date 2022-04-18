@@ -1,12 +1,13 @@
 import EducationItem from "./EducationItem";
 import classes from "./EducationList.module.css";
+import ItemsList from "../ui/ItemsList";
 
 function EducationList(props) {
   const { info } = props;
 
   return <ul className={classes.list}>
-    {info.map((sale) => {
-      return <EducationItem key={sale.id} info={sale}/>
+    {info.map((item) => {
+      return <ItemsList key={item.id} info={info}/>
     })}
   </ul>
 }

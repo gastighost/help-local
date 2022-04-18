@@ -5,6 +5,7 @@ import BookmarksContext from "../../store/BookmarksContext";
 
 
 function MainNavigation() {
+  const bookmarksCtx = useContext(BookmarksContext)
 
   return (
     <header className={classes.header}>
@@ -15,6 +16,11 @@ function MainNavigation() {
       </div>
       <nav>
         <ul>
+        <li>
+            <Link href='/bookmarks' >Bookmarks
+            </Link>
+              <span className={classes.badge}>{bookmarksCtx.totalBookmarks}</span>
+          </li>
           <li>
             <Link href='/auth'>Login</Link>
           </li>

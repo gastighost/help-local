@@ -29,12 +29,9 @@
 .actions {
   padding: 1.5rem;
   text-align: center;
-  display: flex;
-  flex-direction: column;
 }
 
 .actions button {
-  margin-bottom: 1rem;
   font: inherit;
   cursor: pointer;
   color: #77002e;

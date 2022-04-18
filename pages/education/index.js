@@ -3,6 +3,7 @@ import Link from "next/link";
 // import { connectToDatabase } from "../../util/mongodb";
 import EducationList from "../../components/education/EducationList";
 import CategoryFilterBar from "../../components/ui/filter-bar";
+import ItemsList from "../../components/ui/ItemsList";
 
 const DUMMY_EDUCATIONS = [
   {
@@ -45,7 +46,7 @@ function EducationIndex(props) {
     <Fragment>
       <CategoryFilterBar />
       <h1>Education Listings</h1>
-      <EducationList info={DUMMY_EDUCATIONS} />
+      <ItemsList info={DUMMY_EDUCATIONS} />
       <Link href="/">
         <a>Back to home</a>
       </Link>
