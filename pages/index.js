@@ -1,6 +1,7 @@
 import Head from "next/head";
 import clientPromise from "../lib/mongodb";
 import Link from "next/link";
+import { BookmarksContextProvider } from "../store/BookmarksContext";
 
 export default function Home({ isConnected }) {
   return (

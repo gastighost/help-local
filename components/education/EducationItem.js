@@ -8,10 +8,8 @@ function EducationItem(props) {
       <Card>
         <div className={classes.content}>
           <h2>Category: {info.purchaseMethod}</h2>
-          <h3>Title: {info.items[0].name}</h3>
-          <p>Amount: {info.items.length}</p>
+          <h3>Title: {info.name}</h3>
           <p>Drop off location: {info.storeLocation}</p>
-          <p>Hours: {info.customer.satisfaction}</p>
         </div>
         <div className={classes.actions}>
           <button>Request!</button>
