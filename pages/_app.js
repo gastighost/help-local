@@ -1,3 +1,4 @@
+import { Provider } from 'next-auth/client';
 import '../styles/globals.css'
 // import { config } from '@fortawesome/fontawesome-svg-core'
 // import '@fortawesome/fontawesome-svg-core/styles.css'
@@ -8,11 +9,13 @@ import { BookmarksContextProvider } from "../store/BookmarksContext";
 
 function MyApp({ Component, pageProps }) {
   return (
+<Provider session={pageProps.session}>
     <BookmarksContextProvider>
       <Layout>
         <Component {...pageProps} />
       </Layout>
     </BookmarksContextProvider>
+</Provider>
 );
 }
 

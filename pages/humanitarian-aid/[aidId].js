@@ -1,10 +1,27 @@
 import { findDocumentById } from "../../util/mongodb";
 
+import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import EditDeleteButtons from "../../components/humanitarian-aid/edit-delete";
+import AidEditForm from "../../components/humanitarian-aid/aid-edit-form";
 
 function HumanitarianAidShowPage(props) {
+  const [isEditing, setIsEditing] = useState(false);
+
+  const router = useRouter();
+  const aidId = router.query.aidId;
   const { aid } = props;
   const selectedAid = aid[0];
+
+  function turnOffEdit() {
+    setIsEditing(false);
+  }
+
+  function turnOnEdit() {
+    setIsEditing(true);
+  }
+
   return (
     <div>
       <h1>Humanitarian Show Page!</h1>
@@ -16,6 +33,8 @@ function HumanitarianAidShowPage(props) {
       <p>Taken?{selectedAid.taken}</p>
       <p>Taken by: {selectedAid.taken_by}</p>
       <p>Chat active? {selectedAid.chat_active}</p>
+      {isEditing && <AidEditForm handleEditOff={turnOffEdit} id={aidId} />}
+      <EditDeleteButtons id={aidId} handleEditOn={turnOnEdit} />
       <Link href="/humanitarian-aid">Back to humanitarian items</Link>
     </div>
   );

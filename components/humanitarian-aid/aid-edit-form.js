@@ -1,7 +1,9 @@
 import { useRef } from "react";
 import { useRouter } from "next/router";
 
-function HumanitarianAidForm() {
+function AidEditForm(props) {
+  const { handleEditOff, id } = props;
+
   const router = useRouter();
 
   const categoryInputRef = useRef();
@@ -10,7 +12,7 @@ function HumanitarianAidForm() {
   const locationInputRef = useRef();
   const hoursInputRef = useRef();
 
-  function registrationHandler(event) {
+  function editHandler(event) {
     event.preventDefault();
 
     const enteredCategory = categoryInputRef.current.value;
@@ -19,9 +21,10 @@ function HumanitarianAidForm() {
     const enteredLocation = locationInputRef.current.value;
     const enteredHours = hoursInputRef.current.value;
 
-    fetch("/api/humanitarian-aid", {
-      method: "POST",
+    fetch("/api/humanitarian-aid/" + id, {
+      method: "PATCH",
       body: JSON.stringify({
+        id,
         category: enteredCategory,
         title: enteredTitle,
         amount: enteredAmount,
@@ -42,21 +45,18 @@ function HumanitarianAidForm() {
         });
       })
       .then((data) => {
-        console.log(data.message, data.aid);
-        router.push("/humanitarian-aid/" + data.aid._id);
+        router.push("/humanitarian-aid/" + data.aidId);
+        handleEditOff(false);
+        console.log(data);
       })
       .catch((error) => {
         console.log(error);
       });
-
-    // fetch user input (state or refs)
-    // optional: validate input
-    // send valid data to API
   }
   return (
     <section>
-      <h2>Add an aid item!</h2>
-      <form onSubmit={registrationHandler}>
+      <h2>Edit an aid item!</h2>
+      <form onSubmit={editHandler}>
         <div>
           <div>
             <label htmlFor="category"></label>
@@ -103,11 +103,12 @@ function HumanitarianAidForm() {
               ref={hoursInputRef}
             />
           </div>
-          <button>Register</button>
+          <button type="submit">Edit</button>
+          <button onClick={handleEditOff}>Cancel Edit</button>
         </div>
       </form>
     </section>
   );
 }
 
-export default HumanitarianAidForm;
+export default AidEditForm;
