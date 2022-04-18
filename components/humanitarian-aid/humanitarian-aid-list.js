@@ -7,11 +7,11 @@ function HumanitarianAidList(props) {
   const { info } = props;
   return (
     <ul className={styles.center}>
-      {info.map((sale) => {
+      {info.map((aid) => {
         return (
-          <Link href={`/humanitarian-aid/${sale._id}`} key={sale._id}>
+          <Link href={`/humanitarian-aid/${aid._id}`} key={aid._id}>
             <li>
-              <HumanitarianAidItem info={sale} />
+              <HumanitarianAidItem info={aid} />
             </li>
           </Link>
         );

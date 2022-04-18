@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 
 let uri = process.env.MONGODB_URI;
 let dbName = process.env.MONGODB_DB;
@@ -34,4 +34,25 @@ export async function connectToDatabase() {
   cachedDb = db;
 
   return { client, db };
+}
+
+export async function insertDocument(collection, document) {
+  const { db } = await connectToDatabase();
+  const result = db.collection(collection).insertOne(document);
+  return result;
+}
+
+export async function getAllDocuments(collection) {
+  const { db } = await connectToDatabase();
+  const documents = await db.collection(collection).find({}).toArray();
+  return documents;
+}
+
+export async function findDocumentById(collection, id) {
+  const { db } = await connectToDatabase();
+  const document = await db
+    .collection(collection)
+    .find({ _id: ObjectId(id) })
+    .toArray();
+  return document;
 }

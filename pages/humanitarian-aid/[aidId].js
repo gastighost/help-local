@@ -1,40 +1,35 @@
-import { ObjectId } from "mongodb";
-import { connectToDatabase } from "../../util/mongodb";
+import { findDocumentById } from "../../util/mongodb";
 
 import Link from "next/link";
 
 function HumanitarianAidShowPage(props) {
-  const { sale } = props;
-  const selectedSale = sale[0];
-  console.log(selectedSale);
+  const { aid } = props;
+  const selectedAid = aid[0];
   return (
     <div>
       <h1>Humanitarian Show Page!</h1>
-      <h2>Category: {selectedSale.purchaseMethod}</h2>
-      <h3>Title: {selectedSale.items[0].name}</h3>
-      <p>Amount: {selectedSale.items.length}</p>
-      <p>Drop off location: {selectedSale.storeLocation}</p>
-      <p>Hours: {selectedSale.customer.satisfaction}</p>
-      <Link href="/humanitarian-aid">Back to humanitarian page</Link>
+      <h2>Category: {selectedAid.category}</h2>
+      <h3>Title: {selectedAid.title}</h3>
+      <p>Amount: {selectedAid.amount}</p>
+      <p>Drop off location: {selectedAid.location}</p>
+      <p>Hours: {selectedAid.hours}</p>
+      <p>Taken?{selectedAid.taken}</p>
+      <p>Taken by: {selectedAid.taken_by}</p>
+      <p>Chat active? {selectedAid.chat_active}</p>
+      <Link href="/humanitarian-aid">Back to humanitarian items</Link>
     </div>
   );
 }
 
 export async function getServerSideProps(context) {
   const { params } = context;
-
   const { aidId } = params;
 
-  const { db } = await connectToDatabase();
-
-  const sale = await db
-    .collection("sales")
-    .find({ _id: ObjectId(aidId) })
-    .toArray();
+  const aid = await findDocumentById("humanitarian-aid", aidId);
 
   return {
     props: {
-      sale: JSON.parse(JSON.stringify(sale)),
+      aid: JSON.parse(JSON.stringify(aid)),
     },
   };
 }
