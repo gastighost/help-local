@@ -1,8 +1,12 @@
 import { findDocumentById } from "../../util/mongodb";
 
 import Link from "next/link";
+import { useRouter } from "next/router";
+import EditDeleteButtons from "../../components/humanitarian-aid/edit-delete";
 
 function HumanitarianAidShowPage(props) {
+  const router = useRouter();
+  const aidId = router.query.aidId;
   const { aid } = props;
   const selectedAid = aid[0];
   return (
@@ -16,6 +20,7 @@ function HumanitarianAidShowPage(props) {
       <p>Taken?{selectedAid.taken}</p>
       <p>Taken by: {selectedAid.taken_by}</p>
       <p>Chat active? {selectedAid.chat_active}</p>
+      <EditDeleteButtons id={aidId} />
       <Link href="/humanitarian-aid">Back to humanitarian items</Link>
     </div>
   );
