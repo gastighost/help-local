@@ -1,9 +1,10 @@
 import { connectToDatabase, insertDocument } from "../../../util/mongodb";
 
 async function handler(req, res) {
-  let client;
+  let clientOpened;
   try {
-    client = await connectToDatabase().client;
+    const { client } = await connectToDatabase();
+    clientOpened = client;
   } catch (error) {
     res.status(500).json({ message: "Connecting to the database failed!" });
     return;
@@ -32,7 +33,7 @@ async function handler(req, res) {
 
     res.status(201).json({ message: "Aid created!", aid: newAid });
   }
-  client.close();
+  clientOpened.close();
 }
 
 export default handler;
