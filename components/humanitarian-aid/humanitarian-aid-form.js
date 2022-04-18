@@ -46,7 +46,7 @@ function HumanitarianAidForm() {
         router.push("/humanitarian-aid/" + data.aid._id);
       })
       .catch((error) => {
-        console.log(error.message);
+        console.log(error);
       });
 
     // fetch user input (state or refs)
