@@ -6,7 +6,7 @@ function EducationList(props) {
 
   return <ul className={classes.list}>
     {info.map((sale) => {
-      return <EducationItem key={sale._id} info={sale}/>
+      return <EducationItem key={sale.id} info={sale}/>
     })}
   </ul>
 }

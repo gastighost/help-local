@@ -1,10 +1,9 @@
-import { createContext, useContext } from "react";
-import { useState } from "react";
+import { createContext, useState } from "react";
 
 const BookmarksContext = createContext({
   bookmarks: [],
   totalBookmarks: 0,
-  addBookmark: (BookmarkMeetup) => {},
+  addBookmark: (bookmarkedItem) => {},
   removeBookmark: (itemID) => {},
   itemIsBookmarked: (itemID) => {},
 })
@@ -20,11 +19,11 @@ export const BookmarksContextProvider = (props) => {
 
   const removeBookmarkHandler = (itemId) => {
     setuserBookmarks((prevBookmarks) => {
-      return prevBookmarks.filter(bookmark => item.id !== itemId)
+      return prevBookmarks.filter(bookmark => bookmark.id !== itemId)
     })
   }
 
-  const itemIsBookmarked = (itemId) => {
+  const itemIsBookmarkedHandler = (itemId) => {
     return userBookmarks.some(item => item.id === itemId)
   }
 
@@ -33,7 +32,7 @@ export const BookmarksContextProvider = (props) => {
     totalBookmarks: userBookmarks.length,
     addBookmark: addBookmarkHandler,
     removeBookmark: removeBookmarkHandler,
-    itemIsBookmarked: itemIsBookmarked,
+    itemIsBookmarked: itemIsBookmarkedHandler,
   }
 
   return <BookmarksContext.Provider value={context}>

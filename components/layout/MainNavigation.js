@@ -1,5 +1,7 @@
 import classes from './MainNavigation.module.css';
 import Link from 'next/link';
+import { useContext } from "react";
+import BookmarksContext from "../../store/BookmarksContext";
 
 
 function MainNavigation() {
