@@ -3,7 +3,7 @@
   width: 95%;
   max-width: 25rem;
   border-radius: 6px;
-  background-color: #feba02;
+  background-color: #9ba573;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   padding: 1rem;
   text-align: center;
@@ -46,16 +46,16 @@
 .actions button {
   cursor: pointer;
   font: inherit;
-  color: white;
-  background-color: #ff8400;
-  border: 1px solid #ff840034;
+  color: black;
+  background-color: #c8d492;
+  border: 1px solid #00000034;
   border-radius: 4px;
   padding: 0.5rem 2.5rem;
 }
 
 .actions button:hover {
-  background-color: #be6200;
-  border-color: #be6200;
+  background-color: #777e5c;
+  border-color: #777e5c;
 }
 
 .actions .toggle {
@@ -68,5 +68,5 @@
 
 .actions .toggle:hover {
   background-color: transparent;
-  color: #ffffff;
+  color: #c8d492;
 }

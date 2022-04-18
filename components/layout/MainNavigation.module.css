@@ -4,14 +4,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #feba02;
+  background-color: #9ba573;
   padding: 0 10%;
 }
 
 .logo {
   font-size: 2rem;
-  color: white;
-  font-weight: bold;
+}
+
+.logo:hover {
+  cursor: pointer;
 }
 
 .header ul {
@@ -28,7 +30,7 @@
 
 .header a {
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 24px;
   color: #000000;
 }
 
@@ -40,4 +42,31 @@
 
 .link {
   cursor: pointer;
+}
+
+.button {
+  display:inline-block;
+  padding:0.35em 1.2em;
+  border:none;
+  margin:0 0.3em 0.3em 0;
+  font-size: 24px;
+  text-decoration:none;
+  font-weight:300;
+  color:#000000;
+  text-align:center;
+  transition: all 0.2s;
+  background-color: transparent;
+}
+
+.button:hover{
+  color:#ffffff;
+  cursor: pointer;
+}
+
+.logoBlue {
+  color: #0056b1;
+}
+
+.logoYellow {
+  color: #f2ca00;
 }

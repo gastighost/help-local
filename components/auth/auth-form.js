@@ -43,6 +43,10 @@ function AuthForm() {
         password: enteredPassword,
       });
 
+      if (!result.error) {
+        
+      }
+
       console.log(result);
     } else {
       try {
