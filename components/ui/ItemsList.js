@@ -1,4 +1,4 @@
-import Item from "./Item";
+import Item from "./item";
 import classes from "./ItemsList.module.css";
 
 const ItemsList = (props) => {
