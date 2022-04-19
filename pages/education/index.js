@@ -3,7 +3,7 @@ import Link from "next/link";
 // import { connectToDatabase } from "../../util/mongodb";
 import EducationList from "../../components/education/EducationList";
 import CategoryFilterBar from "../../components/ui/filter-bar";
-import ItemsList from "../../components/ui/ItemsList";
+import ItemsList from "../../components/ui/items-list";
 
 const DUMMY_EDUCATIONS = [
   {
