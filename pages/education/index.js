@@ -15,7 +15,7 @@ const DUMMY_EDUCATIONS = [
     tutor: "Rosty",
     studentAge: "12",
     contact: "email...",
-    id: 1,
+    _id: 1,
   },
   {
     category: "Tutoring",
@@ -26,7 +26,7 @@ const DUMMY_EDUCATIONS = [
     tutor: "Gaston",
     contact: "email...",
     studentAge: "11",
-    id: 2,
+    _id: 2,
   },
   {
     category: "Tutoring",
@@ -36,7 +36,7 @@ const DUMMY_EDUCATIONS = [
     tutor: "Tony",
     contact: "email...",
     studentAge: "16",
-    id: 3,
+    _id: 3,
   },
 ];
 
@@ -46,7 +46,7 @@ function EducationIndex(props) {
     <Fragment>
       <CategoryFilterBar />
       <h1>Education Listings</h1>
-      <ItemsList info={DUMMY_EDUCATIONS} />
+      <ItemsList info={DUMMY_EDUCATIONS} type="education" />
       <Link href="/">
         <a>Back to home</a>
       </Link>
@@ -70,6 +70,5 @@ function EducationIndex(props) {
 //     },
 //   };
 // }
-
 
 export default EducationIndex;
