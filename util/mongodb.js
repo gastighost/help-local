@@ -61,3 +61,10 @@ export async function deleteDocumentById(collection, id) {
   const { db } = await connectToDatabase();
   return await db.collection(collection).deleteOne({ _id: ObjectId(id) });
 }
+
+export async function editDocumentById(collection, id, updatedItem) {
+  const { db } = await connectToDatabase();
+  return await db
+    .collection(collection)
+    .updateOne({ _id: ObjectId(id) }, { $set: updatedItem });
+}

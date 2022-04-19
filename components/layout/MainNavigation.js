@@ -1,8 +1,11 @@
 import classes from './MainNavigation.module.css';
 import Link from 'next/link';
+import { useContext } from "react";
+import BookmarksContext from "../../store/BookmarksContext";
 import { useSession, signOut } from 'next-auth/client';
 
 function MainNavigation() {
+  const bookmarksCtx = useContext(BookmarksContext)
   const [session, loading] = useSession();
 
   function logoutHandler(){
@@ -18,6 +21,17 @@ function MainNavigation() {
       </div>
       <nav>
         <ul>
+        <li>
+            <Link href='/bookmarks' >Bookmarks
+            </Link>
+              <span className={classes.badge}>{bookmarksCtx.totalBookmarks}</span>
+          </li>
+          <li>
+            <Link href='/auth'>Login</Link>
+          </li>
+          <li>
+            <button>Logout</button>
+          </li>
           {!session && !loading && (
             <li>
               <Link href="/auth">Login</Link>
