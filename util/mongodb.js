@@ -68,3 +68,8 @@ export async function editDocumentById(collection, id, updatedItem) {
     .collection(collection)
     .updateOne({ _id: ObjectId(id) }, { $set: updatedItem });
 }
+
+export async function findUserByEmail(selectedEmail) {
+  const { db } = await connectToDatabase();
+  return await db.collection("users").findOne({ email: selectedEmail });
+}
