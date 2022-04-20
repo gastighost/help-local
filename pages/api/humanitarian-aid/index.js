@@ -1,4 +1,8 @@
-import { connectToDatabase, insertDocument } from "../../../util/mongodb";
+import {
+  connectToDatabase,
+  insertDocument,
+  findUserByEmail,
+} from "../../../util/mongodb";
 import { getSession } from "next-auth/client";
 import { ObjectId } from "mongodb";
 
@@ -16,6 +20,8 @@ async function handler(req, res) {
     const { category, title, amount, location, hours } = req.body;
 
     const session = await getSession({ req });
+    const { user } = session;
+    const selectedUser = await findUserByEmail(user.email);
 
     const newAid = {
       category,
@@ -26,8 +32,9 @@ async function handler(req, res) {
       taken: false,
       taken_by: "",
       chat_active: false,
-      user_id: ObjectId(session.userId),
+      user_id: selectedUser._id,
     };
+    console.log(newAid);
 
     try {
       await insertDocument("humanitarian-aid", newAid);

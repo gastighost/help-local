@@ -2,6 +2,7 @@ import Head from "next/head";
 import clientPromise from "../lib/mongodb";
 import Link from "next/link";
 import { BookmarksContextProvider } from "../store/BookmarksContext";
+import MainCategoryIndex from "../components/ui/category-card";
 
 export default function Home({ isConnected }) {
   return (
@@ -21,18 +22,13 @@ export default function Home({ isConnected }) {
           </h2>
         )}
 
-        <Link href="/jobs">
-          <h2>Jobs</h2>
-        </Link>
-        <Link href="/education">
-          <h2>Education</h2>
-        </Link>
-        <Link href="/humanitarian-aid">
-          <h2>Humanitarian Aid</h2>
-        </Link>
-        <Link href="social-media">
-          <h2>Social Media</h2>
-        </Link>
+        <MainCategoryIndex name="Jobs" categoryUrl="/jobs" />
+        <MainCategoryIndex name="Education" categoryUrl="/education" />
+        <MainCategoryIndex
+          name="Humanitarian Aid"
+          categoryUrl="/humanitarian-aid"
+        />
+        <MainCategoryIndex name="Social Media" categoryUrl="/social-media" />
       </main>
     </div>
   );
