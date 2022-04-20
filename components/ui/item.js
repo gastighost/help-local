@@ -5,24 +5,31 @@ import BookmarksContext from "../../store/BookmarksContext";
 import Link from "next/link";
 
 const Item = (props) => {
-  const bookmarksCtx = useContext(BookmarksContext);
-  const itemIsBookmarked = bookmarksCtx.itemIsBookmarked(props.id);
+  const { info } = props;
+  const bookmarksCtx = useContext(BookmarksContext)
+  const itemIsBookmarked = bookmarksCtx.itemIsBookmarked(info.id)
 
   const toggleBookmarkHandler = (event) => {
     console.log(bookmarksCtx.totalBookmarks);
     if (itemIsBookmarked) {
-      bookmarksCtx.removeBookmark(props.id);
+      bookmarksCtx.removeBookmark(info.id)
     } else {
       bookmarksCtx.addBookmark({
-        id: props.id,
-        title: props.title,
-        location: props.location,
-        category: props.category,
-        tutor: props.tutor,
-        language: props.language,
-        contact: props.contact,
-        studentAge: props.studentAge,
-      });
+        // id: props.id,
+        // title: props.title,
+        // location: props.location,
+        // category: props.category,
+        // tutor: props.tutor,
+        // language: props.language,
+        // contact: props.contact,
+        // studentAge: props.studentAge
+        key: info.id,
+        id: info.id,
+        category: info.category,
+        title: info.title,
+        location: info.location,
+        ...{info}
+      })
     }
     // props.onBookmark()
     // console.log(props.itemIsBookmarked );
