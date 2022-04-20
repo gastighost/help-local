@@ -2,7 +2,7 @@ import { getAllDocuments } from "../../util/mongodb";
 import Link from "next/link";
 import styles from "../../styles/Home.module.css";
 import CategoryFilterBar from "../../components/ui/filter-bar";
-import ItemsList from "../../components/ui/items-list";
+import ItemsList from "../../components/ui/ItemsList";
 
 function HumanitarianAidIndex(props) {
   const { aid } = props;

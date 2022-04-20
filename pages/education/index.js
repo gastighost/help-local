@@ -1,52 +1,16 @@
 import { Fragment } from "react";
 import Link from "next/link";
-// import { connectToDatabase } from "../../util/mongodb";
-import EducationList from "../../components/education/EducationList";
+import { getAllDocuments } from "../../util/mongodb";
 import CategoryFilterBar from "../../components/ui/filter-bar";
-import ItemsList from "../../components/ui/items-list";
-
-const DUMMY_EDUCATIONS = [
-  {
-    category: "Tutoring",
-    title: "History",
-    location: "Berlin",
-    monthlySalary: 1500,
-    language: "German",
-    tutor: "Rosty",
-    studentAge: "12",
-    contact: "email...",
-    _id: 1,
-  },
-  {
-    category: "Tutoring",
-    title: "Maths",
-    location: "Berlin",
-    monthlySalary: 2500,
-    language: "English",
-    tutor: "Gaston",
-    contact: "email...",
-    studentAge: "11",
-    _id: 2,
-  },
-  {
-    category: "Tutoring",
-    title: "Biology",
-    location: "Berlin",
-    language: "German",
-    tutor: "Tony",
-    contact: "email...",
-    studentAge: "16",
-    _id: 3,
-  },
-];
+import ItemsList from "../../components/ui/ItemsList";
 
 function EducationIndex(props) {
-  const { sales } = props;
+  const { education } = props
   return (
     <Fragment>
       <CategoryFilterBar />
       <h1>Education Listings</h1>
-      <ItemsList info={DUMMY_EDUCATIONS} type="education" />
+      <ItemsList info={education} type="education"/>
       <Link href="/">
         <a>Back to home</a>
       </Link>
@@ -54,21 +18,17 @@ function EducationIndex(props) {
   );
 }
 
-// export async function getServerSideProps(context) {
-//   const { db } = await connectToDatabase();
 
-//   const sales = await db
-//     .collection("sales")
-//     .find({})
-//     .sort({ metacritic: -1 })
-//     .limit(20)
-//     .toArray();
+export async function getServerSideProps(context) {
+  const education = await getAllDocuments("education");
+  // console.log(education);
 
-//   return {
-//     props: {
-//       sales: JSON.parse(JSON.stringify(sales)),
-//     },
-//   };
-// }
+  return {
+    props: {
+      education: JSON.parse(JSON.stringify(education)),
+    },
+  };
+
+}
 
 export default EducationIndex;
