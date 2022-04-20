@@ -1,6 +1,6 @@
 import classes from "./EducationItem.module.css";
 import Card from "../ui/card";
-import Item from "../ui/Item"
+import Item from "../ui/item"
 import { useContext } from "react";
 import BookmarksContext from "../../store/BookmarksContext";
 
