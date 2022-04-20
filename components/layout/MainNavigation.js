@@ -26,12 +26,6 @@ function MainNavigation() {
             </Link>
               <span className={classes.badge}>{bookmarksCtx.totalBookmarks}</span>
           </li>
-          <li>
-            <Link href='/auth'>Login</Link>
-          </li>
-          <li>
-            <button>Logout</button>
-          </li>
           {!session && !loading && (
             <li>
               <Link href="/auth">Login</Link>
