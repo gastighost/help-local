@@ -48,6 +48,12 @@ export async function getAllDocuments(collection) {
   return documents;
 }
 
+export async function getBookmarkedDocuments(collection) {
+  const { db } = await connectToDatabase();
+  const documents = await db.collection(collection).find({isBookmarked: true}).toArray();
+  return documents;
+}
+
 export async function findDocumentById(collection, id) {
   const { db } = await connectToDatabase();
   const document = await db

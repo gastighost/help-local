@@ -1,4 +1,4 @@
-import { connectToDatabase, insertDocument, editDocumentById, findDocumentById } from "../../../util/mongodb";
+import { connectToDatabase, insertDocument, editDocumentById } from "../../../util/mongodb";
 
 async function handler(req, res) {
   let clientOpened;
@@ -12,9 +12,9 @@ async function handler(req, res) {
 
   if (req.method === "POST") {
 
-    const { category, title, tutor, location, language, contact, studentAge } = req.body;
+    const { category, title, location, language, contact, studentAge, tutor,  } = req.body;
 
-    const newEducation = {
+    const newBookmark = {
       category,
       title,
       studentAge: parseFloat(studentAge),
@@ -29,19 +29,19 @@ async function handler(req, res) {
     };
 
     try {
-      await insertDocument("education", newEducation);
+      await insertDocument("bookmarks", newBookmark);
     } catch (error) {
       res.status(500).json({ message: "Inserting data failed!" });
       return;
     }
 
-    res.status(201).json({ message: "Education item created!", education: newEducation });
+    res.status(201).json({ message: "Education item created!", education: newBookmark });
   }
 
   if (req.method === "PATCH") {
     const { id, isBookmarked } = req.body;
 
-    const newEducation = {
+    const newBookmark = {
 
       isBookmarked
 
@@ -50,7 +50,7 @@ async function handler(req, res) {
     // console.log(id);
     let selectedResult;
     try {
-      selectedResult = await editDocumentById("education", id, newEducation);
+      selectedResult = await editDocumentById("education", id, newBookmark);
     } catch (error) {
       res.status(500).json({ message: "Updating document failed!" });
       return;
