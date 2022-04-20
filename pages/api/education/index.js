@@ -55,7 +55,7 @@ async function handler(req, res) {
       chat_active: false,
     };
 
-    console.log(id);
+    // console.log(id);
     let selectedResult;
     try {
       selectedResult = await editDocumentById("education", id, newEducation);
