@@ -15,16 +15,41 @@ export const BookmarksContextProvider = (props) => {
     setuserBookmarks((prevBookmarks) => {
       return prevBookmarks.concat(bookmarkedItem)
     })
+    // fetch("/api/education", {
+    //   method: "PATCH",
+    //   body: JSON.stringify({
+    //     id: bookmarkedItem.id,
+    //     isBookmarked: true,
+    //   }),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // })
+    //   .then((response) => {
+    //     if (response.ok) {
+    //       return response.json();
+    //     }
+
+    //     response.json().then((data) => {
+    //       throw new Error(data.message || "Something went wrong");
+    //     });
+    //   })
+    //   .then((data) => {
+    //     console.log(data.message, data.education);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }
 
   const removeBookmarkHandler = (itemId) => {
     setuserBookmarks((prevBookmarks) => {
-      return prevBookmarks.filter(bookmark => bookmark.id !== itemId)
+      return prevBookmarks.filter(bookmark => bookmark._id !== itemId)
     })
   }
 
   const itemIsBookmarkedHandler = (itemId) => {
-    return userBookmarks.some(item => item.id === itemId)
+    return userBookmarks.some(item => item._id === itemId)
   }
 
   const context = {

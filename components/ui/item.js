@@ -5,33 +5,26 @@ import BookmarksContext from "../../store/BookmarksContext";
 import Link from "next/link";
 
 const Item = (props) => {
-  const bookmarksCtx = useContext(BookmarksContext);
-  const itemIsBookmarked = bookmarksCtx.itemIsBookmarked(props.id);
+
+  const { info } = props;
+  console.log(info);
+  const bookmarksCtx = useContext(BookmarksContext)
+  const itemIsBookmarked = bookmarksCtx.itemIsBookmarked(info._id)
 
   const toggleBookmarkHandler = (event) => {
-    console.log(bookmarksCtx.totalBookmarks);
     if (itemIsBookmarked) {
-      bookmarksCtx.removeBookmark(props.id);
+      bookmarksCtx.removeBookmark(info._id)
     } else {
       bookmarksCtx.addBookmark({
-        id: props.id,
-        title: props.title,
-        location: props.location,
-        category: props.category,
-        tutor: props.tutor,
-        language: props.language,
-        contact: props.contact,
-        studentAge: props.studentAge,
-      });
+        key: info._id,
+        _id: info._id,
+        category: info.category,
+        title: info.title,
+        location: info.location,
+        ...{info}
+      })
     }
-    // props.onBookmark()
-    // console.log(props.itemIsBookmarked );
   };
-
-  // const suka = (event) => {
-  //   event.preventDefault()
-  //   console.log(itemIsBookmarked);
-  // }
 
   return (
     <li className={classes.item}>
