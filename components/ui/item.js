@@ -7,7 +7,7 @@ import Link from "next/link";
 const Item = (props) => {
 
   const { info } = props;
-  console.log(info);
+  // console.log(info);
   const bookmarksCtx = useContext(BookmarksContext)
   const itemIsBookmarked = bookmarksCtx.itemIsBookmarked(info._id)
 

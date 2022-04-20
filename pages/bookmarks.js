@@ -4,7 +4,6 @@ import ItemsList from "../components/ui/ItemsList";
 
 const Bookmarks = (props) => {
   const bookmarksCtx = useContext(BookmarksContext)
-  console.log(bookmarksCtx.bookmarks);
   let content;
 
   if (bookmarksCtx.totalBookmarks === 0) {
