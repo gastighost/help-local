@@ -8,12 +8,12 @@ const ItemsList = (props) => {
   return <ul className={classes.list}>
     { info.map(item =>
       <Item
-      key={item.id}
-      id={item.id}
+      key={item._id}
+      id={item._id}
       category={item.category}
       title={item.title}
       location={item.location}
-      info={info}
+      info={item}
       />
     )}
   </ul>
