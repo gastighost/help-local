@@ -1,4 +1,6 @@
 import { connectToDatabase, insertDocument } from "../../../util/mongodb";
+import { getSession } from "next-auth/client";
+import { ObjectId } from "mongodb";
 
 async function handler(req, res) {
   let clientOpened;
@@ -13,6 +15,8 @@ async function handler(req, res) {
   if (req.method === "POST") {
     const { category, title, amount, location, hours } = req.body;
 
+    const session = await getSession({ req });
+
     const newAid = {
       category,
       title,
@@ -22,6 +26,7 @@ async function handler(req, res) {
       taken: false,
       taken_by: "",
       chat_active: false,
+      user_id: ObjectId(session.userId),
     };
 
     try {

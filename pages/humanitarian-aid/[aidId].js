@@ -34,7 +34,7 @@ function HumanitarianAidShowPage(props) {
       <p>Taken by: {selectedAid.taken_by}</p>
       <p>Chat active? {selectedAid.chat_active}</p>
       {isEditing && <AidEditForm handleEditOff={turnOffEdit} id={aidId} />}
-      <EditDeleteButtons id={aidId} handleEditOn={turnOnEdit} />
+      {!isEditing && <EditDeleteButtons id={aidId} handleEditOn={turnOnEdit} />}
       <Link href="/humanitarian-aid">Back to humanitarian items</Link>
     </div>
   );

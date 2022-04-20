@@ -1,8 +1,8 @@
 import { getAllDocuments } from "../../util/mongodb";
 import Link from "next/link";
 import styles from "../../styles/Home.module.css";
-import HumanitarianAidList from "../../components/humanitarian-aid/humanitarian-aid-list";
 import CategoryFilterBar from "../../components/ui/filter-bar";
+import ItemsList from "../../components/ui/items-list";
 
 function HumanitarianAidIndex(props) {
   const { aid } = props;
@@ -13,7 +13,7 @@ function HumanitarianAidIndex(props) {
       <Link href="/humanitarian-aid/new-aid">
         <a>Create new item</a>
       </Link>
-      <HumanitarianAidList info={aid} />
+      <ItemsList info={aid} type="humanitarian-aid" />
       <Link href="/">
         <a>Back to home</a>
       </Link>
