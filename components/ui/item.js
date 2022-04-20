@@ -5,24 +5,23 @@ import BookmarksContext from "../../store/BookmarksContext";
 
 const Item = (props) => {
 
+  const { info, id } = props;
 
   const bookmarksCtx = useContext(BookmarksContext)
-  const itemIsBookmarked = bookmarksCtx.itemIsBookmarked(props.id)
+  const itemIsBookmarked = bookmarksCtx.itemIsBookmarked(info.id)
 
   const toggleBookmarkHandler = (event) => {
-    console.log(bookmarksCtx.totalBookmarks);
+    console.log(info.id);
     if (itemIsBookmarked) {
-      bookmarksCtx.removeBookmark(props.id)
+      bookmarksCtx.removeBookmark(info.id)
     } else {
       bookmarksCtx.addBookmark({
-        id: props.id,
-        title: props.title,
-        location: props.location,
-        category: props.category,
-        tutor: props.tutor,
-        language: props.language,
-        contact: props.contact,
-        studentAge: props.studentAge
+        key: id,
+        id: id,
+        category: info.category,
+        title: info.title,
+        location: info.location,
+        ...{info}
       })
     }
     // props.onBookmark()
@@ -37,7 +36,7 @@ const Item = (props) => {
   return<li className={classes.item} >
     <Card>
       <div className={classes.content}>
-        <h2>{props.category}</h2>
+        <h2>{info.category}</h2>
         <h3>{props.title}</h3>
         <address>{props.location}</address>
       </div>

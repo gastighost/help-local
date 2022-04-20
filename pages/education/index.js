@@ -1,52 +1,16 @@
 import { Fragment } from "react";
 import Link from "next/link";
-// import { connectToDatabase } from "../../util/mongodb";
-import EducationList from "../../components/education/EducationList";
+import { getAllDocuments } from "../../util/mongodb";
 import CategoryFilterBar from "../../components/ui/filter-bar";
 import ItemsList from "../../components/ui/ItemsList";
 
-const DUMMY_EDUCATIONS = [
-  {
-    category: "Tutoring",
-    title: "History",
-    location: "Berlin",
-    monthlySalary: 1500,
-    language: "German",
-    tutor: "Rosty",
-    studentAge: "12",
-    contact: "email...",
-    id: 1,
-  },
-  {
-    category: "Tutoring",
-    title: "Maths",
-    location: "Berlin",
-    monthlySalary: 2500,
-    language: "English",
-    tutor: "Gaston",
-    contact: "email...",
-    studentAge: "11",
-    id: 2,
-  },
-  {
-    category: "Tutoring",
-    title: "Biology",
-    location: "Berlin",
-    language: "German",
-    tutor: "Tony",
-    contact: "email...",
-    studentAge: "16",
-    id: 3,
-  },
-];
-
 function EducationIndex(props) {
-  const { sales } = props;
+  const { education } = props
   return (
     <Fragment>
       <CategoryFilterBar />
       <h1>Education Listings</h1>
-      <ItemsList info={DUMMY_EDUCATIONS} />
+      <ItemsList info={education} />
       <Link href="/">
         <a>Back to home</a>
       </Link>
@@ -54,22 +18,20 @@ function EducationIndex(props) {
   );
 }
 
-// export async function getServerSideProps(context) {
-//   const { db } = await connectToDatabase();
+export async function getServerSideProps(context) {
+  const education = await getAllDocuments("education");
 
-//   const sales = await db
-//     .collection("sales")
-//     .find({})
-//     .sort({ metacritic: -1 })
-//     .limit(20)
-//     .toArray();
-
-//   return {
-//     props: {
-//       sales: JSON.parse(JSON.stringify(sales)),
-//     },
-//   };
-// }
-
+  return {
+    props: {
+      education: JSON.parse(JSON.stringify(education)),
+    },
+    // props: {
+    //   education: education.map(item => ({
+    //     ...{item},
+    //     id: item._id.toString()
+    //   }))
+    // },
+  };
+}
 
 export default EducationIndex;
