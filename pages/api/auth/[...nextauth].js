@@ -38,16 +38,6 @@ export default NextAuth({
   ],
   callbacks: {
     session: async (session, user) => {
-      const { client, db } = await connectToDatabase();
-
-      const usersCollection = db.collection("users");
-
-      const foundUser = await usersCollection.findOne({
-        email: session.user.email,
-      });
-
-      user.userId = foundUser._id;
-      session.userId = user.userId;
       return Promise.resolve(session);
     },
   },

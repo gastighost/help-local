@@ -1,23 +1,24 @@
-import Item from "./Item"
+import Item from "./item";
 import classes from "./ItemsList.module.css";
 
 const ItemsList = (props) => {
+  const { info, type } = props;
 
-  const { info } = props;
-  // console.log(info);
-  return <ul className={classes.list}>
-    { info.map(item =>
-      <Item
-      key={item._id}
-      id={item._id}
-      category={item.category}
-      title={item.title}
-      location={item.location}
-      info={ item }
-      />
+  return (
+    <ul className={classes.list}>
+      {info.map((item) => (
+        <Item
+          key={item._id}
+          id={item._id}
+          category={item.category}
+          title={item.title}
+          location={item.location}
+          info={info}
+          type={type}
+        />
+      ))}
+    </ul>
+  );
+};
 
-    )}
-  </ul>
-}
-
-export default ItemsList
+export default ItemsList;

@@ -27,7 +27,9 @@ async function handler(req, res) {
   }
 
   if (req.method === "PATCH") {
-    const { category, title, amount, location, hours, id } = req.body;
+    const { category, title, amount, location, hours, id, provider } = req.body;
+
+    const providerBoolean = provider === "true" ? true : false;
 
     const newAid = {
       category,
@@ -35,6 +37,7 @@ async function handler(req, res) {
       amount: parseFloat(amount),
       location,
       hours,
+      providing: providerBoolean,
     };
     console.log(newAid);
     let selectedResult;
