@@ -11,6 +11,7 @@ function AidEditForm(props) {
   const amountInputRef = useRef();
   const locationInputRef = useRef();
   const hoursInputRef = useRef();
+  const isProviderInputRef = useRef();
 
   function editHandler(event) {
     event.preventDefault();
@@ -20,6 +21,7 @@ function AidEditForm(props) {
     const enteredAmount = amountInputRef.current.value;
     const enteredLocation = locationInputRef.current.value;
     const enteredHours = hoursInputRef.current.value;
+    const enteredIsProvider = isProviderInputRef.current.value;
 
     fetch("/api/humanitarian-aid/" + id, {
       method: "PATCH",
@@ -30,6 +32,7 @@ function AidEditForm(props) {
         amount: enteredAmount,
         location: enteredLocation,
         hours: enteredHours,
+        provider: enteredIsProvider,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -102,6 +105,15 @@ function AidEditForm(props) {
               placeholder="Availability Hours"
               ref={hoursInputRef}
             />
+          </div>
+          <div>
+            <label htmlFor="provider">
+              Will you be providing or requesting this item?
+            </label>
+            <select id="provider" ref={isProviderInputRef}>
+              <option value="true">Providing</option>
+              <option value="false">Requesting</option>
+            </select>
           </div>
           <button type="submit">Edit</button>
           <button onClick={handleEditOff}>Cancel Edit</button>

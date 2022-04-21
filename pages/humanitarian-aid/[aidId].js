@@ -30,6 +30,11 @@ function HumanitarianAidShowPage(props) {
       <p>Amount: {selectedAid.amount}</p>
       <p>Drop off location: {selectedAid.location}</p>
       <p>Hours: {selectedAid.hours}</p>
+      <p>
+        {selectedAid.providing === true
+          ? "This item is being provided"
+          : "This item is being requested"}
+      </p>
       <p>Taken?{selectedAid.taken}</p>
       <p>Taken by: {selectedAid.taken_by}</p>
       <p>Chat active? {selectedAid.chat_active}</p>
