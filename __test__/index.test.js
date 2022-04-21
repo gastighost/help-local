@@ -1,33 +1,35 @@
-// import { render, screen } from '@testing-library/react'
-// import Home from '../pages/index'
-// import '@testing-library/jest-dom'
-// const {MongoClient} = require('mongodb');
+import { render } from '@testing-library/react'
+import Home from '../pages/index'
 
-// describe('Home', () => {
-//   let connection;
-//   let db;
+const {MongoClient} = require('mongodb');
 
-//   beforeAll(async () => {
-//     connection = await MongoClient.connect(global.__MONGO_URI__, {
-//       useNewUrlParser: true,
-//     });
-//     db = await connection.db(global.__MONGO_DB_NAME__);
-//   });
+describe('insert', () => {
+  let connection;
+  let db;
 
-//   afterAll(async () => {
-//     await connection.close();
-//     if(db.close) {
-//       await db.close();
-//     }
-//   });
+  beforeAll(async () => {
+    console.log("Test Starting...");
+    connection = await MongoClient.connect(global.__MONGO_URI__, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    db = await connection.db();
+    // await db.collection('COLLECTION_NAME').deleteMany({});
+  });
 
-//   it('renders a heading', () => {
-//     render(<Home />)
+  afterAll(async () => {
+    console.log("Test Ending...");
+    await connection.close();
+//   if(db.close) {
+//     await db.close();
+//   }
+    console.log("Test ended!");
+  });
 
-//     const heading = screen.getByRole('heading', {
-//       name: /welcome to next\.js!/i,
-//     })
-
-//     expect(heading).toBeInTheDocument()
-//   })
-// });
+  it('renders homepage unchanged', async () => {
+    const { container } = render(<Home />)
+    await expect(container).toMatchSnapshot()
+    console.log("rendering ended");
+  });
+  console.log("does it get to here?");
+});
