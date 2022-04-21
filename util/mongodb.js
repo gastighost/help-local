@@ -74,3 +74,12 @@ export async function editDocumentById(collection, id, updatedItem) {
     .collection(collection)
     .updateOne({ _id: ObjectId(id) }, { $set: updatedItem });
 }
+
+export async function getBookmarkedItemById(id) {
+  const { db } = await connectToDatabase();
+  const document = await db
+    .collection("education")
+    .find({ _id: ObjectId(id) })
+    .toArray();
+  return document[0];
+}

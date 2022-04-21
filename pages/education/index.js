@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getAllDocuments } from "../../util/mongodb";
 import CategoryFilterBar from "../../components/ui/filter-bar";
 import ItemsList from "../../components/ui/ItemsList";
+import EducationList from "../../components/education/EducationList";
 
 function EducationIndex(props) {
   const { education } = props
@@ -10,7 +11,7 @@ function EducationIndex(props) {
     <Fragment>
       <CategoryFilterBar />
       <h1>Education Listings</h1>
-      <ItemsList info={education} type="education"/>
+      <EducationList info={education} type="education"/>
       <Link href="/">
         <a>Back to home</a>
       </Link>

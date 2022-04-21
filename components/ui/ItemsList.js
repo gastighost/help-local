@@ -6,7 +6,7 @@ import EducationItem from "../education/EducationItem";
 const ItemsList = (props) => {
 
   const { info } = props;
-  // console.log(info);
+  console.log(info);
   return <ul className={classes.list}>
     { info.map(item =>
       <Item
@@ -16,6 +16,7 @@ const ItemsList = (props) => {
         title={item.title}
         location={item.location}
         type={props.type}
+        isBooked={item.isBookmarked}
         info={ item }
       />
     )}
