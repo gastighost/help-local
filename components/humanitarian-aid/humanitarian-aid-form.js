@@ -9,6 +9,7 @@ function HumanitarianAidForm() {
   const amountInputRef = useRef();
   const locationInputRef = useRef();
   const hoursInputRef = useRef();
+  const isProviderInputRef = useRef();
 
   function registrationHandler(event) {
     event.preventDefault();
@@ -18,6 +19,7 @@ function HumanitarianAidForm() {
     const enteredAmount = amountInputRef.current.value;
     const enteredLocation = locationInputRef.current.value;
     const enteredHours = hoursInputRef.current.value;
+    const enteredIsProvider = isProviderInputRef.current.value;
 
     fetch("/api/humanitarian-aid", {
       method: "POST",
@@ -27,6 +29,7 @@ function HumanitarianAidForm() {
         amount: enteredAmount,
         location: enteredLocation,
         hours: enteredHours,
+        provider: enteredIsProvider,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -102,6 +105,15 @@ function HumanitarianAidForm() {
               placeholder="Availability Hours"
               ref={hoursInputRef}
             />
+          </div>
+          <div>
+            <label htmlFor="provider">
+              Will you be providing or requesting this item?
+            </label>
+            <select id="provider" ref={isProviderInputRef}>
+              <option value="true">Providing</option>
+              <option value="false">Requesting</option>
+            </select>
           </div>
           <button>Register</button>
         </div>

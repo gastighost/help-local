@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import EditDeleteButtons from "../../components/humanitarian-aid/edit-delete";
 import AidEditForm from "../../components/humanitarian-aid/aid-edit-form";
+import AidItemDetail from "../../components/humanitarian-aid/aid-item-detail";
+import RequestButton from "../../components/ui/request-button";
 
 function HumanitarianAidShowPage(props) {
   const [isEditing, setIsEditing] = useState(false);
@@ -24,15 +26,8 @@ function HumanitarianAidShowPage(props) {
 
   return (
     <div>
-      <h1>Humanitarian Show Page!</h1>
-      <h2>Category: {selectedAid.category}</h2>
-      <h3>Title: {selectedAid.title}</h3>
-      <p>Amount: {selectedAid.amount}</p>
-      <p>Drop off location: {selectedAid.location}</p>
-      <p>Hours: {selectedAid.hours}</p>
-      <p>Taken?{selectedAid.taken}</p>
-      <p>Taken by: {selectedAid.taken_by}</p>
-      <p>Chat active? {selectedAid.chat_active}</p>
+      <AidItemDetail itemDetails={selectedAid} />
+      <RequestButton aidItem={selectedAid} id={aidId} />
       {isEditing && <AidEditForm handleEditOff={turnOffEdit} id={aidId} />}
       {!isEditing && <EditDeleteButtons id={aidId} handleEditOn={turnOnEdit} />}
       <Link href="/humanitarian-aid">Back to humanitarian items</Link>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "./main-category-index.module.css";
+import styles from "./category-card.module.css";
 
 function MainCategoryIndex(props) {
   const { name, categoryUrl } = props;
