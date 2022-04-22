@@ -3,35 +3,34 @@ import Card from "./card";
 import { useContext } from "react";
 import BookmarksContext from "../../store/BookmarksContext";
 import Link from "next/link";
-import EducationItem from "../education/EducationItem"
+import EducationItem from "../education/EducationItem";
 
 const Item = (props) => {
-
   const { info } = props;
 
   console.log(props.itemIsBookmarked);
   console.log(props.type);
-  const bookmarksCtx = useContext(BookmarksContext)
-  const itemIsBookmarked = props.isBooked
+  const bookmarksCtx = useContext(BookmarksContext);
+  const itemIsBookmarked = props.isBooked;
   console.log(info);
 
   const toggleBookmarkHandler = (event) => {
     info.map((item) => {
       if (item.IsBookmarked) {
-        bookmarksCtx.removeBookmark(item._id)
+        bookmarksCtx.removeBookmark(item._id);
         // bookmarksCtx.removeBookmarkFromDb(info._id)
       } else {
         bookmarksCtx.addBookmark({
-          ...{item},
+          ...{ item },
           key: item._id,
           _id: item._id,
           category: item.category,
           title: item.title,
           location: item.location,
-          isBookmarked: item.isBookmarked
-        })
+          isBookmarked: item.isBookmarked,
+        });
       }
-    })
+    });
   };
 
   return (
@@ -53,7 +52,6 @@ const Item = (props) => {
       </Card>
     </li>
   );
-
 };
 
 export default Item;
