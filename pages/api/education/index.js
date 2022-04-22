@@ -1,4 +1,4 @@
-import { connectToDatabase, insertDocument, editDocumentById } from "../../../util/mongodb";
+import { connectToDatabase, insertDocument, editDocumentById, findDocumentById } from "../../../util/mongodb";
 
 async function handler(req, res) {
   let clientOpened;
@@ -38,21 +38,13 @@ async function handler(req, res) {
     res.status(201).json({ message: "Education item created!", education: newEducation });
   }
 
-  if (req.method === "PATCH") {
-    const { category, title, tutor, location, language, contact, studentAge, id, isBookmarked } = req.body;
-
+  if (req.method === "PATCH" && req.body.isBookmarked) {
+    const { id, isBookmarked } = req.body;
+    console.log(id);
     const newEducation = {
-      category,
-      title,
-      studentAge: parseFloat(studentAge),
-      location,
-      tutor,
-      isBookmarked,
-      taken: false,
-      taken_by: "",
-      language,
-      contact,
-      chat_active: false,
+
+      isBookmarked: true
+
     };
 
     // console.log(id);
@@ -65,6 +57,27 @@ async function handler(req, res) {
     }
     res.status(201).json({ selectedResult, educationId: id });
   }
+
+  if (req.method === "PATCH" && !req.body.isBookmarked) {
+    const { id, isBookmarked } = req.body;
+    console.log("second-method", id);
+    const newEducation = {
+
+      isBookmarked: false
+
+    };
+
+    // console.log(id);
+    let selectedResult;
+    try {
+      selectedResult = await editDocumentById("education", id, newEducation);
+    } catch (error) {
+      res.status(500).json({ message: "Updating document failed!" });
+      return;
+    }
+    res.status(201).json({ selectedResult, educationId: id });
+  }
+
 
   clientOpened.close();
 }

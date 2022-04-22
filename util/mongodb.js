@@ -48,6 +48,12 @@ export async function getAllDocuments(collection) {
   return documents;
 }
 
+export async function getBookmarkedDocuments(collection) {
+  const { db } = await connectToDatabase();
+  const documents = await db.collection(collection).find({isBookmarked: true}).toArray();
+  return documents;
+}
+
 export async function findDocumentById(collection, id) {
   const { db } = await connectToDatabase();
   const document = await db
@@ -67,6 +73,15 @@ export async function editDocumentById(collection, id, updatedItem) {
   return await db
     .collection(collection)
     .updateOne({ _id: ObjectId(id) }, { $set: updatedItem });
+}
+
+export async function getBookmarkedItemById(id) {
+  const { db } = await connectToDatabase();
+  const document = await db
+    .collection("education")
+    .find({ _id: ObjectId(id) })
+    .toArray();
+  return document[0];
 }
 
 export async function findUserByEmail(selectedEmail) {
