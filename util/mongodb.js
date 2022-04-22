@@ -83,3 +83,8 @@ export async function getBookmarkedItemById(id) {
     .toArray();
   return document[0];
 }
+
+export async function findUserByEmail(selectedEmail) {
+  const { db } = await connectToDatabase();
+  return await db.collection("users").findOne({ email: selectedEmail });
+}

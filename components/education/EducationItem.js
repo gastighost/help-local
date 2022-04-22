@@ -1,5 +1,6 @@
 import classes from "./EducationItem.module.css";
 import Card from "../ui/card";
+import Item from "../ui/Item"
 import { useContext } from "react";
 import BookmarksContext from "../../store/BookmarksContext";
 import Link from "next/link";
@@ -60,4 +61,4 @@ function EducationItem(props) {
     );
 }
 
-export default EducationItem;
+export default EducationItem

@@ -1,10 +1,9 @@
-import Item from "./Item"
+import Item from "./item";
 import classes from "./ItemsList.module.css";
 import Card from "./card";
 import EducationItem from "../education/EducationItem";
 
 const ItemsList = (props) => {
-
   const { info } = props;
   console.log(info);
   return <ul className={classes.list}>

@@ -6,7 +6,7 @@ import ItemsList from "../../components/ui/ItemsList";
 import EducationList from "../../components/education/EducationList";
 
 function EducationIndex(props) {
-  const { education } = props
+  const { education } = props;
   return (
     <Fragment>
       <CategoryFilterBar />
@@ -19,7 +19,6 @@ function EducationIndex(props) {
   );
 }
 
-
 export async function getServerSideProps(context) {
   const education = await getAllDocuments("education");
   // console.log(education);
@@ -29,7 +28,6 @@ export async function getServerSideProps(context) {
       education: JSON.parse(JSON.stringify(education)),
     },
   };
-
 }
 
 export default EducationIndex;

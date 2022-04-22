@@ -2,7 +2,10 @@ import {
   connectToDatabase,
   deleteDocumentById,
   editDocumentById,
+  findUserByEmail,
 } from "../../../util/mongodb";
+
+import { getSession } from "next-auth/client";
 
 async function handler(req, res) {
   let clientOpened;
@@ -26,8 +29,35 @@ async function handler(req, res) {
     res.status(201).json({ selectedResult });
   }
 
-  if (req.method === "PATCH") {
-    const { category, title, amount, location, hours, id } = req.body;
+  if (req.method === "PATCH" && req.body.requestPresence) {
+    const { id, request } = req.body;
+    console.log(request);
+
+    const session = await getSession({ req });
+    const { user } = session;
+    const selectedUser = await findUserByEmail(user.email);
+
+    const taken_by_whom = request ? selectedUser._id : "";
+
+    const newAid = {
+      taken: request,
+      taken_by: taken_by_whom,
+    };
+    console.log(newAid);
+    let selectedResult;
+    try {
+      selectedResult = await editDocumentById("humanitarian-aid", id, newAid);
+    } catch (error) {
+      res.status(500).json({ message: "Requesting document failed!" });
+      return;
+    }
+    res.status(201).json({ selectedResult, aidId: id });
+  }
+
+  if (req.method === "PATCH" && !req.body.requestPresence) {
+    const { category, title, amount, location, hours, id, provider } = req.body;
+
+    const providerBoolean = provider === "true" ? true : false;
 
     const newAid = {
       category,
@@ -35,6 +65,7 @@ async function handler(req, res) {
       amount: parseFloat(amount),
       location,
       hours,
+      providing: providerBoolean,
     };
     console.log(newAid);
     let selectedResult;
