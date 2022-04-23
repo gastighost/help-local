@@ -1,3 +1,5 @@
+const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
+
 module.exports = async (phase, { defaultConfig }) => {
   /**
    * @type {import('next').NextConfig}
@@ -59,10 +61,22 @@ module.exports = {
   },
 };
 
-module.exports = {
-  env: {
-    MONGODB_URI:
-      "mongodb+srv://new-in-germany:g26ndrE4n7drRH3@cluster0.nboma.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-    MONGODB_DB: "help-local",
-  },
+module.exports = (phase) => {
+  if (phase === PHASE_DEVELOPMENT_SERVER) {
+    return {
+      env: {
+        MONGODB_URI:
+          "mongodb+srv://new-in-germany:g26ndrE4n7drRH3@cluster0.nboma.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+        MONGODB_DB: "help-local",
+      },
+    };
+  }
+
+  return {
+    env: {
+      MONGODB_URI:
+        "mongodb+srv://new-in-germany:g26ndrE4n7drRH3@cluster0.nboma.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+      MONGODB_DB: "help-local",
+    },
+  };
 };
