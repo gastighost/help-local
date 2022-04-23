@@ -1,5 +1,5 @@
 import EducationItem from "./EducationItem";
-// import classes from "./EducationList.module.css";
+import classes from "./education-list.module.css";
 
 function EducationList(props) {
   return (
