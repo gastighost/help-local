@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getAllDocuments } from "../../util/mongodb";
 import CategoryFilterBar from "../../components/ui/filter-bar";
 import ItemsList from "../../components/ui/ItemsList";
-import EducationList from "../../components/education/EducationList";
+import EducationList from "../../components/education/EducationList.js";
 
 function EducationIndex(props) {
   const { education } = props;
