@@ -11,7 +11,7 @@ function EducationIndex(props) {
     <Fragment>
       <CategoryFilterBar />
       <h1>Education Listings</h1>
-      <EducationList info={education} type="education"/>
+      <EducationList info={education} type="education" />
       <Link href="/">
         <a>Back to home</a>
       </Link>
