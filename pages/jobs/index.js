@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import Link from "next/link";
 import JobsList from "../../components/jobs/jobs-list";
+import ItemsList from "../../components/ui/ItemsList";
 import CategoryFilterBar from "../../components/ui/filter-bar";
 
 // Generating dummy data for jobs
@@ -55,6 +56,9 @@ function JobsIndex() {
     <div>
       <CategoryFilterBar />
       <h1>Jobs Index</h1>
+      <Link href="/jobs/new-job">
+        <a>Create a new item</a>
+      </Link>
       <JobsList jobs={sampleJobs} />
       <Link href="/">
         <a>Back to home</a>
