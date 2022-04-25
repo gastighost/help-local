@@ -6,7 +6,7 @@ function jobsList(props) {
     <ul>
       {props.jobs.map((job) => {
         return (
-          <li key={job.key}>
+          <li key={job._id}>
             <JobsItem job={job} />
           </li>
         );
