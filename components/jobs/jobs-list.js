@@ -1,6 +1,6 @@
 import JobsItem from "./jobs-item";
 
-function jobsList(props) {
+function JobsList(props) {
   // console.log(props.jobs);
   return (
     <ul>
@@ -15,4 +15,4 @@ function jobsList(props) {
   );
 }
 
-export default jobsList;
+export default JobsList;
