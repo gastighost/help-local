@@ -1,6 +1,6 @@
 import Card from "../ui/card";
 
-function jobsItem(props) {
+function JobsItem(props) {
   return (
     <Card>
       <h2>Category: {props.job.category}</h2>
@@ -9,7 +9,7 @@ function jobsItem(props) {
       <p>Description: {props.job.description}</p>
       <p>Monthly salary in EUR: {props.job.monthlySalary}</p>
     </Card>
-  )
+  );
 }
 
-export default jobsItem;
+export default JobsItem;
