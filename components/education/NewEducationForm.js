@@ -1,8 +1,14 @@
 import classes from "./NewEducationForm.module.css";
 import Card from "../ui/card";
 import { useRef } from "react";
+import { useRouter } from "next/router"
+import {Fragment} from "react"
+
+
 
 const NewEducationForm = (props) => {
+  const router = useRouter()
+
   const titleInputRef = useRef()
   const categoryInputRef = useRef()
   const locationInputRef = useRef()
@@ -54,8 +60,8 @@ const NewEducationForm = (props) => {
       })
       .then((data) => {
         console.log(data.message, data.education);
-        cancelHandler()
         router.push("/education/" + data.education._id);
+        // cancelHandler()
       })
       .catch((error) => {
         console.log(error);
@@ -63,7 +69,7 @@ const NewEducationForm = (props) => {
   }
 
 
-  return <div>
+  return <Fragment>
   <div className={classes.backdrop} onClick={cancelHandler}/>
   <Card className={classes.modal}>
     <form className={classes.form} onSubmit={submitNewEducationHandler}>
@@ -100,14 +106,12 @@ const NewEducationForm = (props) => {
         <input type="number" required id="studentAge" ref={studentAgeInputRef}></input>
       </div>
       <div className={classes.actions}>
+        <button onClick={cancelHandler}>Cancel</button>
         <button>Add</button>
       </div>
     </form>
-      <div className={classes.actions}>
-      <button onClick={cancelHandler}>Cancel</button>
-      </div>
   </Card>
-  </div>
+  </Fragment>
 }
 
 export default NewEducationForm

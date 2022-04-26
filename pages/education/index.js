@@ -10,7 +10,7 @@ import Button from "../../components/ui/button";
 function EducationIndex(props) {
   const [newEducationModalIsOpen, setNewEducationModalIsOpen] = useState(false)
   const { education } = props;
-  console.log(newEducationModalIsOpen);
+  // console.log(newEducationModalIsOpen);
 
   const openModal = () => {
     setNewEducationModalIsOpen(true)

@@ -12,6 +12,8 @@ export default function Home({ isConnected }) {
       </Head>
 
       <main>
+        <div id="backdrop-root"></div>
+        <div id="overlay-root"></div>
         <MainCategoryIndex name="Jobs" categoryUrl="/jobs" />
         <MainCategoryIndex name="Education" categoryUrl="/education" />
         <MainCategoryIndex
