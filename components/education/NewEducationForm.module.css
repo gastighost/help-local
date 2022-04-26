@@ -1,3 +1,23 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.modal {
+  margin: 0 auto;
+  position: fixed;
+  top: 10vh;
+  left: 10%;
+  width: 80%;
+  z-index: 100;
+  overflow: hidden;
+}
+
 .form {
   padding: 1rem;
 }
@@ -22,12 +42,30 @@
   width: 100%;
 }
 
+.select {
+  margin-bottom: 0.5rem;
+  display: block;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 0.25em;
+  font: inherit;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+
+
+.select::-ms-expand {
+  display: none;
+}
+
 .actions {
   margin-top: 1rem;
   text-align: right;
 }
 
 .actions button {
+  margin-left: .5rem;
   font: inherit;
   cursor: pointer;
   background-color: #77002e;

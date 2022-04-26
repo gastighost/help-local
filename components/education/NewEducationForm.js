@@ -11,6 +11,11 @@ const NewEducationForm = (props) => {
   const contactInputRef = useRef()
   const studentAgeInputRef = useRef()
 
+  const cancelHandler = () => {
+    console.log("Cancel clicked");
+    props.onCancel()
+  }
+
 
   const submitNewEducationHandler = (event) => {
     event.preventDefault()
@@ -49,6 +54,7 @@ const NewEducationForm = (props) => {
       })
       .then((data) => {
         console.log(data.message, data.education);
+        cancelHandler()
         router.push("/education/" + data.education._id);
       })
       .catch((error) => {
@@ -57,19 +63,22 @@ const NewEducationForm = (props) => {
   }
 
 
-  return <Card>
+  return <div>
+  <div className={classes.backdrop} onClick={cancelHandler}/>
+  <Card className={classes.modal}>
     <form className={classes.form} onSubmit={submitNewEducationHandler}>
-      <div className={classes.control}>
-        <label htmlFor="title">Title</label>
-        <input type="text" required id="title" ref={titleInputRef}></input>
-      </div>
-      <select
+    <select
+        className={classes.select}
         ref={categoryInputRef}>
         <option value='education'>Education</option>
         <option value='humanitarian_aid'>Humanitarian Aid</option>
         <option value='jobs'>Jobs</option>
         <option value='accommodation'>Accommodation</option>
       </select>
+      <div className={classes.control}>
+        <label htmlFor="title">Title</label>
+        <input type="text" required id="title" ref={titleInputRef}></input>
+      </div>
       <div className={classes.control}>
         <label htmlFor="location">Location</label>
         <input type="text" required id="location" ref={locationInputRef}></input>
@@ -94,7 +103,11 @@ const NewEducationForm = (props) => {
         <button>Add</button>
       </div>
     </form>
+      <div className={classes.actions}>
+      <button onClick={cancelHandler}>Cancel</button>
+      </div>
   </Card>
+  </div>
 }
 
 export default NewEducationForm

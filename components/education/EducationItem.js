@@ -11,7 +11,7 @@ function EducationItem(props) {
   // console.log(props.type);
   const bookmarksCtx = useContext(BookmarksContext)
   const itemIsBookmarked = props.isBookmarked
-  console.log(itemIsBookmarked);
+  // console.log(itemIsBookmarked);
 
   // const toggleBookmarkHandler = () => {
   //   if (itemIsBookmarked) {
