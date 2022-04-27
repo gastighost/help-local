@@ -1,8 +1,14 @@
 import classes from "./NewEducationForm.module.css";
 import Card from "../ui/card";
 import { useRef } from "react";
+import { useRouter } from "next/router"
+import {Fragment} from "react"
+
+
 
 const NewEducationForm = (props) => {
+  const router = useRouter()
+
   const titleInputRef = useRef()
   const categoryInputRef = useRef()
   const locationInputRef = useRef()
@@ -10,6 +16,11 @@ const NewEducationForm = (props) => {
   const languageInputRef = useRef()
   const contactInputRef = useRef()
   const studentAgeInputRef = useRef()
+
+  const cancelHandler = () => {
+    console.log("Cancel clicked");
+    props.onCancel()
+  }
 
 
   const submitNewEducationHandler = (event) => {
@@ -50,6 +61,7 @@ const NewEducationForm = (props) => {
       .then((data) => {
         console.log(data.message, data.education);
         router.push("/education/" + data.education._id);
+        // cancelHandler()
       })
       .catch((error) => {
         console.log(error);
@@ -57,19 +69,22 @@ const NewEducationForm = (props) => {
   }
 
 
-  return <Card>
+  return <Fragment>
+  <div className={classes.backdrop} onClick={cancelHandler}/>
+  <Card className={classes.modal}>
     <form className={classes.form} onSubmit={submitNewEducationHandler}>
-      <div className={classes.control}>
-        <label htmlFor="title">Title</label>
-        <input type="text" required id="title" ref={titleInputRef}></input>
-      </div>
-      <select
+    <select
+        className={classes.select}
         ref={categoryInputRef}>
         <option value='education'>Education</option>
         <option value='humanitarian_aid'>Humanitarian Aid</option>
         <option value='jobs'>Jobs</option>
         <option value='accommodation'>Accommodation</option>
       </select>
+      <div className={classes.control}>
+        <label htmlFor="title">Title</label>
+        <input type="text" required id="title" ref={titleInputRef}></input>
+      </div>
       <div className={classes.control}>
         <label htmlFor="location">Location</label>
         <input type="text" required id="location" ref={locationInputRef}></input>
@@ -91,10 +106,12 @@ const NewEducationForm = (props) => {
         <input type="number" required id="studentAge" ref={studentAgeInputRef}></input>
       </div>
       <div className={classes.actions}>
+        <button onClick={cancelHandler}>Cancel</button>
         <button>Add</button>
       </div>
     </form>
   </Card>
+  </Fragment>
 }
 
 export default NewEducationForm
