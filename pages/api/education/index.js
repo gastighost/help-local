@@ -40,7 +40,7 @@ async function handler(req, res) {
 
   if (req.method === "PATCH" && req.body.isBookmarked) {
     const { id, isBookmarked } = req.body;
-    console.log(id);
+    console.log("first method", id);
     const newEducation = {
 
       isBookmarked: true

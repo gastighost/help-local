@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router"
 import EducationIndex from "../pages/education";
 // import {getBookmarkedItemById} from "../util/mongodb"
@@ -10,24 +10,38 @@ const BookmarksContext = createContext({
   totalBookmarks: 0,
   addBookmark: (bookmarkedItem) => {},
   removeBookmark: (itemID) => {},
-  // itemIsBookmarked: false,
+  itemIsBookmarked: (itemID) => {},
 })
 
 
 export const BookmarksContextProvider = (props) => {
   const router = useRouter()
   const [userBookmarks, setuserBookmarks] = useState([])
-  // const [itemIsBookmarked, setitemIsBookmarked] = useState()
+  const [itemToDelete, setItemToDelete] = useState("")
+  const [itemToAdd, setItemToAdd] = useState("")
 
-  const addBookmarkHandler = (bookmarkedItem) => {
-    setuserBookmarks((prevBookmarks) => {
-      return prevBookmarks.concat(bookmarkedItem)
-    })
+  function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value; //assign the value of ref to the argument
+    },[value]); //this code will run when the value of 'value' changes
+    return ref.current; //in the end, return the current ref value.
+  }
+  const prevBookmarksLength = usePrevious(userBookmarks.length)
 
+  console.log("detele Item", itemToDelete);
+  console.log("item to add", itemToAdd);
+
+
+   useEffect(() => {
+    const lastBookmarkedItem = userBookmarks[userBookmarks.length - 1]
+    console.log(lastBookmarkedItem);
+
+    const bookmarkItem = async () => {
     fetch("/api/education", {
       method: "PATCH",
       body: JSON.stringify({
-        id: bookmarkedItem._id,
+        id: itemToAdd,
         isBookmarked: true,
         // ...{bookmarkedItem}
       }),
@@ -44,20 +58,16 @@ export const BookmarksContextProvider = (props) => {
         });
       }).then((data) => {
         // setitemIsBookmarked(true)
-        router.push("/education/")
+        // router.push("/education/")
         // console.log(itemIsBookmarked);
       })
       .catch((error) => {
         console.log(error);
       });
-  }
+    };
 
-  const removeBookmarkHandler = (itemId) => {
-    setuserBookmarks((prevBookmarks) => {
-      return prevBookmarks.filter(bookmark => bookmark._id !== itemId)
-    })
-
-    fetch("/api/education", {
+    const removeBookmark = async (itemId) => {
+      fetch("/api/education", {
       method: "PATCH",
       body: JSON.stringify({
         id: itemId,
@@ -78,19 +88,46 @@ export const BookmarksContextProvider = (props) => {
           throw new Error(data.message || "Something went wrong");
         });
       }).then((data) => {
-        console.log(itemId);
+        // console.log(data.item._id);
         // setitemIsBookmarked(false)
-        router.push("/education/")
+        // router.push("/education/")
         // console.log(itemIsBookmarked);
       })
 
       .catch((error) => {
         console.log(error);
       });
+    }
+
+    if (userBookmarks.length > prevBookmarksLength && itemToAdd)
+   {
+    bookmarkItem();
+    setItemToAdd("")
+   }
+   if (userBookmarks.length < prevBookmarksLength && itemToDelete) {
+     removeBookmark(itemToDelete)
+     setItemToDelete('')
+    }
+  }, [userBookmarks]);
+  // const [itemIsBookmarked, setitemIsBookmarked] = useState()
+
+  const addBookmarkHandler = (bookmarkedItem) => {
+    setItemToAdd(bookmarkedItem._id)
+    setuserBookmarks((prevBookmarks) => {
+      return prevBookmarks.concat(bookmarkedItem)
+    })
+
+  }
+
+  const removeBookmarkHandler = (itemId) => {
+    setItemToDelete(itemId)
+    setuserBookmarks((prevBookmarks) => {
+      return prevBookmarks.filter(bookmark => bookmark._id !== itemId)
+    })
   }
 
   const itemIsBookmarkedHandler = (itemId) => {
-    // return userBookmarks.some(item => item._id === itemId)
+    return userBookmarks.some(item => item._id === itemId)
     // const bookmarkedItem = getBookmarkedItemById(ObjectId(itemId))
     // console.log(bookmarkedItem);
     // if (bookmarkedItem._id === itemId)
@@ -101,7 +138,7 @@ export const BookmarksContextProvider = (props) => {
     totalBookmarks: userBookmarks.length,
     addBookmark: addBookmarkHandler,
     removeBookmark: removeBookmarkHandler,
-    // itemIsBookmarked: itemIsBookmarked,
+    itemIsBookmarked: itemIsBookmarkedHandler,
   }
 
   return <BookmarksContext.Provider value={context}>
