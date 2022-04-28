@@ -1,4 +1,5 @@
 import { getAllDocuments } from "../../util/mongodb";
+import { getSession } from "next-auth/client";
 import { useState } from "react";
 import Link from "next/link";
 import styles from "../../styles/Home.module.css";
@@ -9,7 +10,7 @@ import Button from "../../components/ui/button";
 
 function HumanitarianAidIndex(props) {
   const [newAidModalIsOpen, setNewAidModalIsOpen] = useState(false);
-  const { aid } = props;
+  const { aid, session } = props;
 
   const openModal = () => {
     setNewAidModalIsOpen(true);
@@ -23,7 +24,7 @@ function HumanitarianAidIndex(props) {
     <div className={styles.center}>
       <CategoryFilterBar />
       <div>
-        <Button onClick={openModal}>Create New Aid</Button>
+        {session && <Button onClick={openModal}>Create New Aid</Button>}
       </div>
       {newAidModalIsOpen && <HumanitarianAidForm onCancel={closeModal} />}
       <h1>Humanitarian Aid</h1>
@@ -38,9 +39,12 @@ function HumanitarianAidIndex(props) {
 export async function getServerSideProps(context) {
   const aid = await getAllDocuments("humanitarian-aid");
 
+  const session = await getSession(context);
+
   return {
     props: {
       aid: JSON.parse(JSON.stringify(aid)),
+      session,
     },
   };
 }

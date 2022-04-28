@@ -48,7 +48,6 @@ async function handler(req, res) {
 
     res.status(201).json({ message: "Aid created!", aid: newAid });
   }
-  clientOpened.close();
 }
 
 export default handler;

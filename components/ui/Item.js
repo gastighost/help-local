@@ -12,7 +12,6 @@ const Item = (props) => {
   console.log(props.type);
   const bookmarksCtx = useContext(BookmarksContext);
   const itemIsBookmarked = props.isBooked;
-  console.log(info);
 
   const toggleBookmarkHandler = (event) => {
     info.map((item) => {
