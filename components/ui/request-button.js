@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useRouter } from "next/router";
 
 function RequestButton(props) {
-  const { aidItem, id } = props;
+  const { aidItem, id, creatorId } = props;
   const router = useRouter();
 
   function activateRequest(event) {
@@ -12,6 +12,7 @@ function RequestButton(props) {
       method: "PATCH",
       body: JSON.stringify({
         id,
+        creatorId,
         request: true,
         requestPresence: true,
       }),
@@ -44,6 +45,7 @@ function RequestButton(props) {
       method: "PATCH",
       body: JSON.stringify({
         id,
+        creatorId,
         request: false,
         requestPresence: true,
       }),
@@ -72,9 +74,9 @@ function RequestButton(props) {
     <div>
       {aidItem.taken ? "Item is taken" : "Item not taken"}
       {aidItem.taken ? (
-        <button onClick={deactivateRequest}>Cancel this request</button>
+        <button onClick={deactivateRequest}>Cancel requested status</button>
       ) : (
-        <button onClick={activateRequest}>Request this item</button>
+        <button onClick={activateRequest}>Mark as requested</button>
       )}
     </div>
   );

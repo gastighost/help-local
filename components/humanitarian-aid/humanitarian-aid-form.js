@@ -1,7 +1,10 @@
 import { useRef } from "react";
 import { useRouter } from "next/router";
+import { Fragment } from "react";
+import Card from "../ui/card";
+import styles from "./humanitarian-aid-form.module.css";
 
-function HumanitarianAidForm() {
+function HumanitarianAidForm(props) {
   const router = useRouter();
 
   const categoryInputRef = useRef();
@@ -10,6 +13,11 @@ function HumanitarianAidForm() {
   const locationInputRef = useRef();
   const hoursInputRef = useRef();
   const isProviderInputRef = useRef();
+
+  const cancelHandler = () => {
+    console.log("Cancel clicked");
+    props.onCancel();
+  };
 
   function registrationHandler(event) {
     event.preventDefault();
@@ -57,68 +65,74 @@ function HumanitarianAidForm() {
     // send valid data to API
   }
   return (
-    <section>
-      <h2>Add an aid item!</h2>
-      <form onSubmit={registrationHandler}>
-        <div>
+    <Fragment>
+      <div className={styles.backdrop} onClick={cancelHandler} />
+      <Card className={styles.modal}>
+        <form className={styles.form} onSubmit={registrationHandler}>
           <div>
-            <label htmlFor="category"></label>
-            <input
-              type="text"
-              id="category"
-              placeholder="Aid Category"
-              ref={categoryInputRef}
-            />
+            <div className={styles.control}>
+              <label htmlFor="category"></label>
+              <input
+                type="text"
+                id="category"
+                placeholder="Aid Category"
+                ref={categoryInputRef}
+              />
+            </div>
+            <div className={styles.control}>
+              <label htmlFor="title"></label>
+              <input
+                type="text"
+                id="title"
+                placeholder="Item name"
+                ref={titleInputRef}
+              />
+            </div>
+            <div className={styles.control}>
+              <label htmlFor="amount"></label>
+              <input
+                type="number"
+                id="amount"
+                placeholder="Amount"
+                ref={amountInputRef}
+              />
+            </div>
+            <div className={styles.control}>
+              <label htmlFor="location"></label>
+              <input
+                type="text"
+                id="location"
+                placeholder="Pickup Address"
+                ref={locationInputRef}
+              />
+            </div>
+            <div className={styles.control}>
+              <label htmlFor="hours"></label>
+              <input
+                type="text"
+                id="hours"
+                placeholder="Availability Hours"
+                ref={hoursInputRef}
+              />
+            </div>
+            <div className={styles.control}>
+              <label htmlFor="provider">
+                Will you be providing or requesting this item?
+              </label>
+              <select
+                className={styles.select}
+                id="provider"
+                ref={isProviderInputRef}
+              >
+                <option value="true">Providing</option>
+                <option value="false">Requesting</option>
+              </select>
+            </div>
+            <button>Add</button>
           </div>
-          <div>
-            <label htmlFor="title"></label>
-            <input
-              type="text"
-              id="title"
-              placeholder="Item name"
-              ref={titleInputRef}
-            />
-          </div>
-          <div>
-            <label htmlFor="amount"></label>
-            <input
-              type="number"
-              id="amount"
-              placeholder="Amount"
-              ref={amountInputRef}
-            />
-          </div>
-          <div>
-            <label htmlFor="location"></label>
-            <input
-              type="text"
-              id="location"
-              placeholder="Pickup Address"
-              ref={locationInputRef}
-            />
-          </div>
-          <div>
-            <label htmlFor="hours"></label>
-            <input
-              type="text"
-              id="hours"
-              placeholder="Availability Hours"
-              ref={hoursInputRef}
-            />
-          </div>
-          <div>
-            <label htmlFor="provider">
-              Will you be providing or requesting this item?
-            </label>
-            <select id="provider" ref={isProviderInputRef}>
-              <option value="true">Providing</option>
-              <option value="false">Requesting</option>
-            </select>
-          </div>
-          <button>Register</button>
-        </div>
-      </form>
-    </section>
+        </form>
+      </Card>
+    </Fragment>
   );
 }
 

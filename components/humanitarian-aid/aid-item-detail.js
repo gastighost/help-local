@@ -15,8 +15,9 @@ function AidItemDetail(props) {
           ? "This item is being provided"
           : "This item is being requested"}
       </p>
-      <p>Taken?{itemDetails.taken}</p>
-      <p>Taken by: {itemDetails.taken_by}</p>
+      <p>
+        Taken?{itemDetails.taken ? "Item has been taken" : "Item is available"}
+      </p>
       <p>Chat active? {itemDetails.chat_active}</p>
     </Fragment>
   );
