@@ -23,7 +23,11 @@ describe('insert', () => {
   it('should insert a user into users collection', async () => {
     const users = db.collection('users');
 
-    const mockUser = {_id: 'some-user-id', name: 'John'};
+    const mockUser = {
+      _id: 'some-user-id',
+      email: 'john@doe.com',
+      password: '123456'
+    };
     await users.insertOne(mockUser);
 
     const insertedUser = await users.findOne({_id: 'some-user-id'});
