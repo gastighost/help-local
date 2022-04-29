@@ -33,11 +33,9 @@ async function handler(req, res) {
       hours,
       providing: providerBoolean,
       taken: false,
-      taken_by: "",
       chat_active: false,
       user_id: selectedUser._id,
     };
-    console.log(newAid);
 
     try {
       await insertDocument("humanitarian-aid", newAid);
