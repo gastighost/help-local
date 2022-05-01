@@ -63,7 +63,7 @@ function JobsForm(props) {
       }
     })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (response.ok) {
           return response.json();
         }
@@ -81,8 +81,6 @@ function JobsForm(props) {
   }
   // rendering the form
   return (
-    <section>
-      <h2>Create new job</h2>
       <form onSubmit={createJobHandler}>
         <div>
           <label htmlFor="category"></label>
@@ -167,7 +165,6 @@ function JobsForm(props) {
         </div> */}
         <button>Submit</button>
       </form>
-    </section>
   );
 };
 
