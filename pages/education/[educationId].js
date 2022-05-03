@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import classes from "../../styles/Home.module.css";
 import IndividualItem from "../../components/ui/individualItem";
+import EducationItem from "../../components/education/EducationItem";
 // import AidEditForm from "../../components/humanitarian-aid/aid-edit-form";
 // import { collectAssets } from "next/dist/build/webpack/plugins/middleware-plugin";
 
@@ -26,7 +27,7 @@ function EducationShowPage(props) {
   }
 
   return (
-    <IndividualItem selectedEducation={selectedEducation}/>
+    <EducationItem selectedEducation={selectedEducation}/>
   );education
 }
 

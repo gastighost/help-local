@@ -2551,10 +2551,10 @@
     "debug" "^4.3.2"
     "tslib" "^2.3.0"
 
-"next-auth@3.29.1":
-  "integrity" "sha512-Ipiywz2k+TWluqc9sle0zwh/GYxDjpGv/2ZuAxZBTfwL62pbyHX3JxMAE/frHYWDE0ZQ9bJLD67vP+Won2+SkA=="
-  "resolved" "https://registry.npmjs.org/next-auth/-/next-auth-3.29.1.tgz"
-  "version" "3.29.1"
+"next-auth@^3.29.3":
+  "integrity" "sha512-OoG5y8oFV7MWF2VVs20AfdF41ndoXtPBFIlLfCHbrvFWHfPGsjnyAnhDxyJZX91Taknd4MD3zrCGOlBJKrLU7A=="
+  "resolved" "https://registry.npmjs.org/next-auth/-/next-auth-3.29.3.tgz"
+  "version" "3.29.3"
   dependencies:
     "@babel/runtime" "^7.14.0"
     "@next-auth/prisma-legacy-adapter" "0.1.2"
