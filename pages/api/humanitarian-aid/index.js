@@ -33,11 +33,9 @@ async function handler(req, res) {
       hours,
       providing: providerBoolean,
       taken: false,
-      taken_by: "",
       chat_active: false,
       user_id: selectedUser._id,
     };
-    console.log(newAid);
 
     try {
       await insertDocument("humanitarian-aid", newAid);
@@ -48,7 +46,6 @@ async function handler(req, res) {
 
     res.status(201).json({ message: "Aid created!", aid: newAid });
   }
-  clientOpened.close();
 }
 
 export default handler;

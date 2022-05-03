@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useRouter } from "next/router";
 
 function AidEditForm(props) {
-  const { handleEditOff, id } = props;
+  const { handleEditOff, id, creatorId } = props;
 
   const router = useRouter();
 
@@ -27,6 +27,7 @@ function AidEditForm(props) {
       method: "PATCH",
       body: JSON.stringify({
         id,
+        creatorId,
         category: enteredCategory,
         title: enteredTitle,
         amount: enteredAmount,

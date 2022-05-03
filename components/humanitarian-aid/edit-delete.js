@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 
 function EditDeleteButtons(props) {
   const router = useRouter();
-  const { id, handleEditOn } = props;
+  const { id, handleEditOn, creatorId } = props;
 
   function deleteHandler(event) {
     event.preventDefault();
@@ -11,6 +11,7 @@ function EditDeleteButtons(props) {
       method: "DELETE",
       body: JSON.stringify({
         aidId: id,
+        creatorId,
       }),
       headers: {
         "Content-Type": "application/json",

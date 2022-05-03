@@ -3,7 +3,6 @@ import classes from "./ItemsList.module.css";
 
 const ItemsList = (props) => {
   const { info } = props;
-  console.log(info);
   return (
     <ul className={classes.list}>
       {info.map((item) => (

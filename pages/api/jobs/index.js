@@ -1,9 +1,9 @@
 import {
   connectToDatabase,
   insertDocument,
-  findUserByEmail
+  // findUserByEmail
  } from "../../../util/mongodb";
- import { getSession } from "next-auth/client";
+//  import { getSession } from "next-auth/client";
 
  async function handler(req, res) {
    let clientOpened;
@@ -17,9 +17,9 @@ import {
 
    if (req.method === "POST") {
     // getting current user
-    const session = await getSession({ req });
-    const { user } = session;
-    const selectedUser = await findUserByEmail(user.email);
+    // const session = await getSession({ req });
+    // const { user } = session;
+    // const selectedUser = await findUserByEmail(user.email);
 
     const {
       category,
@@ -31,7 +31,7 @@ import {
       language,
       description,
       company,
-      provider
+      // provider
      } = req.body;
 
     const newJob = {
@@ -44,12 +44,12 @@ import {
       language,
       description,
       company,
-      providing: provider === "true" ? true : false,
-      user_id: selectedUser._id
+      // providing: provider === "true" ? true : false,
+      // user_id: selectedUser._id
     }
 
     try {
-      await insertDocument("job", newJob);
+      await insertDocument("jobs", newJob);
     } catch (error) {
       res.status(500).json({ message: "Inserting data failed!" });
       return;
