@@ -1,34 +1,91 @@
-import { findDocumentById } from "../../util/mongodb";
-import Card from "../../components/ui/card";
+import { findDocumentById, findUserByEmail} from "../../util/mongodb";
+import { getSession } from "next-auth/client";
 import { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import classes from "../../styles/Home.module.css";
 import IndividualItem from "../../components/ui/individualItem";
-import EducationItem from "../../components/education/EducationItem";
-// import AidEditForm from "../../components/humanitarian-aid/aid-edit-form";
-// import { collectAssets } from "next/dist/build/webpack/plugins/middleware-plugin";
+import Button from "../../components/ui/button";
+import { Fragment } from "react";
+import EducationEditForm from "../../components/education/EducationEditForm";
+import Link from "next/link";
+
 
 function EducationShowPage(props) {
-  const [isEditing, setIsEditing] = useState(false);
+  const [educationEditModalisOpen, setEducationEditModalisOpen] = useState(false)
 
   const router = useRouter();
   const educationId = router.query.educationId;
-  // console.log(educationId);
-  const { education } = props;
+  console.log(educationId);
+  const { education, selectedUser } = props;
   const selectedEducation = education[0];
 
+  const creatorId = selectedEducation.user_id;
+
+
+  const isEqual = selectedUser._id === education[0].user_id;
+
+
   function turnOffEdit() {
-    setIsEditing(false);
+    setEducationEditModalisOpen(false);
   }
 
   function turnOnEdit() {
-    setIsEditing(true);
+    setEducationEditModalisOpen(true);
+  }
+
+  function deleteHandler(event) {
+    event.preventDefault();
+
+    fetch("/api/education/" + educationId, {
+      method: "DELETE",
+      body: JSON.stringify({
+        educationId: educationId,
+        creatorId,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+
+        response.json().then((data) => {
+          throw new Error(data.message || "Something went wrong");
+        });
+      })
+      .then((data) => {
+        router.push("/education");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (
-    <EducationItem selectedEducation={selectedEducation}/>
-  );education
+    <Fragment>
+      <IndividualItem selectedEducation={selectedEducation}/>
+      {isEqual && (
+        <div>
+          <Button onClick={turnOnEdit}>Edit</Button>
+          <Button onClick={deleteHandler}>Delete</Button>
+        </div>
+      )}
+      {educationEditModalisOpen && isEqual && (
+        <EducationEditForm
+          onCancel={turnOffEdit}
+          id={educationId}
+          creatorId={creatorId}/>
+      )}
+      {/* {isEditing && isEqual && (
+        <Button
+          handleEditOff={turnOffEdit}
+          id={educationId}
+          creatorId={creatorId}
+        />
+      )} */}
+    </Fragment>
+  );
 }
 
 export async function getServerSideProps(context) {
@@ -37,9 +94,13 @@ export async function getServerSideProps(context) {
 
   const education = await findDocumentById("education", educationId);
 
+  const session = await getSession(context);
+  const user = await findUserByEmail(session.user.email);
+
   return {
     props: {
       education: JSON.parse(JSON.stringify(education)),
+      selectedUser: JSON.parse(JSON.stringify(user)),
     },
   };
 }
