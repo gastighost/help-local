@@ -1,4 +1,4 @@
-import classes from "./NewEducationForm.module.css";
+import classes from "./educationEditForm.module.css";
 import Card from "../ui/card";
 import { useRef } from "react";
 import { useRouter } from "next/router"
@@ -6,7 +6,9 @@ import {Fragment} from "react"
 
 
 
-const NewEducationForm = (props) => {
+const EducationEditForm = (props) => {
+  const { id, creatorId } = props;
+
   const router = useRouter()
 
   const titleInputRef = useRef()
@@ -24,7 +26,7 @@ const NewEducationForm = (props) => {
   }
 
 
-  const submitNewEducationHandler = (event) => {
+  const editHandler = (event) => {
     event.preventDefault()
 
     const enteredTitle = titleInputRef.current.value
@@ -35,9 +37,11 @@ const NewEducationForm = (props) => {
     const enteredContact = contactInputRef.current.value
     const enteredstudentAge = studentAgeInputRef.current.value
 
-    fetch("/api/education", {
-      method: "POST",
+    fetch("/api/education/" + id, {
+      method: "PATCH",
       body: JSON.stringify({
+        id,
+        creatorId,
         category: enteredCategory,
         title: enteredTitle,
         tutor: enteredTutor,
@@ -60,9 +64,10 @@ const NewEducationForm = (props) => {
         });
       })
       .then((data) => {
+        // router.push("/education/" + data.educationId);
+        cancelHandler()
         console.log(data.message, data.education);
-        router.push("/education/" + data.education._id);
-        // cancelHandler()
+        console.log(data.EducationId);
       })
       .catch((error) => {
         console.log(error);
@@ -73,7 +78,7 @@ const NewEducationForm = (props) => {
   return <Fragment>
   <div className={classes.backdrop} onClick={cancelHandler}/>
   <Card className={classes.modal}>
-    <form className={classes.form} onSubmit={submitNewEducationHandler}>
+    <form className={classes.form} onSubmit={editHandler}>
     <select
         className={classes.select}
         ref={categoryInputRef}>
@@ -115,4 +120,4 @@ const NewEducationForm = (props) => {
   </Fragment>
 }
 
-export default NewEducationForm
+export default EducationEditForm

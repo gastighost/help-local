@@ -3,6 +3,7 @@ import Card from "./card";
 import { useContext } from "react";
 import BookmarksContext from "../../store/BookmarksContext";
 import Link from "next/link";
+import Button from "./button";
 
 const IndividualItem = (props) => {
 
@@ -35,26 +36,17 @@ const IndividualItem = (props) => {
   return (
       <Card>
          <div className={classes.content}>
-        <h1>Humanitarian Show Page!</h1>
+        <h1>{selectedEducation.title}</h1>
         <h2>Category: {selectedEducation.category}</h2>
-        <h3>Title: {selectedEducation.title}</h3>
         <p>Age of the student: {selectedEducation.studentAge}</p>
         <p>Drop off location: {selectedEducation.location}</p>
         <p>Tutor: {selectedEducation.tutor}</p>
         <p>Language {selectedEducation.language}</p>
       </div>
-        <div className={classes.content}>
-          <h2>{selectedEducation.category}</h2>
-          <h3>{selectedEducation.title}</h3>
-          <address>{selectedEducation.location}</address>
-        </div>
         <div className={classes.actions}>
-          <button>
-            <Link href={`/${selectedEducation.type}/${selectedEducation._id}`}>Open</Link>
-          </button>
-          <button onClick={toggleBookmarkHandler}>
-            {itemIsBookmarked ? "Remove from bookmarks" : "Bookmark!"}
-          </button>
+          <Button onClick={props.onRequest}>Request!</Button>
+          {/* <Button onClick={props.onEdit}>Edit</Button>
+          <Button onClick={props.onDelete}>Delete</Button> */}
         </div>
       </Card>
   );

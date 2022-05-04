@@ -9,6 +9,7 @@ function EducationList(props) {
           key={item._id}
           id={item._id}
           title={item.title}
+          // category={item.category}
           studentAge={item.studentAge}
           location={item.location}
           tutor={item.tutor}
