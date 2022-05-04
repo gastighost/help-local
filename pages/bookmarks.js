@@ -11,7 +11,7 @@ const Bookmarks = (props) => {
   if (bookmarksCtx.totalBookmarks === 0) {
     content = <p>No faves yet 😿</p>
   } else {
-    content = <ItemsList info={bookmarks}/>
+    content = <ItemsList info={bookmarksCtx.bookmarks}/>
   }
 
   return <section>
