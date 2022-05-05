@@ -7,27 +7,24 @@ import EducationItem from "../education/EducationItem";
 
 const Item = (props) => {
   const { info } = props;
-
-  console.log(props.itemIsBookmarked);
-  console.log(props.type);
   const bookmarksCtx = useContext(BookmarksContext);
   const itemIsBookmarked = bookmarksCtx.itemIsBookmarked;
-  const bookmarks = bookmarksCtx.bookmarks
+  const bookmarks = bookmarksCtx.bookmarks;
   const toggleBookmarkHandler = (event) => {
-      if (itemIsBookmarked) {
-        bookmarksCtx.removeBookmark(info._id);
-        // bookmarksCtx.removeBookmarkFromDb(info._id)
-      } else {
-        bookmarksCtx.addBookmark({
-          ...{ item },
-          key: item._id,
-          _id: item._id,
-          category: item.category,
-          title: item.title,
-          location: item.location,
-          isBookmarked: item.isBookmarked,
-        });
-      }
+    if (itemIsBookmarked) {
+      bookmarksCtx.removeBookmark(info._id);
+      // bookmarksCtx.removeBookmarkFromDb(info._id)
+    } else {
+      bookmarksCtx.addBookmark({
+        ...{ item },
+        key: item._id,
+        _id: item._id,
+        category: item.category,
+        title: item.title,
+        location: item.location,
+        isBookmarked: item.isBookmarked,
+      });
+    }
   };
 
   return (
