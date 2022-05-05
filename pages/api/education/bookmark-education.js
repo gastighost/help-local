@@ -1,4 +1,8 @@
-import { connectToDatabase, insertDocument, editDocumentById } from "../../../util/mongodb";
+import {
+  connectToDatabase,
+  insertDocument,
+  editDocumentById,
+} from "../../../util/mongodb";
 
 async function handler(req, res) {
   let clientOpened;
@@ -11,8 +15,8 @@ async function handler(req, res) {
   }
 
   if (req.method === "POST") {
-
-    const { category, title, location, language, contact, studentAge, tutor,  } = req.body;
+    const { category, title, location, language, contact, studentAge, tutor } =
+      req.body;
 
     const newBookmark = {
       category,
@@ -35,16 +39,16 @@ async function handler(req, res) {
       return;
     }
 
-    res.status(201).json({ message: "Education item created!", education: newBookmark });
+    res
+      .status(201)
+      .json({ message: "Education item created!", education: newBookmark });
   }
 
   if (req.method === "PATCH") {
     const { id, isBookmarked } = req.body;
 
     const newBookmark = {
-
-      isBookmarked
-
+      isBookmarked,
     };
 
     // console.log(id);
@@ -57,8 +61,6 @@ async function handler(req, res) {
     }
     res.status(201).json({ selectedResult, educationId: id });
   }
-
-  clientOpened.close();
 }
 
 export default handler;

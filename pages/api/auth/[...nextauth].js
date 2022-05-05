@@ -31,7 +31,6 @@ export default NextAuth({
           throw new Error("Invalid email or password!");
         }
 
-        client.close();
         return { email: user.email };
       },
     }),
