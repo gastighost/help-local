@@ -1,4 +1,10 @@
-import { connectToDatabase, insertDocument, editDocumentById, findDocumentById, findUserByEmail } from "../../../util/mongodb";
+import {
+  connectToDatabase,
+  insertDocument,
+  editDocumentById,
+  findDocumentById,
+  findUserByEmail,
+} from "../../../util/mongodb";
 import { getSession } from "next-auth/client";
 import { ObjectId } from "mongodb";
 
@@ -13,8 +19,8 @@ async function handler(req, res) {
   }
 
   if (req.method === "POST") {
-
-    const { category, title, tutor, location, language, contact, studentAge,  } = req.body;
+    const { category, title, tutor, location, language, contact, studentAge } =
+      req.body;
 
     const session = await getSession({ req });
     const { user } = session;
@@ -45,7 +51,9 @@ async function handler(req, res) {
       return;
     }
 
-    res.status(201).json({ message: "Education item created!", education: newEducation });
+    res
+      .status(201)
+      .json({ message: "Education item created!", education: newEducation });
   }
 
   // if (req.method === "PATCH" && req.body.isBookmarked) {
@@ -87,9 +95,6 @@ async function handler(req, res) {
   //   }
   //   res.status(201).json({ selectedResult, educationId: id });
   // }
-
-
-  clientOpened.close();
 }
 
 export default handler;
