@@ -6,19 +6,20 @@ import Link from "next/link";
 
 const EducationItem = (props) => {
 
+  // console.log(props.id);
   const bookmarksCtx = useContext(BookmarksContext)
-  const itemIsBookmarked = bookmarksCtx.isBookmarked
+  const itemIsBookmarked = bookmarksCtx.itemIsBookmarked(props.id)
   // console.log(props.isBookmarked);
 
   const toggleBookmarkHandler = (event) => {
 
     if (itemIsBookmarked) {
-      bookmarksCtx.removeBookmark(props._id)
+      bookmarksCtx.removeBookmark(props.id)
     } else {
       bookmarksCtx.addBookmark({
         ...{props},
-        key: props._id,
-        _id: props._id,
+        key: props.id,
+        _id: props.id,
         category: props.category,
         title: props.title,
         location: props.location,

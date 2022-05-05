@@ -11,12 +11,11 @@ const Item = (props) => {
   console.log(props.itemIsBookmarked);
   console.log(props.type);
   const bookmarksCtx = useContext(BookmarksContext);
-  const itemIsBookmarked = props.isBooked;
-
+  const itemIsBookmarked = bookmarksCtx.itemIsBookmarked;
+  const bookmarks = bookmarksCtx.bookmarks
   const toggleBookmarkHandler = (event) => {
-    info.map((item) => {
-      if (item.IsBookmarked) {
-        bookmarksCtx.removeBookmark(item._id);
+      if (itemIsBookmarked) {
+        bookmarksCtx.removeBookmark(info._id);
         // bookmarksCtx.removeBookmarkFromDb(info._id)
       } else {
         bookmarksCtx.addBookmark({
@@ -29,7 +28,6 @@ const Item = (props) => {
           isBookmarked: item.isBookmarked,
         });
       }
-    });
   };
 
   return (
