@@ -10,9 +10,9 @@ const BookmarksContext = createContext({
 
 export const BookmarksContextProvider = (props) => {
   const [userBookmarks, setuserBookmarks] = useState(
-    typeof window !== "undefined"
-      ? localStorage.getItem("storageArray") || []
-      : []
+    (typeof window !== "undefined" &&
+      JSON.parse(localStorage.getItem("storageArray"))) ||
+      []
   );
 
   if (typeof window !== "undefined") {
