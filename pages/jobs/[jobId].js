@@ -41,7 +41,7 @@ function JobShowPage(props) {
         <Button onClick={turnOnEdit}>Edit</Button>
       </div>
       {jobEditModalisOpen && (
-        <JobEditForm></JobEditForm>
+        <JobEditForm onCancel={turnOffEdit} id={jobId}></JobEditForm>
       )}
     </Fragment>
   );
