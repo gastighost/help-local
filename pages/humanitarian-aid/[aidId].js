@@ -18,7 +18,7 @@ function HumanitarianAidShowPage(props) {
   const selectedAid = aid[0];
 
   const creatorId = selectedAid.user_id;
-  console.log(creatorId);
+
   const isEqual = selectedUser._id === aid[0].user_id;
 
   function turnOffEdit() {
