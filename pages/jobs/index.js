@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import Link from "next/link";
-import JobsList from "../../components/jobs/jobs-list";
+import JobList from "../../components/jobs/JobList";
 // import ItemsList from "../../components/ui/ItemsList";
 import { getAllDocuments } from "../../util/mongodb";
 import CategoryFilterBar from "../../components/ui/filter-bar";
@@ -15,7 +15,7 @@ function JobsIndex(props) {
       <Link href="/jobs/new-job">
         <a>Create a new item</a>
       </Link>
-      <JobsList jobs={jobs} />
+      <JobList info={jobs} type="jobs" />
       <Link href="/">
         <a>Back to home</a>
       </Link>
