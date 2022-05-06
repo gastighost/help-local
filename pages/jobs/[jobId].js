@@ -30,6 +30,36 @@ function JobShowPage(props) {
     setJobEditModalisOpen(true);
   }
 
+  function deleteHandler(event) {
+    event.preventDefault();
+
+    fetch("/api/jobs/" + jobId, {
+      method: "DELETE",
+      body: JSON.stringify({
+        jobId: jobId,
+        // creatorId,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+
+        response.json().then((data) => {
+          throw new Error(data.message || "Something went wrong");
+        });
+      })
+      .then((data) => {
+        router.push("/jobs");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
     <Fragment>
       <div>
@@ -39,6 +69,7 @@ function JobShowPage(props) {
       </div>
       <div>
         <Button onClick={turnOnEdit}>Edit</Button>
+        <Button onClick={deleteHandler}>Delete</Button>
       </div>
       {jobEditModalisOpen && (
         <JobEditForm onCancel={turnOffEdit} id={jobId}></JobEditForm>

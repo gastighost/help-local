@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import Link from "next/link";
+import Button from "../../components/ui/button";
 import JobList from "../../components/jobs/JobList";
 // import ItemsList from "../../components/ui/ItemsList";
 import { getAllDocuments } from "../../util/mongodb";
@@ -12,13 +13,17 @@ function JobsIndex(props) {
     <div>
       <CategoryFilterBar />
       <h1>Jobs Index</h1>
-      <Link href="/jobs/new-job">
-        <a>Create a new item</a>
-      </Link>
+      <Button>
+        <Link href="/jobs/new-job">
+          <a>Create a new item</a>
+        </Link>
+      </Button>
       <JobList info={jobs} type="jobs" />
-      <Link href="/">
-        <a>Back to home</a>
-      </Link>
+      <Button>
+        <Link href="/">
+          <a>Back to home</a>
+        </Link>
+      </Button>
     </div>
   );
 }
