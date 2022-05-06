@@ -1,6 +1,7 @@
 import classes from "./JobItem.module.css";
 import Link from "next/link";
 import Card from "../ui/card";
+import Button from "../ui/button";
 
 function JobItem(props) {
   // console.log(props.job);
@@ -14,9 +15,9 @@ function JobItem(props) {
         <p>Monthly salary in EUR: {props.job.monthlySalary}</p>
       </div>
       <div className={classes.actions}>
-        <button>
+        <Button>
           <Link href={`/${props.type}/${props.job._id}`}>Open</Link>
-        </button>
+        </Button>
       </div>
     </Card>
   );
