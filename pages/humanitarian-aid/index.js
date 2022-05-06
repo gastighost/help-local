@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import styles from "../../styles/Home.module.css";
 import CategoryFilterBar from "../../components/ui/filter-bar";
-import ItemsList from "../../components/ui/ItemsList";
+import AidItemList from "../../components/humanitarian-aid/aid-item-list";
 import HumanitarianAidForm from "../../components/humanitarian-aid/humanitarian-aid-form";
 import Button from "../../components/ui/button";
 
@@ -28,7 +28,7 @@ function HumanitarianAidIndex(props) {
       </div>
       {newAidModalIsOpen && <HumanitarianAidForm onCancel={closeModal} />}
       <h1>Humanitarian Aid</h1>
-      <ItemsList info={aid} type="humanitarian-aid" />
+      <AidItemList info={aid} type="humanitarian-aid" />
       <Link href="/">
         <a>Back to home</a>
       </Link>
