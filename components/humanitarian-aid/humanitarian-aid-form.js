@@ -10,6 +10,7 @@ function HumanitarianAidForm(props) {
   const categoryInputRef = useRef();
   const titleInputRef = useRef();
   const amountInputRef = useRef();
+  const measurementInputRef = useRef();
   const locationInputRef = useRef();
   const hoursInputRef = useRef();
   const isProviderInputRef = useRef();
@@ -25,6 +26,7 @@ function HumanitarianAidForm(props) {
     const enteredCategory = categoryInputRef.current.value;
     const enteredTitle = titleInputRef.current.value;
     const enteredAmount = amountInputRef.current.value;
+    const enteredMeasurement = measurementInputRef.current.value;
     const enteredLocation = locationInputRef.current.value;
     const enteredHours = hoursInputRef.current.value;
     const enteredIsProvider = isProviderInputRef.current.value;
@@ -35,6 +37,7 @@ function HumanitarianAidForm(props) {
         category: enteredCategory,
         title: enteredTitle,
         amount: enteredAmount,
+        measurement: enteredMeasurement,
         location: enteredLocation,
         hours: enteredHours,
         provider: enteredIsProvider,
@@ -75,8 +78,9 @@ function HumanitarianAidForm(props) {
               <input
                 type="text"
                 id="category"
-                placeholder="Aid Category"
+                placeholder="Aid Category (Groceries, Home Items, etc.)"
                 ref={categoryInputRef}
+                required
               />
             </div>
             <div className={styles.control}>
@@ -86,6 +90,7 @@ function HumanitarianAidForm(props) {
                 id="title"
                 placeholder="Item name"
                 ref={titleInputRef}
+                required
               />
             </div>
             <div className={styles.control}>
@@ -93,8 +98,19 @@ function HumanitarianAidForm(props) {
               <input
                 type="number"
                 id="amount"
-                placeholder="Amount"
+                placeholder="Amount in numbers"
                 ref={amountInputRef}
+                required
+              />
+            </div>
+            <div className={styles.control}>
+              <label htmlFor="measurement"></label>
+              <input
+                type="text"
+                id="measurement"
+                placeholder="Unit of measurement (KG, pieces, etc.)"
+                ref={measurementInputRef}
+                required
               />
             </div>
             <div className={styles.control}>
@@ -104,6 +120,7 @@ function HumanitarianAidForm(props) {
                 id="location"
                 placeholder="Pickup Address"
                 ref={locationInputRef}
+                required
               />
             </div>
             <div className={styles.control}>
@@ -113,6 +130,7 @@ function HumanitarianAidForm(props) {
                 id="hours"
                 placeholder="Availability Hours"
                 ref={hoursInputRef}
+                required
               />
             </div>
             <div className={styles.control}>

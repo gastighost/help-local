@@ -17,8 +17,12 @@
 }
 
 .content {
-  text-align: center;
+  text-align: left;
   padding: 1rem;
+}
+
+.content h2 {
+margin: 0;
 }
 
 .content h3 {
@@ -27,7 +31,7 @@
 }
 
 .actions {
-  padding: 1.5rem;
+  padding: 0;
   text-align: center;
   display: flex;
   flex-direction: column;

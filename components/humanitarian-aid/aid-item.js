@@ -33,9 +33,11 @@ const AidItem = (props) => {
     <li className={styles.item}>
       <Card>
         <div className={styles.content}>
-          <h2>{info.category}</h2>
-          <h3>{info.title}</h3>
-          <address>{info.location}</address>
+          <h2>{info.title}</h2>
+          <h3>
+            {info.category} • {info.amount}{" "}
+            {info.measurement && info.measurement}
+          </h3>
         </div>
         <div className={styles.actions}>
           <button>
