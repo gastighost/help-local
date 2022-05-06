@@ -1,40 +1,43 @@
-import classes from "./item.module.css";
-import Card from "./card";
+import styles from "./aid-item.module.css";
+import Card from "../ui/card";
 import { useContext } from "react";
 import BookmarksContext from "../../store/BookmarksContext";
 import Link from "next/link";
 
-const Item = (props) => {
+const AidItem = (props) => {
   const { info } = props;
+
+  // console.log(props.id);
   const bookmarksCtx = useContext(BookmarksContext);
-  const itemIsBookmarked = bookmarksCtx.itemIsBookmarked;
-  const bookmarks = bookmarksCtx.bookmarks;
+  const itemIsBookmarked = bookmarksCtx.itemIsBookmarked(props.id);
+  // console.log(props.isBookmarked);
+
   const toggleBookmarkHandler = (event) => {
     if (itemIsBookmarked) {
-      bookmarksCtx.removeBookmark(info._id);
-      // bookmarksCtx.removeBookmarkFromDb(info._id)
+      bookmarksCtx.removeBookmark(props.id);
     } else {
       bookmarksCtx.addBookmark({
-        ...{ item },
-        key: item._id,
-        _id: item._id,
-        category: item.category,
-        title: item.title,
-        location: item.location,
-        isBookmarked: item.isBookmarked,
+        ...{ props },
+        key: props.id,
+        _id: props.id,
+        category: props.category,
+        title: props.title,
+        location: props.location,
+        isBookmarked: props.isBookmarked,
       });
     }
+    // console.log(itemIsBookmarked);
   };
 
   return (
-    <li className={classes.item}>
+    <li className={styles.item}>
       <Card>
-        <div className={classes.content}>
+        <div className={styles.content}>
           <h2>{info.category}</h2>
           <h3>{info.title}</h3>
           <address>{info.location}</address>
         </div>
-        <div className={classes.actions}>
+        <div className={styles.actions}>
           <button>
             <Link href={`/${props.type}/${info._id}`}>Open</Link>
           </button>
@@ -47,4 +50,4 @@ const Item = (props) => {
   );
 };
 
-export default Item;
+export default AidItem;
