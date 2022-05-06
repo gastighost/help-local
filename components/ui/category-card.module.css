@@ -1,6 +1,16 @@
 .carded {
-  border: solid;
+  border: 1px solid black;
   text-align: center;
   margin-top: 5px;
   border-radius: 10px;
+  width: 180px;
+  margin: 5px;
+}
+
+.caption {
+  color: white;
+  background-color: darkblue;
+  padding: 5px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
