@@ -70,6 +70,7 @@ function JobEditForm(props) {
       .then((data) => {
         // console.log(data);
         cancelHandler();
+        Router.push(`/jobs/${jobId}`);
       })
       .catch((error) => {
         console.log(error);
