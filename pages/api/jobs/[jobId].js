@@ -18,13 +18,14 @@ async function handler(req, res) {
     return;
   }
 
+  // selecting current session client user
+  const session = await getSession({ req });
+  const { user } = session;
+  const selectedUser = await findUserByEmail(user.email);
+
   if (req.method === "DELETE") {
     const jobId = req.body.jobId;
     const jobToDelete = await findDocumentById("jobs", jobId);
-    // const { creatorId } = req.body;
-    const session = await getSession({ req });
-    const { user } = session;
-    const selectedUser = await findUserByEmail(user.email);
     const isEqual = ObjectId(selectedUser._id).toString() === jobToDelete[0].user_id.toString();
 
     let selectedResult;
@@ -32,7 +33,6 @@ async function handler(req, res) {
       if (isEqual) {
         selectedResult = await deleteDocumentById("jobs", jobId);
       }
-      // selectedResult = await deleteDocumentById("jobs", jobId);
     } catch (error) {
       res.status(500).json({ message: "Deleting document failed!" });
       return;
@@ -41,10 +41,6 @@ async function handler(req, res) {
   }
 
   if (req.method === "PATCH") {
-    // getting current user
-    const session = await getSession({ req });
-    const { user } = session;
-    const selectedUser = await findUserByEmail(user.email);
     const isEqual = ObjectId(selectedUser._id).toString() === req.body.user_id.toString();
 
     const {
