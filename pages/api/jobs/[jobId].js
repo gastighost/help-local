@@ -1,5 +1,6 @@
 import {
   connectToDatabase,
+  findDocumentById,
   editDocumentById,
   deleteDocumentById,
   findUserByEmail
@@ -19,21 +20,19 @@ async function handler(req, res) {
 
   if (req.method === "DELETE") {
     const jobId = req.body.jobId;
+    const jobToDelete = await findDocumentById("jobs", jobId);
     // const { creatorId } = req.body;
-
-    // const session = await getSession({ req });
-    // const { user } = session;
-    // const selectedUser = await findUserByEmail(user.email);
-
-    // const isEqual =
-    //   ObjectId(creatorId).toString() === selectedUser._id.toString();
+    const session = await getSession({ req });
+    const { user } = session;
+    const selectedUser = await findUserByEmail(user.email);
+    const isEqual = ObjectId(selectedUser._id).toString() === jobToDelete[0].user_id.toString();
 
     let selectedResult;
     try {
-      // if (isEqual) {
-      //   selectedResult = await deleteDocumentById("jobs", id);
-      // }
-      selectedResult = await deleteDocumentById("jobs", jobId);
+      if (isEqual) {
+        selectedResult = await deleteDocumentById("jobs", jobId);
+      }
+      // selectedResult = await deleteDocumentById("jobs", jobId);
     } catch (error) {
       res.status(500).json({ message: "Deleting document failed!" });
       return;
@@ -46,11 +45,7 @@ async function handler(req, res) {
     const session = await getSession({ req });
     const { user } = session;
     const selectedUser = await findUserByEmail(user.email);
-    console.log("edited job from form", req.body);
-    // const isEqual = ObjectId(selectedUser._id).toString() === req.body.user_id.toString();
-    // console.log("selecteduser", ObjectId(selectedUser._id));
-    // console.log("item owner", req.body);
-    // console.log("user legit?", isEqual);
+    const isEqual = ObjectId(selectedUser._id).toString() === req.body.user_id.toString();
 
     const {
       jobId,
@@ -84,8 +79,9 @@ async function handler(req, res) {
     };
 
     try {
-      await editDocumentById("jobs", jobId, newJob);
-      console.log("updated job", newJob);
+      if (isEqual) {
+        await editDocumentById("jobs", jobId, newJob);
+      }
     } catch (error) {
       res.status(500).json({ message: "Updating data failed!" });
       return;

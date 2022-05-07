@@ -3,7 +3,9 @@ import { useRef } from "react";
 import {Fragment} from "react"
 
 function JobEditForm(props) {
-  const { jobId, creatorId } = props;
+  const { selectedJob, creatorId } = props;
+
+  const jobId = selectedJob._id.toString();
   // define input variables with useRef
   const categoryInputRef = useRef();
   const titleInputRef = useRef();
@@ -49,6 +51,7 @@ function JobEditForm(props) {
         description: enteredDescription,
         company: enteredCompany,
         user_id: creatorId,
+        isBookmarked: selectedJob.isBookmarked,
         // isProvider: enteredProvider,
       }),
       headers: {
