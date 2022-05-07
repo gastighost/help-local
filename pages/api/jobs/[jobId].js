@@ -2,9 +2,10 @@ import {
   connectToDatabase,
   editDocumentById,
   deleteDocumentById,
-  // findUserByEmail
+  findUserByEmail
 } from "../../../util/mongodb";
-//  import { getSession } from "next-auth/client";
+ import { getSession } from "next-auth/client";
+ import { ObjectId } from "mongodb";
 
 async function handler(req, res) {
   let clientOpened;
@@ -42,12 +43,17 @@ async function handler(req, res) {
 
   if (req.method === "PATCH") {
     // getting current user
-    // const session = await getSession({ req });
-    // const { user } = session;
-    // const selectedUser = await findUserByEmail(user.email);
+    const session = await getSession({ req });
+    const { user } = session;
+    const selectedUser = await findUserByEmail(user.email);
+    console.log("edited job from form", req.body);
+    // const isEqual = ObjectId(selectedUser._id).toString() === req.body.user_id.toString();
+    // console.log("selecteduser", ObjectId(selectedUser._id));
+    // console.log("item owner", req.body);
+    // console.log("user legit?", isEqual);
 
     const {
-      id,
+      jobId,
       category,
       title,
       location,
@@ -57,11 +63,12 @@ async function handler(req, res) {
       language,
       description,
       company,
+      user_id,
+      isBookmarked,
       // provider
     } = req.body;
 
     const newJob = {
-      id: id,
       category,
       title,
       location,
@@ -72,11 +79,13 @@ async function handler(req, res) {
       description,
       company,
       // providing: provider === "true" ? true : false,
-      // user_id: selectedUser._id
+      user_id,
+      isBookmarked,
     };
 
     try {
-      await editDocumentById("jobs", id, newJob);
+      await editDocumentById("jobs", jobId, newJob);
+      console.log("updated job", newJob);
     } catch (error) {
       res.status(500).json({ message: "Updating data failed!" });
       return;

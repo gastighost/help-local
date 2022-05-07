@@ -1,5 +1,6 @@
 import Router from "next/router";
 import { useRef } from "react";
+import { getSession } from "next-auth/client";
 
 function JobsForm(props) {
   const jobInputRef = [

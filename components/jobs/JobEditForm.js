@@ -3,7 +3,7 @@ import { useRef } from "react";
 import {Fragment} from "react"
 
 function JobEditForm(props) {
-  const { id } = props;
+  const { jobId, creatorId } = props;
   // define input variables with useRef
   const categoryInputRef = useRef();
   const titleInputRef = useRef();
@@ -35,10 +35,10 @@ function JobEditForm(props) {
     const enteredCompany = companyInputRef.current.value;
     // const enteredProvider = isProviderInputRef.current.value;
 
-    fetch("/api/jobs/" + id, {
+    fetch("/api/jobs/" + jobId, {
       method: 'PATCH',
       body: JSON.stringify({
-        id,
+        jobId: jobId,
         category: enteredCategory,
         title: enteredTitle,
         location: enteredLocation,
@@ -48,6 +48,7 @@ function JobEditForm(props) {
         language: enteredLanguage,
         description: enteredDescription,
         company: enteredCompany,
+        user_id: creatorId,
         // isProvider: enteredProvider,
       }),
       headers: {

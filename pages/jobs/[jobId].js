@@ -15,7 +15,8 @@ function JobShowPage(props) {
   const { job, selectedUser } = props;
 
   // const creatorId = selectedJob.user_id;;
-  const selectedJob = props.job[0];
+  const selectedJob = job[0];
+  const creatorId = selectedJob.user_id;
 
   const isEqual = selectedUser._id === selectedJob.user_id;
 
@@ -73,7 +74,10 @@ function JobShowPage(props) {
         </div>
       )}
       {isEditing && (
-        <JobEditForm onCancel={turnOffEdit} id={jobId}></JobEditForm>
+        <JobEditForm
+          onCancel={turnOffEdit}
+          jobId={jobId}
+          creatorId={creatorId}></JobEditForm>
       )}
     </Fragment>
   );
