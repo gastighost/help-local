@@ -5,6 +5,7 @@ import JobList from "../../components/jobs/JobList";
 // import ItemsList from "../../components/ui/ItemsList";
 import { getAllDocuments } from "../../util/mongodb";
 import CategoryFilterBar from "../../components/ui/filter-bar";
+import { getSession } from "next-auth/client";
 
 function JobsIndex(props) {
   const jobs = props.jobs;
@@ -30,9 +31,11 @@ function JobsIndex(props) {
 
 export async function getServerSideProps(context) {
   const jobs = await getAllDocuments("jobs");
+  const session = await getSession(context);
   return {
     props: {
-      jobs: JSON.parse(JSON.stringify(jobs))
+      jobs: JSON.parse(JSON.stringify(jobs)),
+      session
     }
   }
 }
