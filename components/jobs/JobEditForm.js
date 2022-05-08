@@ -1,20 +1,11 @@
 import Router from "next/router";
 import { useRef } from "react";
-import { getSession } from "next-auth/client";
+import {Fragment} from "react"
 
-function JobsForm(props) {
-  const jobInputRef = [
-    "category",
-    "title",
-    "location",
-    "monthlySalary",
-    "weeklyHours",
-    "requirements",
-    "language",
-    "description",
-    "company",
-    "provider"
-  ];
+function JobEditForm(props) {
+  const { selectedJob, creatorId } = props;
+
+  const jobId = selectedJob._id.toString();
   // define input variables with useRef
   const categoryInputRef = useRef();
   const titleInputRef = useRef();
@@ -27,9 +18,12 @@ function JobsForm(props) {
   const companyInputRef = useRef();
   // const isProviderInputRef = useRef();
 
+  const cancelHandler = () => {
+    console.log("Cancel clicked");
+    props.onCancel()
+  }
 
-  // define handlerfunction which sends data to jobs api when submitting the form
-  function createJobHandler(event) {
+  function editJobHandler(event) {
     event.preventDefault();
 
     const enteredCategory = categoryInputRef.current.value;
@@ -43,11 +37,10 @@ function JobsForm(props) {
     const enteredCompany = companyInputRef.current.value;
     // const enteredProvider = isProviderInputRef.current.value;
 
-
-    // fetch with post method
-    fetch("/api/jobs", {
-      method: 'POST',
+    fetch("/api/jobs/" + jobId, {
+      method: 'PATCH',
       body: JSON.stringify({
+        jobId: jobId,
         category: enteredCategory,
         title: enteredTitle,
         location: enteredLocation,
@@ -57,6 +50,8 @@ function JobsForm(props) {
         language: enteredLanguage,
         description: enteredDescription,
         company: enteredCompany,
+        user_id: creatorId,
+        isBookmarked: selectedJob.isBookmarked,
         // isProvider: enteredProvider,
       }),
       headers: {
@@ -74,15 +69,18 @@ function JobsForm(props) {
       })
       .then((data) => {
         // console.log(data);
-        Router.push("/jobs");
+        cancelHandler();
+        Router.push(`/jobs/${jobId}`);
       })
       .catch((error) => {
         console.log(error);
       });
-  }
-  // rendering the form
+
+  };
+
   return (
-      <form onSubmit={createJobHandler}>
+    <Fragment>
+      <form onSubmit={editJobHandler}>
         <div>
           <label htmlFor="category"></label>
           <input
@@ -166,7 +164,8 @@ function JobsForm(props) {
         </div> */}
         <button>Submit</button>
       </form>
-  );
-};
+    </Fragment>
+  )
+}
 
-export default JobsForm;
+export default JobEditForm;

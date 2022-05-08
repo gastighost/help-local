@@ -1,7 +1,8 @@
 import Head from "next/head";
 // import clientPromise from "../lib/mongodb";
-import { BookmarksContextProvider } from "../store/BookmarksContext";
 import MainCategoryIndex from "../components/ui/category-card";
+import GreetingCard from "../components/ui/greeting-card";
+import CategoryContainer from "../components/ui/category-container";
 
 export default function Home({ isConnected }) {
   return (
@@ -14,13 +15,33 @@ export default function Home({ isConnected }) {
       <main>
         <div id="backdrop-root"></div>
         <div id="overlay-root"></div>
-        <MainCategoryIndex name="Jobs" categoryUrl="/jobs" />
-        <MainCategoryIndex name="Education" categoryUrl="/education" />
-        <MainCategoryIndex
-          name="Humanitarian Aid"
-          categoryUrl="/humanitarian-aid"
-        />
-        <MainCategoryIndex name="Social Media" categoryUrl="/social-media" />
+        <GreetingCard />
+        <CategoryContainer>
+          <MainCategoryIndex
+            name="Jobs"
+            caption="Find job offers around you, suitable for beginners"
+            categoryUrl="/jobs"
+            imageUrl="/job-icon.png"
+          />
+          <MainCategoryIndex
+            name="Education"
+            caption="Develop skills, learn languages, book a class"
+            categoryUrl="/education"
+            imageUrl="/education-icon.png"
+          />
+          <MainCategoryIndex
+            name="Supplies"
+            caption="Find free resources and supplies close to you"
+            categoryUrl="/humanitarian-aid"
+            imageUrl="/supplies-icon.png"
+          />
+          <MainCategoryIndex
+            name="Groups"
+            caption="Connect with other people, get help and feedback"
+            categoryUrl="/social-media"
+            imageUrl="/social-media.png"
+          />
+        </CategoryContainer>
       </main>
     </div>
   );

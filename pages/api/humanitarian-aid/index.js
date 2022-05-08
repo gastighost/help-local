@@ -34,6 +34,7 @@ async function handler(req, res) {
       providing: providerBoolean,
       taken: false,
       chat_active: false,
+      isBookmarked: false,
       user_id: selectedUser._id,
     };
 

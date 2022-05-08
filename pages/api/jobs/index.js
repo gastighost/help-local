@@ -1,9 +1,9 @@
 import {
   connectToDatabase,
   insertDocument,
-  // findUserByEmail
+  findUserByEmail
 } from "../../../util/mongodb";
-//  import { getSession } from "next-auth/client";
+import { getSession } from "next-auth/client";
 
 async function handler(req, res) {
   let clientOpened;
@@ -17,9 +17,9 @@ async function handler(req, res) {
 
   if (req.method === "POST") {
     // getting current user
-    // const session = await getSession({ req });
-    // const { user } = session;
-    // const selectedUser = await findUserByEmail(user.email);
+    const session = await getSession({ req });
+    const { user } = session;
+    const selectedUser = await findUserByEmail(user.email);
 
     const {
       category,
@@ -44,8 +44,9 @@ async function handler(req, res) {
       language,
       description,
       company,
+      user_id: selectedUser._id,
+      isBookmarked: false,
       // providing: provider === "true" ? true : false,
-      // user_id: selectedUser._id
     };
 
     try {
