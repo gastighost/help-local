@@ -17,7 +17,8 @@ async function handler(req, res) {
   }
 
   if (req.method === "POST") {
-    const { category, title, amount, location, hours, provider } = req.body;
+    const { category, title, amount, measurement, location, hours, provider } =
+      req.body;
 
     const session = await getSession({ req });
     const { user } = session;
@@ -29,6 +30,7 @@ async function handler(req, res) {
       category,
       title,
       amount: parseFloat(amount),
+      measurement,
       location,
       hours,
       providing: providerBoolean,
