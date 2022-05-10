@@ -1,8 +1,12 @@
-import classes from './MainNavigation.module.css';
+import classes from './MainNavigation.module.scss';
 import Link from 'next/link';
 import { useContext } from "react";
 import BookmarksContext from "../../store/BookmarksContext";
 import { useSession, signOut } from 'next-auth/client';
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
+import LanguageIcon from '@material-ui/icons/Language';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 function MainNavigation() {
   const bookmarksCtx = useContext(BookmarksContext)
@@ -22,23 +26,24 @@ function MainNavigation() {
       <nav>
         <ul>
         <li>
-            <Link href='/bookmarks' >Bookmarks
+
+            <Link href='/bookmarks'><BookmarkBorderIcon className={classes.topbarIcon}/>
             </Link>
-              <span className={classes.badge}>{bookmarksCtx.totalBookmarks}</span>
           </li>
+              <span className={classes.badge}>{bookmarksCtx.totalBookmarks}</span>
           {!session && !loading && (
             <li>
-              <Link href="/auth">Login</Link>
+              <Link href="/auth"><AccountCircleIcon className={classes.topbarIcon}/></Link>
             </li>
           )}
           {session && (
             <li>
-              <Link href="/profile">Profile</Link>
+              <Link href="/"><LanguageIcon className={classes.topbarIcon}/></Link>
             </li>
           )}
           {session && (
             <li>
-              <button onClick={logoutHandler} className={classes.button}>Logout</button>
+              <button onClick={logoutHandler} className={classes.button}><ExitToAppIcon/></button>
             </li>
           )}
         </ul>

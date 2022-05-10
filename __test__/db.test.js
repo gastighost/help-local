@@ -54,4 +54,24 @@ describe('insert', () => {
     const insertedJob = await jobs.findOne({_id: 'some-job-id'});
     expect(insertedJob).toEqual(mockJob);
   })
+
+  it('should insert a new Education into its DB collection', async () => {
+    const educations = db.collection('education');
+
+    const mockEducation = {
+      _id: 'some-job-id',
+      category: 'school',
+      title: 'Software Engineer',
+      location: 'Berlin',
+      studentAge: 25,
+      contact: 'email@email.com',
+      language: 'English',
+      tutor: 'John Doe',
+    };
+    await educations.insertOne(mockEducation);
+
+    const insertedEducation = await educations.findOne({_id: 'some-job-id'});
+    expect(insertedEducation).toEqual(mockEducation);
+  })
+
 });

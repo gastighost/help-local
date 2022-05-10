@@ -28,10 +28,10 @@ function EducationIndex(props) {
       </div>
       {newEducationModalIsOpen && <NewEducationForm onCancel={closeModal}/>}
       <h1>Education Listings</h1>
-      <EducationList info={education} type="education" />
-      <Link href="/">
+      <ItemsList info={education} type="education" />
+      <Button href="/">
         <a>Back to home</a>
-      </Link>
+      </Button>
     </Fragment>
   );
 }

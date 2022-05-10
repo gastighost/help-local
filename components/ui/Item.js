@@ -6,28 +6,28 @@ import Link from "next/link";
 
 const Item = (props) => {
   const { info } = props;
-  const bookmarksCtx = useContext(BookmarksContext);
-  const itemIsBookmarked = bookmarksCtx.itemIsBookmarked;
-  const bookmarks = bookmarksCtx.bookmarks;
+  const bookmarksCtx = useContext(BookmarksContext)
+  const itemIsBookmarked = bookmarksCtx.itemIsBookmarked(info._id)
+
   const toggleBookmarkHandler = (event) => {
     if (itemIsBookmarked) {
       bookmarksCtx.removeBookmark(info._id);
       // bookmarksCtx.removeBookmarkFromDb(info._id)
     } else {
       bookmarksCtx.addBookmark({
-        ...{ item },
-        key: item._id,
-        _id: item._id,
-        category: item.category,
-        title: item.title,
-        location: item.location,
-        isBookmarked: item.isBookmarked,
+        ...{ info },
+        key: info._id,
+        _id: info._id,
+        category: info.category,
+        title: info.title,
+        location: info.location,
+        isBookmarked: info.isBookmarked,
       });
     }
   };
 
   return (
-    <li className={classes.item}>
+    <li className={classes.info}>
       <Card>
         <div className={classes.content}>
           <h2>{info.category}</h2>

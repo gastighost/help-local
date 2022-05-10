@@ -7,13 +7,6 @@ const ItemsList = (props) => {
     <ul className={classes.list}>
       {info.map((item) => (
         <Item
-          key={item._id}
-          id={item._id}
-          category={item.category}
-          title={item.title}
-          location={item.location}
-          type={props.type}
-          isBooked={item.isBookmarked}
           info={item}
         />
       ))}
