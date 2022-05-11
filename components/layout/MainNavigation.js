@@ -18,16 +18,19 @@ function MainNavigation() {
 
   return (
     <header className={classes.header}>
-      <div className={classes.logo}>
+      <div>
         <Link href="/">
-          <h2><span className={classes.logoBlue}>Help</span><span className={classes.logoYellow}>Local</span></h2>
+          <div className={classes.fullLogo}>
+            <img src='/main-icon.svg' alt='Help Local Icon' className={classes.logo}/>
+            <h4><span className={classes.logoBlue}>Help</span><span className={classes.logoYellow}>Local</span></h4>
+          </div>
         </Link>
       </div>
       <nav>
         <ul>
         <li>
-
-            <Link href='/bookmarks'><BookmarkBorderIcon className={classes.topbarIcon}/>
+            <Link href='/bookmarks'>
+              <img src='/main-icon.svg' alt='Help Local Icon' className={classes.topbarIcon} />
             </Link>
           </li>
               <span className={classes.badge}>{bookmarksCtx.totalBookmarks}</span>

@@ -10,8 +10,16 @@
   // padding: 0 10%;
 }
 
-.logo:hover {
+.fullLogo {
+  display: flex;
+}
+
+.fullLogo:hover {
   cursor: pointer;
+}
+
+.logo {
+  margin-left: 16px;
 }
 
 .header ul {
@@ -76,8 +84,11 @@
 
 .logoBlue {
   color: #0056b1;
+  margin-left: 8px;
+  font-weight: 700;
 }
 
 .logoYellow {
   color: #f2ca00;
+  font-weight: 700;
 }

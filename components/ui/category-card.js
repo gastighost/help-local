@@ -8,12 +8,12 @@ function MainCategoryIndex(props) {
     <Link href={categoryUrl}>
       <a>
         <div className={styles.carded}>
-          <div>
+          <div className={styles.image}>
             <Image src={imageUrl} width="130px" height="120px" />
           </div>
           <div className={styles.caption}>
-            <h2>{name}</h2>
-            <p>{caption}</p>
+            <h4 className={styles.main}>{name}</h4>
+            <p className={styles.support}>{caption}</p>
           </div>
         </div>
       </a>
