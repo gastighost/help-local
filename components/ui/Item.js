@@ -27,7 +27,7 @@ const Item = (props) => {
   };
 
   return (
-    <li className={classes.info}>
+
       <Card>
         <div className={classes.content}>
           <h2>{info.category}</h2>
@@ -43,7 +43,7 @@ const Item = (props) => {
           </button>
         </div>
       </Card>
-    </li>
+
   );
 };
 

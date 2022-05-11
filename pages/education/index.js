@@ -6,6 +6,7 @@ import ItemsList from "../../components/ui/ItemsList";
 import EducationList from "../../components/education/EducationList.js";
 import NewEducationForm from "../../components/education/NewEducationForm";
 import Button from "../../components/ui/button";
+import ListInfo from "../../components/ui/ListInfo";
 
 function EducationIndex(props) {
   const [newEducationModalIsOpen, setNewEducationModalIsOpen] = useState(false)
@@ -22,12 +23,11 @@ function EducationIndex(props) {
 
   return (
     <Fragment>
-      <CategoryFilterBar />
-      <div>
-      <Button onClick={openModal}>Add New</Button>
-      </div>
-      {newEducationModalIsOpen && <NewEducationForm onCancel={closeModal}/>}
-      <h1>Education Listings</h1>
+      <ListInfo
+        openModal={openModal}
+        newEducationModalIsOpen={newEducationModalIsOpen}
+        closeModal={closeModal}/>
+      {/* <CategoryFilterBar /> */}
       <ItemsList info={education} type="education" />
       <Button href="/">
         <a>Back to home</a>

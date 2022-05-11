@@ -1,5 +1,6 @@
 import MainNavigation from './MainNavigation';
 import classes from './Layout.module.scss';
+import Footer from '../footer/Footer';
 
 function Layout(props) {
   return (

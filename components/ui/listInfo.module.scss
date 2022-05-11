@@ -1,0 +1,20 @@
+@import "../../styles/global_styles.scss";
+
+.container {
+  padding: 16px;
+
+  .info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .h3{
+      color: $textColor;
+      // font-family: 'Nunito Sans';
+      // font-style: normal;
+      // font-weight: 600;
+      // font-size: 22px;
+      // line-height: 32px;
+    }
+  }
+}

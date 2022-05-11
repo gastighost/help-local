@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  height: 70px;
+  justify-content: space-between;
+  .left {
+    height: 100%;
+    width: 100%;
+    display: flex;
+  }
+
+  .right {
+    height: 100%;
+    width: 100%;
+  }
+}

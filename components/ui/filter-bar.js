@@ -23,6 +23,7 @@ function CategoryFilterBar(props) {
   }
 
   return (
+    <div className={styles.container}>
     <form className={styles.form} onSubmit={submitHandler}>
       <div className={styles.controls}>
         <div className={styles.control}>
@@ -37,6 +38,7 @@ function CategoryFilterBar(props) {
       </div>
       <Button>Filter Category</Button>
     </form>
+    </div>
   );
 }
 
