@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "./category-card.module.css";
+import styles from "./category-card.module.scss";
 import Image from "next/image";
 
 function MainCategoryIndex(props) {

@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useRouter } from "next/router";
 import Button from "../../components/ui/button";
 
-import styles from "./filter-bar.module.css";
+import styles from "./filter-bar.module.scss";
 
 function CategoryFilterBar(props) {
   const router = useRouter();

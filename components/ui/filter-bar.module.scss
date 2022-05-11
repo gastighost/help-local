@@ -1,5 +1,7 @@
+@import "../../styles/global_styles.scss";
+
 .form {
-  margin: 2rem auto;
+  // margin: 2rem auto;
   box-shadow: 0 1px 4px rgba(0,0,0,0.2);
   padding: 1rem;
   background-color: white;
@@ -43,8 +45,8 @@
   width: 100%;
   font: inherit;
   padding: 0.25rem 0.5rem;
-  background-color: #03be9f;
-  border: 1px solid #03be9f;
+  background-color: $buttonColor;
+  border: 1px solid $buttonColor;
   color: #dafff7;
   border-radius: 4px;
 }

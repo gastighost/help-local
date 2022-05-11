@@ -1,12 +1,13 @@
 import Head from "next/head";
 // import clientPromise from "../lib/mongodb";
+import classes from "../styles/Home.module.scss"
 import MainCategoryIndex from "../components/ui/category-card";
 import GreetingCard from "../components/ui/greeting-card";
 import CategoryContainer from "../components/ui/category-container";
 
 export default function Home({ isConnected }) {
   return (
-    <div className="container">
+    <div className={classes.container}>
       <Head>
         <title>Help Local</title>
         <link rel="icon" href="/ukraine-flag.png" />
@@ -15,7 +16,9 @@ export default function Home({ isConnected }) {
       <main>
         <div id="backdrop-root"></div>
         <div id="overlay-root"></div>
+        <div >
         <GreetingCard />
+        </div>
         <CategoryContainer>
           <MainCategoryIndex
             name="Jobs"

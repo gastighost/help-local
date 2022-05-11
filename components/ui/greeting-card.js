@@ -1,3 +1,5 @@
+// import classes from "./greeting-card.scss"
+
 function GreetingCard(props) {
   return (
     <div>
