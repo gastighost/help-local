@@ -2,7 +2,7 @@ import { getAllDocuments } from "../../util/mongodb";
 import { getSession } from "next-auth/client";
 import { useState } from "react";
 import Link from "next/link";
-import styles from "../../styles/Home.module.css";
+import styles from "../../styles/Home.module.scss";
 import CategoryFilterBar from "../../components/ui/filter-bar";
 import AidItemList from "../../components/humanitarian-aid/aid-item-list";
 import HumanitarianAidForm from "../../components/humanitarian-aid/humanitarian-aid-form";
