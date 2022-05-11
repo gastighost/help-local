@@ -28,25 +28,22 @@ function MainNavigation() {
       </div>
       <nav>
         <ul>
-        <li>
-            <Link href='/bookmarks'>
-              <img src='/main-icon.svg' alt='Help Local Icon' className={classes.topbarIcon} />
-            </Link>
+          <li>
+              <Link href='/bookmarks'><img src='/bookmark-icon.svg' alt='Bookmarks Icon' className={classes.topbarIcon} /></Link>
           </li>
-              <span className={classes.badge}>{bookmarksCtx.totalBookmarks}</span>
-          {!session && !loading && (
+          {session &&  (
             <li>
-              <Link href="/auth"><AccountCircleIcon className={classes.topbarIcon}/></Link>
+              <Link href="/"><img src='/language-icon.svg' alt='Language Icon' className={classes.topbarIcon} /></Link>
+            </li>
+          )}
+          {!session && (
+            <li>
+              <Link href="/auth"><img src='/user-icon.svg' alt='User Icon' className={classes.topbarIcon} /></Link>
             </li>
           )}
           {session && (
             <li>
-              <Link href="/"><LanguageIcon className={classes.topbarIcon}/></Link>
-            </li>
-          )}
-          {session && (
-            <li>
-              <button onClick={logoutHandler} className={classes.button}><ExitToAppIcon/></button>
+              <button onClick={logoutHandler} className={classes.button}><img src='/user-icon.svg' alt='User Icon' className={classes.topbarIcon} /></button>
             </li>
           )}
         </ul>
