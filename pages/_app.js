@@ -1,5 +1,5 @@
 import { Provider } from 'next-auth/client';
-import '../styles/globals.css'
+import '../styles/globals.scss'
 // config.autoAddCss = false
 import Layout from '../components/layout/Layout';
 import { BookmarksContextProvider } from "../store/BookmarksContext";

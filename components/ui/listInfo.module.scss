@@ -2,19 +2,37 @@
 
 .container {
   padding: 16px;
+  border-bottom: 1px solid $blueLight;
 
   .info{
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    .h3{
-      color: $textColor;
-      // font-family: 'Nunito Sans';
-      // font-style: normal;
-      // font-weight: 600;
-      // font-size: 22px;
-      // line-height: 32px;
+
+    .buttonWrapper{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 3px 12px;
+      gap: 8px;
+      background-color: $buttonColor;
+      width: 105px;
+      height: 30px;
+      text-decoration: none;
+      cursor: pointer;
+      font: inherit;
+      color: white;
+      border-radius: 5px;
+      overflow: hidden;
+
+      &:hover {
+        background-color: white;
+        color:  $buttonColor;
+        border: 1px solid $buttonColor;
+      }
     }
   }
+
 }

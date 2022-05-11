@@ -11,6 +11,7 @@ export default function Home({ isConnected }) {
       <Head>
         <title>Help Local</title>
         <link rel="icon" href="/ukraine-flag.png" />
+        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet"></link>
       </Head>
 
       <main>

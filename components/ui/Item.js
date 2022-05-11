@@ -1,8 +1,11 @@
-import classes from "./item.module.css";
+import classes from "./item.module.scss";
 import Card from "./card";
 import { useContext } from "react";
 import BookmarksContext from "../../store/BookmarksContext";
 import Link from "next/link";
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
+import BookmarkIcon from '@material-ui/icons/Bookmark';
+import Button from "./button";
 
 const Item = (props) => {
   const { info } = props;
@@ -30,17 +33,16 @@ const Item = (props) => {
 
       <Card>
         <div className={classes.content}>
-          <h2>{info.category}</h2>
           <h3>{info.title}</h3>
-          <address>{info.location}</address>
-        </div>
+          <p>{info.category}</p>
+          <div className={classes.bookmarkIcon} onClick={toggleBookmarkHandler}>
+            {itemIsBookmarked ? <BookmarkIcon/> : <BookmarkBorderIcon/>}
+          </div>
         <div className={classes.actions}>
-          <button>
+          <Button>
             <Link href={`/${props.type}/${info._id}`}>Open</Link>
-          </button>
-          <button onClick={toggleBookmarkHandler}>
-            {itemIsBookmarked ? "Remove from bookmarks" : "Bookmark!"}
-          </button>
+          </Button>
+        </div>
         </div>
       </Card>
 
