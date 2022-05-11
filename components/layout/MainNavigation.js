@@ -3,10 +3,6 @@ import Link from 'next/link';
 import { useContext } from "react";
 import BookmarksContext from "../../store/BookmarksContext";
 import { useSession, signOut } from 'next-auth/client';
-import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
-import LanguageIcon from '@material-ui/icons/Language';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 function MainNavigation() {
   const bookmarksCtx = useContext(BookmarksContext)

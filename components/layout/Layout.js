@@ -1,4 +1,5 @@
 import MainNavigation from './MainNavigation';
+import SubNavigation from './SubNavigation';
 import classes from './Layout.module.scss';
 
 function Layout(props) {
@@ -8,6 +9,7 @@ function Layout(props) {
       <div className={classes.sections}>
       <main className={classes.main}>{props.children}</main>
       </div>
+      <SubNavigation />
     </div>
   );
 }
