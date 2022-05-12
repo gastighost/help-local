@@ -24,25 +24,25 @@ export default function Home({ isConnected }) {
             name="Jobs"
             caption="Find job offers around you, suitable for beginners"
             categoryUrl="/jobs"
-            imageUrl="/job-icon.png"
+            imageUrl="/job-icon.svg"
           />
           <MainCategoryIndex
             name="Education"
             caption="Develop skills, learn languages, book a class"
             categoryUrl="/education"
-            imageUrl="/education-icon.png"
+            imageUrl="/education-icon.svg"
           />
           <MainCategoryIndex
             name="Supplies"
             caption="Find free resources and supplies close to you"
             categoryUrl="/humanitarian-aid"
-            imageUrl="/supplies-icon.png"
+            imageUrl="/supplies-icon.svg"
           />
           <MainCategoryIndex
             name="Groups"
             caption="Connect with other people, get help and feedback"
             categoryUrl="/social-media"
-            imageUrl="/social-media.png"
+            imageUrl="/groups-icon.svg"
           />
         </CategoryContainer>
       </main>
