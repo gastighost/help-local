@@ -1,14 +1,13 @@
 @import "../../styles/global_styles.scss";
 
 .container {
-  padding: 16px;
   border-bottom: 1px solid $blueLight;
 
   .info{
+    padding: 0 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
 
     .buttonWrapper{
       display: flex;
@@ -18,8 +17,8 @@
       padding: 3px 12px;
       gap: 8px;
       background-color: $buttonColor;
-      width: 105px;
-      height: 30px;
+      width: 116px;
+      height: 36px;
       text-decoration: none;
       cursor: pointer;
       font: inherit;
@@ -33,6 +32,13 @@
         border: 1px solid $buttonColor;
       }
     }
+
+  }
+
+  .description {
+    padding: 0 16px;
+    border-bottom: 2px solid $blueLight;
+
   }
 
 }

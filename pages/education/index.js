@@ -38,8 +38,6 @@ function EducationIndex(props) {
 
 export async function getServerSideProps(context) {
   const education = await getAllDocuments("education");
-  // console.log(education);
-
   return {
     props: {
       education: JSON.parse(JSON.stringify(education)),

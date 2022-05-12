@@ -8,6 +8,7 @@ const ItemsList = (props) => {
     <div className={classes.list}>
       {info.map((item) => (
         <Item
+          key = {item._id}
           info={item}
         />
       ))}
