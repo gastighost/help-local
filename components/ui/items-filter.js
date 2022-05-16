@@ -1,5 +1,4 @@
 import classes from './itemFilter.module.scss'
-import "../../public/icons/Triangle.png"
 import FilterListIcon from '@material-ui/icons/FilterList';
 
 export default function ItemsFilter(props) {
