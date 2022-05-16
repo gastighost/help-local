@@ -1,0 +1,25 @@
+@import "../../styles/global_styles.scss";
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  position: fixed;
+  padding: 10px 10px 0px 10px;
+  bottom: 0;
+  width: 100%;
+  background: white;
+}
+
+.icons {
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.text {
+  color: #717781;
+  margin-bottom: 22px;
+  margin-top: 0;
+  cursor: pointer;
+}
