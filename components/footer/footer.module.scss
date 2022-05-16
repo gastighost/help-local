@@ -1,0 +1,10 @@
+@import "../../styles/global_styles.scss";
+
+.footerContainer {
+  background-color: $navbarColor;
+  height: 70px;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}

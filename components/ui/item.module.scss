@@ -1,0 +1,82 @@
+@import "../../styles/global_styles.scss";
+
+.item {
+  margin: 1rem 0;
+  list-style-type: none;
+}
+
+.image {
+  width: 100%;
+  height: 20rem;
+  overflow: hidden;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+}
+
+.image img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.content {
+  text-align: center;
+  // padding: 1rem;
+  position: relative;
+  text-align: start;
+  // height: 132px;
+  border: 1px solid #EEF2F9;
+  box-shadow: 3px 3px 10px -2px rgba(8, 18, 36, 0.15);
+  border-radius: 5px 10px 5px 5px;
+  overflow: hidden;
+
+  .language, .details {
+    cursor: pointer;
+    padding: 0 16px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: $blueRegular;
+  }
+
+  .details {
+    border-bottom: 2px solid $blueLight;
+  }
+
+  .bookmarkIcon{
+    border: 1px solid $greyLight;
+    border-radius: 0 0 0 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: $blueRegular;
+    padding: 6px;
+
+    &.active{
+      background-color: $blueLight;
+    }
+  }
+
+  h3 {
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+  }
+
+  p, h4 {
+    color: $cardColorBlue;
+    letter-spacing: 1px;
+  }
+
+  h3, p {
+    padding: 0 16px;
+  }
+
+  .detailsShow {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+}

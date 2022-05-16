@@ -1,0 +1,47 @@
+@import "./global_styles.scss";
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+h3 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+  letter-spacing: 0.5px;
+  color: $blueRegular;
+  letter-spacing: 1px;
+}
+
+p {
+  font-style: normal;
+  font-weight: 400;
+  color: $blueXdark;
+  letter-spacing: 0.5px;
+}
+
+option {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: red;
+}
+
+* {
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+}

@@ -1,11 +1,19 @@
-import classes from "./item.module.css";
+import classes from "./item.module.scss";
 import Card from "./card";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import BookmarksContext from "../../store/BookmarksContext";
 import Link from "next/link";
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
+import BookmarkIcon from '@material-ui/icons/Bookmark';
+import Button from "./button";
+import TranslateIcon from '@material-ui/icons/Translate';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import ItemDetails from "./ItemDetails";
 
 const Item = (props) => {
   const { info } = props;
+  const [detailsOpen, setdetailsOpen] = useState(false)
   const bookmarksCtx = useContext(BookmarksContext)
   const itemIsBookmarked = bookmarksCtx.itemIsBookmarked(info._id)
 
@@ -26,24 +34,38 @@ const Item = (props) => {
     }
   };
 
+  const toggleDetailsHandler = () => {
+    if (detailsOpen === false) {
+      setdetailsOpen(true)
+    } else {
+      setdetailsOpen(false)
+    }
+  }
+
   return (
-    <li className={classes.info}>
+
       <Card>
         <div className={classes.content}>
-          <h2>{info.category}</h2>
           <h3>{info.title}</h3>
-          <address>{info.location}</address>
-        </div>
-        <div className={classes.actions}>
-          <button>
-            <Link href={`/${props.type}/${info._id}`}>Open</Link>
-          </button>
-          <button onClick={toggleBookmarkHandler}>
-            {itemIsBookmarked ? "Remove from bookmarks" : "Bookmark!"}
-          </button>
+          <div className={classes.language}>
+            <TranslateIcon/>
+            <p>{info.language}</p>
+          </div>
+          <div
+            className={`${classes.bookmarkIcon} ${itemIsBookmarked ? classes.active : null}`}
+            onClick={toggleBookmarkHandler}>
+            {itemIsBookmarked ? <BookmarkIcon/> : <BookmarkBorderIcon/>}
+          </div >
+          <div className={classes.details} onClick={toggleDetailsHandler}>
+            <h4>Details</h4>
+            { detailsOpen ? <ExpandLessIcon/> : <ExpandMoreIcon/>}
+          </div>
+          <div className={`${classes.detailsShow} ${detailsOpen ? classes.active : null}`}>
+            <ItemDetails language={info.language} contact={info.contact} studentAge={info.studentAge}/>
+          </div>
         </div>
       </Card>
-    </li>
+
   );
 };
 
