@@ -1,4 +1,6 @@
 import classes from './JobItemDetails.module.scss';
+import Button from '../ui/button';
+import Link from 'next/link';
 
 const JobItemDetails = (props) => {
   const { job } = props;
@@ -23,7 +25,12 @@ const JobItemDetails = (props) => {
         </div>
       </div>
       <div className={classes.actions}>
-        <button className={classes.btn}>Get in touch</button>
+        {/* <button className={classes.btn}>Get in touch</button> */}
+        <Button>
+          <Link href={`/jobs/${job._id}`}>
+            More details
+          </Link>
+        </Button>
       </div>
     </div>
   )
