@@ -28,9 +28,9 @@ function JobItem(props) {
         <p>Monthly salary in EUR: {props.job.monthlySalary}</p>
       </div>
       <div className={classes.actions}>
-        <Button>
+        <button>
           <Link href={`/${props.type}/${props.job._id}`}>Open</Link>
-        </Button>
+        </button>
         <button onClick={toggleBookmarkHandler}>
           {itemIsBookmarked ? "Remove from bookmarks" : "Bookmark!"}
         </button>
