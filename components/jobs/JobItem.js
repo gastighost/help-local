@@ -2,9 +2,22 @@ import classes from "./JobItem.module.css";
 import Link from "next/link";
 import Card from "../ui/card";
 import Button from "../ui/button";
+import BookmarksContext from "../../store/BookmarksContext";
+import { useContext } from "react";
 
 function JobItem(props) {
-  // console.log(props.job);
+  const { job } = props;
+  const bookmarksCtx = useContext(BookmarksContext);
+  const itemIsBookmarked = bookmarksCtx.itemIsBookmarked(job._id);
+
+  const toggleBookmarkHandler = (event) => {
+    if (itemIsBookmarked) {
+      bookmarksCtx.removeBookmark(job._id);
+    } else {
+      bookmarksCtx.addBookmark(job)
+    }
+  }
+
   return (
     <Card>
       <div className={classes.content}>
@@ -18,6 +31,9 @@ function JobItem(props) {
         <Button>
           <Link href={`/${props.type}/${props.job._id}`}>Open</Link>
         </Button>
+        <button onClick={toggleBookmarkHandler}>
+          {itemIsBookmarked ? "Remove from bookmarks" : "Bookmark!"}
+        </button>
       </div>
     </Card>
   );
