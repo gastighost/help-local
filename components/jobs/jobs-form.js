@@ -27,6 +27,10 @@ function JobsForm(props) {
   const companyInputRef = useRef();
   // const isProviderInputRef = useRef();
 
+  const cancelHandler = () => {
+    // console.log("Cancel clicked");
+    props.onCancel()
+  }
 
   // define handlerfunction which sends data to jobs api when submitting the form
   function createJobHandler(event) {
@@ -164,6 +168,7 @@ function JobsForm(props) {
             <option value="false">Requesting</option>
           </select>
         </div> */}
+        <button onClick={cancelHandler}>Cancel</button>
         <button>Submit</button>
       </form>
   );
