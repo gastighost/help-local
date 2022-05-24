@@ -18,8 +18,8 @@ function JobsIndex(props) {
           <a>Create a new item</a>
         </Link>
       </Button>
-      {/* <JobList info={jobs} type="jobs" /> */}
-      <ItemsList info={jobs} type="education" />
+      <JobList info={jobs} type="jobs" />
+      {/* <ItemsList info={jobs} type="jobs" /> */}
       <Button href="/">
         <a>Back to home</a>
       </Button>
