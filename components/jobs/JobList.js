@@ -1,18 +1,18 @@
 import JobItem from "./JobItem";
-import classes from "./JobList.module.css";
+import classes from "./JobList.module.scss";
 
 function JobList(props) {
   // console.log(props.jobs);
   return (
-    <ul className={classes.list}>
-      {props.info.map((job) => {
-        return (
-          <div key={job._id}>
+    <div className={classes.itemListContainer}>
+      <div className={classes.list}>
+        {props.info.map((job) => {
+          return (
             <JobItem job={job} type={props.type} />
-          </div>
-        );
-      })}
-    </ul>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 

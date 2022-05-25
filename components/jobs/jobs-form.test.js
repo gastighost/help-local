@@ -62,7 +62,7 @@ describe('jobs form', () => {
     user.type(company, 'BVG');
 
     await user.click(screen.getByRole('button', {
-      name: /submit/i
+      name: /add/i
     }));
 
     expect(routerSpy).toBeCalledWith('/jobs')

@@ -1,3 +1,5 @@
+import classes from "./jobs-form.module.scss";
+import Button from "../ui/button";
 import Router from "next/router";
 import { useRef } from "react";
 import { getSession } from "next-auth/client";
@@ -27,6 +29,10 @@ function JobsForm(props) {
   const companyInputRef = useRef();
   // const isProviderInputRef = useRef();
 
+  const cancelHandler = () => {
+    // console.log("Cancel clicked");
+    props.onCancel()
+  }
 
   // define handlerfunction which sends data to jobs api when submitting the form
   function createJobHandler(event) {
@@ -82,77 +88,68 @@ function JobsForm(props) {
   }
   // rendering the form
   return (
-      <form onSubmit={createJobHandler}>
-        <div>
-          <label htmlFor="category"></label>
+      <form className={classes.form} onSubmit={createJobHandler}>
+        <div className={classes.control}>
+          <label htmlFor="category">Category</label>
           <input
             type="text"
             id="category"
-            placeholder="category"
             ref={categoryInputRef} />
         </div>
-        <div>
-          <label htmlFor="title"></label>
+        <div className={classes.control}>
+          <label htmlFor="title">Title</label>
           <input
             type="text"
             id="title"
-            placeholder="title"
             ref={titleInputRef} />
         </div>
-        <div>
-          <label htmlFor="location"></label>
+        <div className={classes.control}>
+          <label htmlFor="location">Location</label>
           <input
             type="text"
             id="location"
-            placeholder="location"
             ref={locationInputRef} />
         </div>
-        <div>
-          <label htmlFor="monthlySalary"></label>
+        <div className={classes.control}>
+          <label htmlFor="monthlySalary">Monthly Salary</label>
           <input
             type="number"
             id="monthlySalary"
-            placeholder="monthlySalary"
             ref={monthlySalaryInputRef} />
         </div>
-        <div>
-          <label htmlFor="weeklyHours"></label>
+        <div className={classes.control}>
+          <label htmlFor="weeklyHours">Weekly Hours</label>
           <input
             type="number"
             id="weeklyHours"
-            placeholder="weeklyHours"
             ref={weeklyHoursInputRef} />
         </div>
-        <div>
-          <label htmlFor="requirements"></label>
+        <div className={classes.control}>
+          <label htmlFor="requirements">Requirements</label>
           <input
             type="text"
             id="requirements"
-            placeholder="requirements"
             ref={requirementsInputRef} />
         </div>
-        <div>
-          <label htmlFor="language"></label>
+        <div className={classes.control}>
+          <label htmlFor="language">Language</label>
           <input
             type="text"
             id="language"
-            placeholder="language"
             ref={languageInputRef} />
         </div>
-        <div>
-          <label htmlFor="description"></label>
+        <div className={classes.control}>
+          <label htmlFor="description">Description</label>
           <input
             type="text"
             id="description"
-            placeholder="description"
             ref={descriptionInputRef} />
         </div>
-        <div>
-          <label htmlFor="company"></label>
+        <div className={classes.control}>
+          <label htmlFor="company">Company</label>
           <input
             type="text"
             id="company"
-            placeholder="company"
             ref={companyInputRef} />
         </div>
         {/* <div>
@@ -164,7 +161,10 @@ function JobsForm(props) {
             <option value="false">Requesting</option>
           </select>
         </div> */}
-        <button>Submit</button>
+        <div className={classes.action}>
+          <Button>Add</Button>
+          <Button onClick={cancelHandler}>Cancel</Button>
+        </div>
       </form>
   );
 };
