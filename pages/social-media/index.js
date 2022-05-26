@@ -1,15 +1,16 @@
 import { Fragment } from "react";
 import Link from "next/link";
-import Greeting from "../../components/social-media/greeting";
+import Cardcontainer from "../../components/social-media/cardcontainer";
+import Topbox from "../../components/social-media/topbox";
 
 function SocialMediaIndex() {
   return (
     <Fragment>
-      <Greeting/>
-      <h1>Social Media</h1>
-      <Link href="/">
+      <Topbox/>
+      <Cardcontainer/>
+      {/* <Link href="/">
         <a>Back to home</a>
-      </Link>
+      </Link> */}
     </Fragment>
   );
 }

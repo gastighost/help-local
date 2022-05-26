@@ -1,0 +1,16 @@
+@import "../../styles/global_styles.scss";
+
+.container {
+  background: $blueLight;
+  padding: 16px;
+
+  h1 {
+    color: $blueRegular;
+  }
+}
+
+.socialmediacard {
+  background:white !important;
+  height:50px;
+  padding:16px
+}
