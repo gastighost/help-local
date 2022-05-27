@@ -1,0 +1,18 @@
+@import "../../styles/global_styles.scss";
+
+.myclass {
+  background: $cardColorBlue;
+  padding: 16px;
+  height: 100vh;
+
+  h1 {
+    color: white;
+  }
+}
+
+.socialmediacard {
+  background:white !important;
+  height:50px;
+  padding:16px;
+  margin-bottom:16px;
+}
