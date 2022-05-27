@@ -1,0 +1,44 @@
+@import "../../styles/global_styles.scss";
+
+.container {
+  border-bottom: 1px solid $blueLight;
+
+  .info{
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .buttonWrapper{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 3px 12px;
+      gap: 8px;
+      background-color: $buttonColor;
+      width: 116px;
+      height: 36px;
+      text-decoration: none;
+      cursor: pointer;
+      font: inherit;
+      color: white;
+      border-radius: 5px;
+      overflow: hidden;
+
+      &:hover {
+        background-color: white;
+        color:  $buttonColor;
+        border: 1px solid $buttonColor;
+      }
+    }
+
+  }
+
+  .description {
+    padding: 0 16px;
+    border-bottom: 2px solid $blueLight;
+
+  }
+
+}
