@@ -16,7 +16,6 @@ function HumanitarianAidForm(props) {
   const isProviderInputRef = useRef();
 
   const cancelHandler = () => {
-    console.log("Cancel clicked");
     props.onCancel();
   };
 

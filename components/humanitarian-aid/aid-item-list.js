@@ -1,14 +1,16 @@
 import AidItem from "./aid-item";
-import styles from "./aid-item-list.module.css";
+import classes from "./aid-item-list.module.scss";
 
 const AidItemList = (props) => {
   const { info } = props;
   return (
-    <ul className={styles.list}>
-      {info.map((item) => (
-        <AidItem key={item._id} type={props.type} info={item} />
-      ))}
-    </ul>
+    <div className={classes.itemListContainer}>
+      <div className={classes.list}>
+        {info.map((item) => (
+          <AidItem key={item._id} type={props.type} info={item} />
+        ))}
+      </div>
+    </div>
   );
 };
 

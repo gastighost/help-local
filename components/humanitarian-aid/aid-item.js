@@ -1,21 +1,24 @@
-import styles from "./aid-item.module.css";
+import classes from "./aid-item.module.scss";
 import Card from "../ui/card";
 import { useContext } from "react";
 import BookmarksContext from "../../store/BookmarksContext";
 import Link from "next/link";
+import BookmarkIcon from "@material-ui/icons/Bookmark";
+import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
+import LocalHospitalIcon from "@material-ui/icons/LocalHospital";
 
 const AidItem = (props) => {
   const { info } = props;
 
   const bookmarksCtx = useContext(BookmarksContext);
-  const itemIsBookmarked = bookmarksCtx.itemIsBookmarked(props.id);
+  const itemIsBookmarked = bookmarksCtx.itemIsBookmarked(info._id);
 
   const toggleBookmarkHandler = (event) => {
     if (itemIsBookmarked) {
-      bookmarksCtx.removeBookmark(props.id);
+      bookmarksCtx.removeBookmark(info._id);
     } else {
       bookmarksCtx.addBookmark({
-        ...{ props },
+        ...info,
         key: info._id,
         _id: info._id,
         category: info.category,
@@ -27,29 +30,32 @@ const AidItem = (props) => {
   };
 
   return (
-    <li className={styles.item}>
-      <Card>
-        <div className={styles.content}>
-          <div>
-            <h2>{info.title}</h2>
-            <h3>
-              {info.category} • {info.amount}{" "}
-              {info.measurement && info.measurement}
-            </h3>
-          </div>
-          <div>
-            <button onClick={toggleBookmarkHandler}>
-              {itemIsBookmarked ? "Remove from bookmarks" : "Bookmark!"}
-            </button>
-          </div>
+    <Card>
+      <div className={classes.content}>
+        <h3>{info.title}</h3>
+        <div className={classes.items}>
+          <LocalHospitalIcon />
+          <p>
+            {info.category} • {info.amount}{" "}
+            {info.measurement && info.measurement}
+          </p>
         </div>
+        <div
+          className={`${classes.bookmarkIcon} ${
+            itemIsBookmarked ? classes.active : null
+          }`}
+          onClick={toggleBookmarkHandler}
+        >
+          {itemIsBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+        </div>
+
         <Link href={`/${props.type}/${info._id}`}>
-          <div className={styles.actions}>
-            <h4>Open for more details</h4>
+          <div className={classes.details}>
+            <h4>Click for more details</h4>
           </div>
         </Link>
-      </Card>
-    </li>
+      </div>
+    </Card>
   );
 };
 

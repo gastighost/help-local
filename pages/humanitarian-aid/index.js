@@ -2,11 +2,11 @@ import { getAllDocuments } from "../../util/mongodb";
 import { getSession } from "next-auth/client";
 import { useState } from "react";
 import Link from "next/link";
-import styles from "../../styles/Home.module.scss";
-import CategoryFilterBar from "../../components/ui/filter-bar";
 import AidItemList from "../../components/humanitarian-aid/aid-item-list";
 import HumanitarianAidForm from "../../components/humanitarian-aid/humanitarian-aid-form";
 import Button from "../../components/ui/button";
+import { Fragment } from "react";
+import HumanitarianListInfo from "../../components/humanitarian-aid/humanitarian-list-info";
 
 function HumanitarianAidIndex(props) {
   const [newAidModalIsOpen, setNewAidModalIsOpen] = useState(false);
@@ -21,18 +21,23 @@ function HumanitarianAidIndex(props) {
   };
 
   return (
-    <div className={styles.center}>
-      <CategoryFilterBar />
-      <div>
+    <Fragment>
+      <HumanitarianListInfo
+        openModal={openModal}
+        newAidModalIsOpen={newAidModalIsOpen}
+        closeModal={closeModal}
+        session={session}
+      />
+      {/* <div>
         {session && <Button onClick={openModal}>Create New Aid</Button>}
-      </div>
+      </div> */}
       {newAidModalIsOpen && <HumanitarianAidForm onCancel={closeModal} />}
       <h1>Humanitarian Aid</h1>
       <AidItemList info={aid} type="humanitarian-aid" />
       <Link href="/">
         <a>Back to home</a>
       </Link>
-    </div>
+    </Fragment>
   );
 }
 
