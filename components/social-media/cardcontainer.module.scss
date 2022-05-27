@@ -17,20 +17,52 @@
   box-shadow: 3px 3px 10px -2px rgb(8 18 36 / 15%);
   border-radius: 5px;
   display:flex;
+  align-items: flex-start;
 }
 
 .socialimage {
   width: 64px;
   height: 64px;
   background: blue;
+  flex-shrink: 0;
 }
 
-.socialinfo {
+.cardinfo {
+  margin-left: 12px;
   display:flex;
   flex-direction: column;
+  background:red !important;
+  flex-grow:0;
 
   p {
     margin-top: 0px !important;
     margin-bottom: 0px !important;
+  }
+
+  h4 {
+    margin-top: 0px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .cardbottom {
+    background:orange;
+    display: flex;
+  }
+
+  .cardbottom > *:not(:last-child) {
+    margin-right:16px;
+  }
+
+  .icontext {
+    display:flex;
+    background:yellow;
+    align-items: center;
+  }
+
+  .members {
+    display:flex;
+    background:yellowgreen;
+    align-items: center;
+    word-spacing: 4px;
   }
 }

@@ -1,4 +1,5 @@
 import styles from './cardcontainer.module.scss';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 function Cardcontainer() {
   return (
@@ -8,12 +9,12 @@ function Cardcontainer() {
           <img></img>
         </div>
         <div className={styles.cardinfo}>
-          <p className={styles.cardtitle}>Support group for Ukrainian refugees in Berlin</p>
-          <p className={styles.carddescription}>I'm a small subtext.</p>
+          <h4 className={styles.cardtitle}>Support group for Ukrainian refugees what is this!</h4>
+          <div className={styles.cardbottom}>
+            <div className={styles.icontext}><LockOutlinedIcon /><p>private</p></div>
+            <div className={styles.members}><p><strong>12345</strong> members</p></div>
+          </div>
         </div>
-      </div>
-      <div className={styles.socialmediacard}>
-        I'm a card.
       </div>
     </section>
   );
