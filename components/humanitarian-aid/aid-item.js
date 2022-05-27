@@ -7,10 +7,8 @@ import Link from "next/link";
 const AidItem = (props) => {
   const { info } = props;
 
-  // console.log(props.id);
   const bookmarksCtx = useContext(BookmarksContext);
   const itemIsBookmarked = bookmarksCtx.itemIsBookmarked(props.id);
-  // console.log(props.isBookmarked);
 
   const toggleBookmarkHandler = (event) => {
     if (itemIsBookmarked) {
@@ -18,15 +16,14 @@ const AidItem = (props) => {
     } else {
       bookmarksCtx.addBookmark({
         ...{ props },
-        key: props.id,
-        _id: props.id,
-        category: props.category,
-        title: props.title,
-        location: props.location,
-        isBookmarked: props.isBookmarked,
+        key: info._id,
+        _id: info._id,
+        category: info.category,
+        title: info.title,
+        location: info.location,
+        isBookmarked: info.isBookmarked,
       });
     }
-    // console.log(itemIsBookmarked);
   };
 
   return (
