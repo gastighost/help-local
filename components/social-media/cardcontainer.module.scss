@@ -4,15 +4,33 @@
   background: $cardColorBlue;
   padding: 16px;
   height: 100vh;
+}
 
-  h1 {
-    color: white;
-  }
+.myclass > *:not(:last-child) {
+  margin-bottom:16px;
 }
 
 .socialmediacard {
   background:white !important;
-  height:50px;
   padding:16px;
-  margin-bottom:16px;
+  border: 1px solid #EEF2F9;
+  box-shadow: 3px 3px 10px -2px rgb(8 18 36 / 15%);
+  border-radius: 5px;
+  display:flex;
+}
+
+.socialimage {
+  width: 64px;
+  height: 64px;
+  background: blue;
+}
+
+.socialinfo {
+  display:flex;
+  flex-direction: column;
+
+  p {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
 }
