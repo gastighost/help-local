@@ -2,15 +2,19 @@
 
 .container {
   background: $blueLight;
-  padding: 16px;
+  padding-top: 24px;
+  padding-right: 16px;
+  padding-bottom: 16px;
+  padding-left: 16px;
 
-  h1 {
+  h3 {
     color: $blueRegular;
+    margin-top:0px;
+    margin-bottom:8px;
   }
-}
 
-.socialmediacard {
-  background:white !important;
-  height:50px;
-  padding:16px
+  p {
+    margin-top:0px;
+    margin-bottom:0px;
+  }
 }

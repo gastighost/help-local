@@ -3,15 +3,17 @@ import styles from './cardcontainer.module.scss';
 function Cardcontainer() {
   return (
     <section className={styles.myclass}>
-      <h1>Here is a list with cards...</h1>
       <div className={styles.socialmediacard}>
-      I'm a card
+        <div className={styles.socialimage}>
+          <img></img>
+        </div>
+        <div className={styles.cardinfo}>
+          <p className={styles.cardtitle}>Support group for Ukrainian refugees in Berlin</p>
+          <p className={styles.carddescription}>I'm a small subtext.</p>
+        </div>
       </div>
       <div className={styles.socialmediacard}>
-      I'm also a card
-      </div>
-      <div className={styles.socialmediacard}>
-      Same here!
+        I'm a card.
       </div>
     </section>
   );
