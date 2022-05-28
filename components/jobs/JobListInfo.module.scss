@@ -16,7 +16,7 @@
       align-items: center;
       padding: 3px 12px;
       gap: 8px;
-      background-color: $buttonColor;
+      background-color: $blueRegular;
       width: 116px;
       height: 36px;
       text-decoration: none;
@@ -28,8 +28,8 @@
 
       &:hover {
         background-color: white;
-        color:  $buttonColor;
-        border: 1px solid $buttonColor;
+        color:  $blueRegular;
+        border: 1px solid $blueRegular;
       }
     }
 
