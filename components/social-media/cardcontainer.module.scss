@@ -1,7 +1,7 @@
 @import "../../styles/global_styles.scss";
 
 .myclass {
-  background: $cardColorBlue;
+  background: $blueDark;
   padding: 16px;
   height: 100vh;
 }
@@ -12,7 +12,8 @@
 
 .socialmediacard {
   background:white !important;
-  padding:16px;
+  padding-left:12px;
+  padding-top:12px;
   border: 1px solid #EEF2F9;
   box-shadow: 3px 3px 10px -2px rgb(8 18 36 / 15%);
   border-radius: 5px;
@@ -27,7 +28,7 @@
   flex-shrink: 0;
 }
 
-.cardinfo {
+.contentright {
   margin-left: 12px;
   display:flex;
   flex-direction: column;
@@ -45,18 +46,18 @@
   }
 
   .cardbottom {
-    background:orange;
     display: flex;
   }
 
   .cardbottom > *:not(:last-child) {
-    margin-right:16px;
+    margin-right:12px;
   }
 
   .icontext {
     display:flex;
     background:yellow;
     align-items: center;
+    word-spacing: 4px;
   }
 
   .members {
@@ -64,5 +65,23 @@
     background:yellowgreen;
     align-items: center;
     word-spacing: 4px;
+  }
+
+  .socialcategory {
+    background: $greyLight;
+    width: 40px;
+    height: 40px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .socialicon {
+    width:24px;
+    height:24px;
+  }
+
+  .upperpart {
+    background:turquoise;
   }
 }

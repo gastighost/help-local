@@ -23,8 +23,8 @@
       text-decoration: none;
       cursor: pointer;
       font: inherit;
-      background-color: $buttonColor;
-      border: 1px solid $buttonColor;
+      background-color: $blueRegular;
+      border: 1px solid $blueRegular;
       border-radius: 6px;
       color: #dafff7;
       padding: 0.5rem 1.5rem;
@@ -35,7 +35,7 @@
     .btn:hover,
     .btn:active {
       background-color: white;
-      color: $buttonColor;
+      color: $blueRegular;
     }
   }
 }
