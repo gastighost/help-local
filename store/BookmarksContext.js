@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useRef } from "react";
+import { createContext, useState } from "react";
 
 const BookmarksContext = createContext({
   bookmarks: [],
