@@ -13,12 +13,12 @@
 .socialmediacard {
   background:white !important;
   padding-left:12px;
-  padding-top:12px;
   border: 1px solid #EEF2F9;
   box-shadow: 3px 3px 10px -2px rgb(8 18 36 / 15%);
-  border-radius: 5px;
+  border-radius: 5px 5px 10px 5px;
+  height:96px;
   display:flex;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .socialimage {
@@ -26,14 +26,18 @@
   height: 64px;
   background: blue;
   flex-shrink: 0;
+  overflow-x: visible;
 }
 
 .contentright {
   margin-left: 12px;
   display:flex;
-  flex-direction: column;
-  background:red !important;
+  flex-direction:column;
+  //background:red !important;
+  justify-content: space-between;
   flex-grow:0;
+  height:100%;
+  width:100%;
 
   p {
     margin-top: 0px !important;
@@ -41,8 +45,17 @@
   }
 
   h4 {
-    margin-top: 0px !important;
-    margin-bottom: 4px !important;
+    margin-top: 8px !important;
+    margin-bottom: 0px !important;
+    //background:palevioletred;
+    margin-right:12px;
+  }
+
+  .smallsemibold {
+    font-weight:600;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: 0.5px;
   }
 
   .cardbottom {
@@ -50,21 +63,20 @@
   }
 
   .cardbottom > *:not(:last-child) {
-    margin-right:12px;
+    margin-right:8px;
   }
 
   .icontext {
     display:flex;
-    background:yellow;
+    //background:yellow;
     align-items: center;
-    word-spacing: 4px;
+
   }
 
   .members {
     display:flex;
-    background:yellowgreen;
+    //background:yellowgreen;
     align-items: center;
-    word-spacing: 4px;
   }
 
   .socialcategory {
@@ -74,6 +86,8 @@
     display:flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
+    border-radius: 10px 0px 0px 0px;
   }
 
   .socialicon {
@@ -81,7 +95,17 @@
     height:24px;
   }
 
-  .upperpart {
-    background:turquoise;
+  .lowerpart {
+    //background:turquoise;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .socialsmallregular {
+    font-weight:600;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: 0.5px;
   }
 }
