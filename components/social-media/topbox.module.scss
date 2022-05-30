@@ -1,0 +1,20 @@
+@import "../../styles/global_styles.scss";
+
+.container {
+  background: $blueLight;
+  padding-top: 24px;
+  padding-right: 16px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+
+  h3 {
+    color: $blueRegular;
+    margin-top:0px;
+    margin-bottom:8px;
+  }
+
+  p {
+    margin-top:0px;
+    margin-bottom:0px;
+  }
+}
