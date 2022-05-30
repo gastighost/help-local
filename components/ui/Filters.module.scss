@@ -16,17 +16,28 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      gap: 10px;
+      gap: 16px;
       flex-wrap: wrap;
 
-      p {
-        &.selected {
-          background-color: $blueXdark;
-          border: 1px solid $blueXdark;
-          border-radius: 6px;
-          color: #dafff7;
-          padding: 0.25rem 0.75rem;
-          text-align: center;
+      .filterContainer {
+
+        .filterList {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          flex-wrap: wrap;
+
+          p {
+            background: #FFFFFF;
+            border-radius: 6px;
+            padding: 8px 16px;
+            transition: all .5s ease-out;
+
+            &.selected {
+              background-color: $blueXdark;
+              color: #dafff7;
+            }
+          }
         }
       }
     }

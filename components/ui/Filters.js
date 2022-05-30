@@ -36,22 +36,47 @@ export default function Filters({items, active}) {
     }
   }
 
+  const toggleSelectAgeHandler = (e) => {
+    const language = e.target.textContent
+    setSelectedLanguage(language)
+    if (selected && language === selectedLanguage) {
+      setSelected(false)
+    } else {
+      setSelected(true)
+    }
+  }
+
   return (
     <div className={`${classes.container} ${active && classes.active}`}>
       <div className={classes.content}>
         <div className={classes.info}>
-          <h4>Language:</h4>
-          {uniqueLanguages.map(language => (
-            <p
-              key={language}
-              className={`${selected && selectedLanguage === language ? classes.selected : null}`}
-              onClick={toggleSelectLanguageHandler}>{language}</p>
-          ))}
+          <div className={classes.filterContainer}>
+            <div className={classes.filterItem}>
+            <div>
+              <h4>Language:</h4>
+            </div>
+            <div className={classes.filterList}>
+              {uniqueLanguages.map(language => (
+                <p
+                  key={language}
+                  className={`${selected && selectedLanguage === language ? classes.selected : null}`}
+                  onClick={toggleSelectLanguageHandler}>{language}</p>
+              ))}
+            </div>
+            </div>
+            <div className={classes.filterItem}>
+            <div>
+              <h4>Age:</h4>
+            </div>
+            <div className={classes.filterList}>
+              <p>6-12</p>
+              <p>12-18</p>
+              <p>over 18</p>
+            </div>
+            </div>
+          </div>
         </div>
       </div>
-      {/* <div className={classes.actions}>
-        <button className={classes.btn}>Search</button>
-      </div> */}
     </div>
   )
 }

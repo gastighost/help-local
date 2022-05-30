@@ -17,20 +17,23 @@ const ItemsList = (props) => {
     } else null
   }, [])
 
+  // Filtering between all items and filtered ones between
+  let items = []
+  if (filterCtx.filter === "all" || filterCtx.selected === false) {
+    items = filterCtx.allItems
+  } else {
+    items = filterCtx.filteredItems
+  }
+
   return (
     <div className={classes.itemListContainer}>
     <div className={classes.list}>
-      { filterCtx.filter === "all" || filterCtx.selected === false ? filterCtx.allItems.map((item) => (
-        <Item
-          key = {item._id}
-          info={item}
-        />
-      )) : filterCtx.filteredItems.map((item) => (
-        <Item
-          key = {item._id}
-          info={item}
-        />
-      ))}
+      {items.map((item) => (
+          <Item
+            key = {item._id}
+            info={item}
+          />
+        ))}
     </div>
     </div>
   );

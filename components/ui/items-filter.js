@@ -10,13 +10,6 @@ export default function ItemsFilter(props) {
   const [filtersOpen, setFiltersOpen] = useState(false)
   const filterCtx = useContext(FilterContext)
   const test = filterCtx.filter
-  console.log(filterCtx.filteredItems);
-
-
-  const handleTest = () => {
-    filterCtx.handleTest(test)
-    console.log(filterCtx.filteredItems);
-  }
 
   const toggleDetailsHandler = () => {
     if (filtersOpen === false) {
@@ -32,11 +25,6 @@ export default function ItemsFilter(props) {
       <div className={classes.left}>
         <p>Sort by:</p>
         {filtersOpen ? <ExpandLessIcon onClick={toggleDetailsHandler}/> : <ExpandMoreIcon onClick={toggleDetailsHandler}/>}
-        {/* <select className={classes.select}>
-          <option className={classes.option}>Show All</option>
-          <option className={classes.option}>By Language</option>
-          <option className={classes.option}>By Location</option>
-        </select> */}
       </div>
       <div className={classes.right}>
         <FilterListIcon/>
