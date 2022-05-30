@@ -3,59 +3,47 @@ import { useState, useEffect, useContext } from "react";
 import FilterContext from "../../store/FilterContext"
 
 export default function Filters({items, active}) {
+  // Returning unique languages from the items array
+  const uniqueLanguages = items.map(item => item.language)
+  .filter((value, index, self) => self.indexOf(value) === index)
+
   const [selectedLanguage, setSelectedLanguage] = useState("")
   const [selectedAge, setSelectedAge] = useState("")
   const [selected, setSelected] = useState(false)
-
   const filterCtx = useContext(FilterContext)
 
-
-
+  console.log(selected);
+// Triggering filter when user changes selected language
 useEffect(() => {
   filterCtx.handleTest(selectedLanguage)
 }, [selectedLanguage])
 
-
+// Changing the state of selectedLanguage on user's click
   const toggleSelectLanguageHandler = (e) => {
-    if (selected === false) {
-      setSelected(true)
-    } else {
+    const language = e.target.textContent
+    setSelectedLanguage(language)
+    if (selected && language === selectedLanguage) {
       setSelected(false)
+    } else {
+      setSelected(true)
     }
-    setSelectedLanguage(e.target.textContent)
-    console.log(filterCtx.filteredItems);
   }
-
-  // const toggleSelectAgeHandler = (e) => {
-  //   console.log(e.target.textContent);
-  //   setSelectedAge(e.target.textContent)
-  //   if (selected === false) {
-  //     setSelected(true)
-  //   } else {
-  //     setSelected(false)
-  //   }
-  // }
 
   return (
     <div className={`${classes.container} ${active && classes.active}`}>
       <div className={classes.content}>
         <div className={classes.info}>
           <h4>Language:</h4>
-          {items.map(item => (
+          {uniqueLanguages.map(language => (
             <p
-              className={`${selected && selectedLanguage === item.language ? classes.selected : null}`}
-              onClick={toggleSelectLanguageHandler}>{item.language}</p>
+              className={`${selected && selectedLanguage === language ? classes.selected : null}`}
+              onClick={toggleSelectLanguageHandler}>{language}</p>
           ))}
         </div>
-        {/* <div className={classes.info}>
-          <h4>Age:</h4>
-          {items.map(item => (
-            <p
-              className={`${selectedAge === item.age && classes.selected}`}
-              onClick={toggleSelectAgeHandler}>{item.age}</p>
-          ))}
-        </div> */}
       </div>
+      {/* <div className={classes.actions}>
+        <button className={classes.btn}>Search</button>
+      </div> */}
     </div>
   )
 }
