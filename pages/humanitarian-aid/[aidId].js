@@ -61,6 +61,16 @@ export async function getServerSideProps(context) {
   const aid = await findDocumentById("humanitarian-aid", aidId);
 
   const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/auth",
+      },
+    };
+  }
+
   const user = await findUserByEmail(session.user.email);
 
   return {
