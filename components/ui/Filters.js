@@ -3,20 +3,27 @@ import { useState, useEffect, useContext } from "react";
 import FilterContext from "../../store/FilterContext"
 
 export default function Filters({items, active}) {
+  const [selectedLanguage, setSelectedLanguage] = useState("")
+  const [selectedAge, setSelectedAge] = useState("")
+  const [selected, setSelected] = useState(false)
+  // Connecting to our Context API
+  const filterCtx = useContext(FilterContext)
+  const filteredItems = filterCtx.filteredItems
+  console.log(filterCtx.selected)
+
   // Returning unique languages from the items array
   const uniqueLanguages = items.map(item => item.language)
   .filter((value, index, self) => self.indexOf(value) === index)
 
-  const [selectedLanguage, setSelectedLanguage] = useState("")
-  const [selectedAge, setSelectedAge] = useState("")
-  const [selected, setSelected] = useState(false)
-  const filterCtx = useContext(FilterContext)
+ // Changing the state of selected in the Ctx when selected changes
+  useEffect(() => {
+    filterCtx.selectedHandler(selected)
+  }, [selected])
 
-  console.log(selected);
 // Triggering filter when user changes selected language
-useEffect(() => {
-  filterCtx.handleTest(selectedLanguage)
-}, [selectedLanguage])
+  useEffect(() => {
+    filterCtx.filterHandler(selectedLanguage)
+  }, [selectedLanguage])
 
 // Changing the state of selectedLanguage on user's click
   const toggleSelectLanguageHandler = (e) => {
@@ -36,6 +43,7 @@ useEffect(() => {
           <h4>Language:</h4>
           {uniqueLanguages.map(language => (
             <p
+              key={language}
               className={`${selected && selectedLanguage === language ? classes.selected : null}`}
               onClick={toggleSelectLanguageHandler}>{language}</p>
           ))}

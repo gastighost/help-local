@@ -43,7 +43,7 @@ export default function ItemsFilter(props) {
       </div>
     </div>
       <Filters
-          items={filterCtx.items}
+          items={filterCtx.allItems}
           active={filtersOpen}/>
     </Fragment>
   )
