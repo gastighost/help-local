@@ -32,6 +32,7 @@
             border-radius: 6px;
             padding: 8px 16px;
             transition: all .5s ease-out;
+            cursor: pointer;
 
             &.selected {
               background-color: $blueXdark;

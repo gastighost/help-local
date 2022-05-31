@@ -7,7 +7,10 @@ const FilterContext = createContext({
   filteredItems: [],
   allItemsHandler: (items) => {},
   filterHandler: (language) => {},
-  selectedHandler: (boolean) => {}
+  filterByAgeHandler: (age) => {},
+  selectedHandler: (boolean) => {},
+  currectFilterHandler: (language, age) => {},
+  filterbyLanguageAndAge: (language, age) => {}
 });
 
 export const FilterContextProvider = (props) => {
@@ -18,26 +21,43 @@ export const FilterContextProvider = (props) => {
   ])
   const [selected, setSelected] = useState()
 
-  // useEffect(() => {
-  //   currentFilter !== "all" ? setSelected(true) : setSelected(false)
-  // }, [currentFilter])
+  useEffect(() => {
+    !selected && setCurrentFilter([])
+  }, [selected])
 
   const selectedHandler = (boolean) => {
     setSelected(boolean)
+  }
+
+  const currectFilterHandler = (language, age) => {
+    setCurrentFilter([language, age])
   }
 
   const allItemsHandler = (items) => {
     setAllItems((prev) => (
       prev.concat(items)
     ))
-    setCurrentFilter("all")
+    setCurrentFilter(["all"])
   }
 
   const filterHandler = (language) => {
     setFilteredItems((prev) => (
-      allItems.filter((item) => item.language === language)
-    ))
-    setCurrentFilter(language)
+      allItems.filter((item) => (item.language === language))
+      ))
+      setCurrentFilter([language])
+  }
+
+  const filterByAgeHandler = (age) => {
+    setFilteredItems((prev) => (
+      allItems.filter((item) => (item.studentAge === parseInt(age)))
+      ))
+      setCurrentFilter([age])
+  }
+
+  const filterbyLanguageAndAge = (language, age) => {
+    setFilteredItems((prev) => (
+      allItems.filter((item) => (item.studentAge === parseInt(age) && item.language === language))
+      ))
   }
 
   const context = {
@@ -46,8 +66,11 @@ export const FilterContextProvider = (props) => {
     filteredItems: filteredItems,
     allItems: allItems,
     filterHandler: filterHandler,
+    filterByAgeHandler: filterByAgeHandler,
     allItemsHandler: allItemsHandler,
-    selectedHandler: selectedHandler
+    selectedHandler: selectedHandler,
+    currectFilterHandler: currectFilterHandler,
+    filterbyLanguageAndAge: filterbyLanguageAndAge
   };
 
   return (

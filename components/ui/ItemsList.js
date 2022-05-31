@@ -8,7 +8,6 @@ const ItemsList = (props) => {
 
   // Connecting to our Context API
   const filterCtx = useContext(FilterContext)
-  console.log(filterCtx.filter);
 
   // Loading all items to the Context API when the page loads
   useEffect(() => {
@@ -17,9 +16,11 @@ const ItemsList = (props) => {
     } else null
   }, [])
 
+
+  console.log(filterCtx.selected)
   // Filtering between all items and filtered ones between
   let items = []
-  if (filterCtx.filter === "all" || filterCtx.selected === false) {
+  if (filterCtx.selected === false) {
     items = filterCtx.allItems
   } else {
     items = filterCtx.filteredItems
