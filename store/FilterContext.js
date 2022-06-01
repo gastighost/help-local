@@ -37,21 +37,23 @@ export const FilterContextProvider = (props) => {
     setAllItems((prev) => (
       prev.concat(items)
     ))
-    setCurrentFilter(["all"])
+    setCurrentFilter([])
   }
 
   const filterHandler = (language) => {
     setFilteredItems((prev) => (
       allItems.filter((item) => (item.language === language))
       ))
-      setCurrentFilter([language])
+      // setCurrentFilter([language])
   }
 
   const filterByAgeHandler = (age) => {
     setFilteredItems((prev) => (
       allItems.filter((item) => (item.studentAge === parseInt(age)))
       ))
-      setCurrentFilter([age])
+      // selected && setCurrentFilter(prev => (
+      //   prev.concat(age)
+      // ))
   }
 
   const filterbyLanguageAndAge = (language, age) => {

@@ -3,8 +3,8 @@ import { useState, useEffect, useContext } from "react";
 import FilterContext from "../../store/FilterContext"
 
 export default function Filters({items, active}) {
-  const [selectedLanguage, setSelectedLanguage] = useState("")
-  const [selectedAge, setSelectedAge] = useState("")
+  const [selectedLanguage, setSelectedLanguage] = useState()
+  const [selectedAge, setSelectedAge] = useState()
   const [selected, setSelected] = useState(false)
   const [languageIsSelected, setLanguageIsSelected] = useState(false)
   const [ageIsSelected, setAgeIsSelected] = useState(false)
@@ -16,7 +16,9 @@ export default function Filters({items, active}) {
   // console.log(filterCtx.filter, filterCtx.filter.length)
   console.log("language selected?", languageIsSelected)
   console.log("age selected?", ageIsSelected)
-  console.log(selectedLanguage, selectedAge)
+  console.log(typeof(selectedLanguage), selectedLanguage)
+  console.log(typeof(selectedAge), selectedAge)
+  console.log("filterCtx.selected", filterCtx.selected)
 
   // Returning unique languages from the items array
   const uniqueLanguages = items.map(item => item.language)
@@ -39,21 +41,22 @@ export default function Filters({items, active}) {
   }, [languageIsSelected, ageIsSelected])
 
 // Triggering filter when user changes selected language
-  // useEffect(() => {
-  //   filterCtx.filterHandler(selectedLanguage)
-  // }, [selectedLanguage])
+  useEffect(() => {
+    filterCtx.filterHandler(selectedLanguage)
+  }, [selectedLanguage])
 
-  // // Triggering filter when user changes selected age
-  // useEffect(() => {
-  //   filterCtx.filterByAgeHandler(selectedAge)
-  // }, [selectedAge])
+  // Triggering filter when user changes selected age
+  useEffect(() => {
+    filterCtx.filterByAgeHandler(selectedAge)
+  }, [selectedAge])
 
 // Changing the state of selectedLanguage on user's click
   const toggleSelectLanguageHandler = (e) => {
     const language = e.target.textContent
+    const key = language
     if (languageIsSelected && language === selectedLanguage) {
       setLanguageIsSelected(false)
-      setSelectedLanguage("")
+      setSelectedLanguage()
     } else {
       setLanguageIsSelected(true)
       setSelectedLanguage(language)
@@ -62,9 +65,10 @@ export default function Filters({items, active}) {
 
   const toggleSelectAgeHandler = (e) => {
     const age = e.target.textContent
+    const key = age
     if (ageIsSelected && age === selectedAge) {
       setAgeIsSelected(false)
-      setSelectedAge("")
+      setSelectedAge()
     } else {
       setAgeIsSelected(true)
       setSelectedAge(age)

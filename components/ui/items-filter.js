@@ -9,7 +9,6 @@ import Filters from './Filters';
 export default function ItemsFilter(props) {
   const [filtersOpen, setFiltersOpen] = useState(false)
   const filterCtx = useContext(FilterContext)
-  const test = filterCtx.filter
 
   const toggleDetailsHandler = () => {
     if (filtersOpen === false) {
