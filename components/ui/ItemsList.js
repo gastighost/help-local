@@ -8,29 +8,36 @@ const ItemsList = (props) => {
 
   // Connecting to our Context API
   const filterCtx = useContext(FilterContext)
-  console.log(filterCtx.filter)
+  const allItems = filterCtx.allItems
+  const filteredItems = filterCtx.filteredItems
+  const activeLanguage = filterCtx.activeLanguage
+  const activeAge = filterCtx.activeAge
+  console.log(allItems)
+  console.log(filteredItems)
 
   // Loading all items to the Context API when the page loads
   useEffect(() => {
-    if (filterCtx.allItems.length === 0) {
-      filterCtx.allItemsHandler(info)
-    } else null
+    filterCtx.allItemsHandler(info)
   }, [])
 
+  useEffect(() => {
+    if (activeLanguage) {
+      filterCtx.filteredByLanguage(activeLanguage)
+    } else if (activeAge) {
+      filterCtx.filteredByAge(activeAge)
+    } else if (!activeLanguage && !activeAge) {
+      filterCtx.filterAll(info)
+    }
+  }, [activeLanguage, activeAge])
 
-  console.log(filterCtx.selected)
-  // Filtering between all items and filtered ones between
-  let items = []
-  if (filterCtx.selected === false) {
-    items = filterCtx.allItems
-  } else {
-    items = filterCtx.filteredItems
-  }
+  // useEffect(() => {
+  //   !activeAge ? filterCtx.filterAll(info) : filterCtx.filteredByAge(activeAge)
+  // }, [activeAge])
 
   return (
     <div className={classes.itemListContainer}>
     <div className={classes.list}>
-      {items.map((item) => (
+      {filteredItems.map((item) => (
           <Item
             key = {item._id}
             info={item}

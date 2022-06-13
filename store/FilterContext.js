@@ -1,78 +1,60 @@
 import { createContext, useState, useEffect } from "react";
 
 const FilterContext = createContext({
-  selected: (false),
-  filter: [],
-  allItems: [],
   filteredItems: [],
+  allItems: [],
+  activeLanguage: "",
+  activeAge: "",
   allItemsHandler: (items) => {},
-  filterHandler: (language) => {},
-  filterByAgeHandler: (age) => {},
-  selectedHandler: (boolean) => {},
-  currectFilterHandler: (language, age) => {},
-  filterbyLanguageAndAge: (language, age) => {}
+  filterAll: (items) => {},
+  setActiveLanguageHandler: (language) => {},
+  setActiveAgeHandler: (age) => {},
+  filteredByLanguage: (language) => {},
+  filteredByAge: (language) => {}
 });
 
 export const FilterContextProvider = (props) => {
   const [allItems, setAllItems] = useState([])
   const [filteredItems, setFilteredItems] = useState([
   ])
-  const [currentFilter, setCurrentFilter] = useState([
-  ])
-  const [selected, setSelected] = useState()
+  const [activeLanguage, setActiveLanguage] = useState("")
+  const [activeAge, setActiveAge] = useState("")
 
-  useEffect(() => {
-    !selected && setCurrentFilter([])
-  }, [selected])
-
-  const selectedHandler = (boolean) => {
-    setSelected(boolean)
+  const setActiveLanguageHandler = (language) => {
+    setActiveLanguage(language)
   }
 
-  const currectFilterHandler = (language, age) => {
-    setCurrentFilter([language, age])
+  const setActiveAgeHandler = (age) => {
+    setActiveAge(age)
   }
 
   const allItemsHandler = (items) => {
-    setAllItems((prev) => (
-      prev.concat(items)
-    ))
-    setCurrentFilter([])
+    setAllItems(items)
   }
 
-  const filterHandler = (language) => {
-    setFilteredItems((prev) => (
-      allItems.filter((item) => (item.language === language))
-      ))
-      // setCurrentFilter([language])
+  const filterAll = (items) => {
+    setFilteredItems(items)
   }
 
-  const filterByAgeHandler = (age) => {
-    setFilteredItems((prev) => (
-      allItems.filter((item) => (item.studentAge === parseInt(age)))
-      ))
-      // selected && setCurrentFilter(prev => (
-      //   prev.concat(age)
-      // ))
+  const filteredByLanguage = (language) => {
+    !activeAge ? setFilteredItems(allItems.filter((item) => item.language === language)) : setFilteredItems(allItems.filter((item) => item.language === language && item.studentAge === parseInt(activeAge)))
   }
 
-  const filterbyLanguageAndAge = (language, age) => {
-    setFilteredItems((prev) => (
-      allItems.filter((item) => (item.studentAge === parseInt(age) && item.language === language))
-      ))
-  }
+  const filteredByAge = (age) => {
+    !activeLanguage ? setFilteredItems(allItems.filter((item) => item.studentAge === parseInt(age))) : setFilteredItems(allItems.filter((item) => item.language === activeLanguage && item.studentAge === parseInt(age)))
+}
 
   const context = {
-    filter: currentFilter,
-    selected: selected,
     filteredItems: filteredItems,
     allItems: allItems,
-    filterHandler: filterHandler,
-    filterByAgeHandler: filterByAgeHandler,
+    activeLanguage: activeLanguage,
+    activeAge: activeAge,
     allItemsHandler: allItemsHandler,
-    selectedHandler: selectedHandler,
-    currectFilterHandler: currectFilterHandler,
-    filterbyLanguageAndAge: filterbyLanguageAndAge
+    setActiveLanguageHandler: setActiveLanguageHandler,
+    setActiveAgeHandler: setActiveAgeHandler,
+    filterAll: filterAll,
+    filteredByLanguage: filteredByLanguage,
+    filteredByAge: filteredByAge
   };
 
   return (

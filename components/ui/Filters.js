@@ -3,79 +3,33 @@ import { useState, useEffect, useContext } from "react";
 import FilterContext from "../../store/FilterContext"
 
 export default function Filters({items, active}) {
-  const [selectedLanguage, setSelectedLanguage] = useState()
-  const [selectedAge, setSelectedAge] = useState()
-  const [selected, setSelected] = useState(false)
-  const [languageIsSelected, setLanguageIsSelected] = useState(false)
-  const [ageIsSelected, setAgeIsSelected] = useState(false)
-  const [filterState, setFilterState] = useState([])
   // Connecting to our Context API
   const filterCtx = useContext(FilterContext)
   const filteredItems = filterCtx.filteredItems
-  // console.log(filterCtx.selected)
-  // console.log(filterCtx.filter, filterCtx.filter.length)
-  console.log("language selected?", languageIsSelected)
-  console.log("age selected?", ageIsSelected)
-  console.log(typeof(selectedLanguage), selectedLanguage)
-  console.log(typeof(selectedAge), selectedAge)
-  console.log("filterCtx.selected", filterCtx.selected)
 
   // Returning unique languages from the items array
   const uniqueLanguages = items.map(item => item.language)
   .filter((value, index, self) => self.indexOf(value) === index)
 
-//  Changing the state of selected in the Ctx when selected changes
-  useEffect(() => {
-    // !languageIsSelected && !ageIsSelected ? filterCtx.selectedHandler(false) : filterCtx.selectedHandler(true)
-    if (languageIsSelected || ageIsSelected) {
-      filterCtx.selectedHandler(true)
-    } else filterCtx.selectedHandler(false)
+  const uniqueLocations = items.map(item => item.location)
+  .filter((value, index, self) => self.indexOf(value) === index)
 
-    if (languageIsSelected && ageIsSelected) {
-      filterCtx.filterbyLanguageAndAge(selectedLanguage, selectedAge)
-    } else if (languageIsSelected && !ageIsSelected) {
-      filterCtx.filterHandler(selectedLanguage)
-    } else if (!languageIsSelected && ageIsSelected) {
-      filterCtx.filterHandler(selectedAge)
-    }
-  }, [languageIsSelected, ageIsSelected])
-
-// Triggering filter when user changes selected language
-  useEffect(() => {
-    filterCtx.filterHandler(selectedLanguage)
-  }, [selectedLanguage])
-
-  // Triggering filter when user changes selected age
-  useEffect(() => {
-    filterCtx.filterByAgeHandler(selectedAge)
-  }, [selectedAge])
-
-// Changing the state of selectedLanguage on user's click
   const toggleSelectLanguageHandler = (e) => {
     const language = e.target.textContent
     const key = language
-    if (languageIsSelected && language === selectedLanguage) {
-      setLanguageIsSelected(false)
-      setSelectedLanguage()
-    } else {
-      setLanguageIsSelected(true)
-      setSelectedLanguage(language)
-    }
+    filterCtx.activeLanguage === language ? filterCtx.setActiveLanguageHandler("") : filterCtx.setActiveLanguageHandler(language)
   }
 
   const toggleSelectAgeHandler = (e) => {
     const age = e.target.textContent
+    // console.log(typeof(age), age)
     const key = age
-    if (ageIsSelected && age === selectedAge) {
-      setAgeIsSelected(false)
-      setSelectedAge()
-    } else {
-      setAgeIsSelected(true)
-      setSelectedAge(age)
-    }
+    filterCtx.activeAge === age ? filterCtx.setActiveAgeHandler("") : filterCtx.setActiveAgeHandler(age)
   }
+  console.log(filterCtx.activeLanguage, typeof filterCtx.activeLanguage)
+  console.log(filterCtx.activeAge)
 
-  const ages = ["23", "34", "67"]
+  const ages = ["34", "67", "23"]
 
   return (
     <div className={`${classes.container} ${active && classes.active}`}>
@@ -90,8 +44,9 @@ export default function Filters({items, active}) {
               {uniqueLanguages.map(language => (
                 <p
                   key={language}
-                  className={`${languageIsSelected && selectedLanguage === language ? classes.selected : null}`}
-                  onClick={toggleSelectLanguageHandler}>{language}</p>
+                  className={`${filterCtx.activeLanguage === language ? classes.selected : null}`}
+                  onClick={toggleSelectLanguageHandler}
+                  >{language}</p>
               ))}
             </div>
             </div>
@@ -103,8 +58,9 @@ export default function Filters({items, active}) {
               {ages.map(age => (
                 <p
                 key={age}
-                className={`${ageIsSelected && selectedAge === age ? classes.selected : null}`}
-                onClick={toggleSelectAgeHandler}>{age}</p>
+                className={`${filterCtx.activeAge === age ? classes.selected : null}`}
+                onClick={toggleSelectAgeHandler}
+                >{age}</p>
               ))}
             </div>
             </div>

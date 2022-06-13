@@ -6,7 +6,7 @@ import { Fragment, useContext, useState } from "react";
 import FilterContext from "../../store/FilterContext"
 import Filters from './Filters';
 
-export default function ItemsFilter(props) {
+export default function ItemFilter (props) {
   const [filtersOpen, setFiltersOpen] = useState(false)
   const filterCtx = useContext(FilterContext)
 
