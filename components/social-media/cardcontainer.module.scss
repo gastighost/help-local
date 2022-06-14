@@ -13,7 +13,7 @@
 .socialmediacard {
   background:white !important;
   padding-left:12px;
-  border: 1px solid #EEF2F9;
+  border: 1px solid $greyLight;
   box-shadow: 3px 3px 10px -2px rgb(8 18 36 / 15%);
   border-radius: 5px 5px 10px 5px;
   height:96px;
@@ -24,9 +24,14 @@
 .socialimage {
   width: 64px;
   height: 64px;
-  background: blue;
   flex-shrink: 0;
   overflow-x: visible;
+  border: 2px solid $greyLight;
+
+  img {
+    width:60px;
+    height:60px;
+  }
 }
 
 .contentright {
@@ -45,10 +50,13 @@
   }
 
   h4 {
-    margin-top: 8px !important;
+    margin-top: 10px !important;
     margin-bottom: 0px !important;
-    //background:palevioletred;
     margin-right:12px;
+    color: $blueRegular;
+    font-weight:400;
+    font-size: 16px;
+    //background:orange;
   }
 
   .smallsemibold {
@@ -96,7 +104,7 @@
   }
 
   .lowerpart {
-    //background:turquoise;
+    //background:orangered;
     display:flex;
     align-items: center;
     justify-content: space-between;
@@ -108,4 +116,17 @@
     line-height: 22px;
     letter-spacing: 0.5px;
   }
+}
+
+.overlay {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: greenyellow;
+  cursor: pointer;
 }
