@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useContext } from "react";
 import Link from "next/link";
 import { getAllDocuments } from "../../util/mongodb";
 import CategoryFilterBar from "../../components/ui/filter-bar";
@@ -7,6 +7,7 @@ import EducationList from "../../components/education/EducationList.js";
 import NewEducationForm from "../../components/education/NewEducationForm";
 import Button from "../../components/ui/button";
 import ListInfo from "../../components/ui/ListInfo";
+import { FilterContextProvider } from "../../store/FilterContext";
 
 function EducationIndex(props) {
   const [newEducationModalIsOpen, setNewEducationModalIsOpen] = useState(false)
@@ -23,6 +24,7 @@ function EducationIndex(props) {
 
   return (
     <Fragment>
+      <FilterContextProvider>
       <ListInfo
         openModal={openModal}
         newEducationModalIsOpen={newEducationModalIsOpen}
@@ -32,6 +34,7 @@ function EducationIndex(props) {
       <Button href="/">
         <a>Back to home</a>
       </Button>
+      </FilterContextProvider>
     </Fragment>
   );
 }

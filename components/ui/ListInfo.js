@@ -6,6 +6,7 @@ import ItemFilter from './items-filter'
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
 
 export default function ListInfo( { openModal, newEducationModalIsOpen, closeModal, description } ) {
+
   return (
     <div className={classes.container}>
       <div className={classes.info}>
