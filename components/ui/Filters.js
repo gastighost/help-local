@@ -1,5 +1,5 @@
 import classes from './Filters.module.scss'
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import FilterContext from "../../store/FilterContext"
 
 export default function Filters({items, active}) {
@@ -7,29 +7,23 @@ export default function Filters({items, active}) {
   const filterCtx = useContext(FilterContext)
   const filteredItems = filterCtx.filteredItems
 
-  // Returning unique languages from the items array
-  const uniqueLanguages = items.map(item => item.language)
+  // Returning unique languages & locations from the items array
+    const uniqueLanguages = items.map(item => item.language)
   .filter((value, index, self) => self.indexOf(value) === index)
 
   const uniqueLocations = items.map(item => item.location)
   .filter((value, index, self) => self.indexOf(value) === index)
 
+  // Handlers changing the state of the language and location in the Context API
   const toggleSelectLanguageHandler = (e) => {
     const language = e.target.textContent
-    const key = language
     filterCtx.activeLanguage === language ? filterCtx.setActiveLanguageHandler("") : filterCtx.setActiveLanguageHandler(language)
   }
 
-  const toggleSelectAgeHandler = (e) => {
-    const age = e.target.textContent
-    // console.log(typeof(age), age)
-    const key = age
-    filterCtx.activeAge === age ? filterCtx.setActiveAgeHandler("") : filterCtx.setActiveAgeHandler(age)
+  const toggleSelectLocationHandler = (e) => {
+    const location = e.target.textContent
+    filterCtx.activeLocation === location ? filterCtx.setActiveLocationHandler("") : filterCtx.setActiveLocationHandler(location)
   }
-  console.log(filterCtx.activeLanguage, typeof filterCtx.activeLanguage)
-  console.log(filterCtx.activeAge)
-
-  const ages = ["34", "67", "23"]
 
   return (
     <div className={`${classes.container} ${active && classes.active}`}>
@@ -44,7 +38,7 @@ export default function Filters({items, active}) {
               {uniqueLanguages.map(language => (
                 <p
                   key={language}
-                  className={`${filterCtx.activeLanguage === language ? classes.selected : null}`}
+                  className={`${filterCtx.activeLanguage === language ? classes.selected : null} `}
                   onClick={toggleSelectLanguageHandler}
                   >{language}</p>
               ))}
@@ -52,15 +46,15 @@ export default function Filters({items, active}) {
             </div>
             <div className={classes.filterItem}>
             <div>
-              <h4>Age:</h4>
+              <h4>Location:</h4>
             </div>
             <div className={classes.filterList}>
-              {ages.map(age => (
+            {uniqueLocations.map(location => (
                 <p
-                key={age}
-                className={`${filterCtx.activeAge === age ? classes.selected : null}`}
-                onClick={toggleSelectAgeHandler}
-                >{age}</p>
+                key={location}
+                className={`${filterCtx.activeLocation === location ? classes.selected : null} `}
+                onClick={toggleSelectLocationHandler}
+                >{location}</p>
               ))}
             </div>
             </div>

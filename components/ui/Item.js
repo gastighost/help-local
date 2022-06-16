@@ -2,10 +2,8 @@ import classes from "./item.module.scss";
 import Card from "./card";
 import { useContext, useState } from "react";
 import BookmarksContext from "../../store/BookmarksContext";
-import Link from "next/link";
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
-import Button from "./button";
 import TranslateIcon from '@material-ui/icons/Translate';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
@@ -20,7 +18,6 @@ const Item = (props) => {
   const toggleBookmarkHandler = (event) => {
     if (itemIsBookmarked) {
       bookmarksCtx.removeBookmark(info._id);
-      // bookmarksCtx.removeBookmarkFromDb(info._id)
     } else {
       bookmarksCtx.addBookmark({
         ...{ info },

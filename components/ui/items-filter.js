@@ -22,7 +22,7 @@ export default function ItemFilter (props) {
     <Fragment>
     <div className={classes.container}>
       <div className={classes.left}>
-        <p>Sort by:</p>
+        <p>Filter by:</p>
         {filtersOpen ? <ExpandLessIcon onClick={toggleDetailsHandler}/> : <ExpandMoreIcon onClick={toggleDetailsHandler}/>}
       </div>
       <div className={classes.right}>

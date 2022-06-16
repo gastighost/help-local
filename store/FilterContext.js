@@ -4,28 +4,31 @@ const FilterContext = createContext({
   filteredItems: [],
   allItems: [],
   activeLanguage: "",
-  activeAge: "",
+  activeLocation: "",
   allItemsHandler: (items) => {},
   filterAll: (items) => {},
   setActiveLanguageHandler: (language) => {},
-  setActiveAgeHandler: (age) => {},
+  setActiveLocationHandler: (location) => {},
   filteredByLanguage: (language) => {},
-  filteredByAge: (language) => {}
+  filteredByLocation: (location) => {}
 });
 
 export const FilterContextProvider = (props) => {
+
+  //States:
   const [allItems, setAllItems] = useState([])
   const [filteredItems, setFilteredItems] = useState([
   ])
   const [activeLanguage, setActiveLanguage] = useState("")
-  const [activeAge, setActiveAge] = useState("")
+  const [activeLocation, setActiveLocation] = useState("")
 
+  // Handlers changing the state (receiving requests from Filters.js):
   const setActiveLanguageHandler = (language) => {
     setActiveLanguage(language)
   }
 
-  const setActiveAgeHandler = (age) => {
-    setActiveAge(age)
+  const setActiveLocationHandler = (location) => {
+    setActiveLocation(location)
   }
 
   const allItemsHandler = (items) => {
@@ -36,25 +39,26 @@ export const FilterContextProvider = (props) => {
     setFilteredItems(items)
   }
 
-  const filteredByLanguage = (language) => {
-    !activeAge ? setFilteredItems(allItems.filter((item) => item.language === language)) : setFilteredItems(allItems.filter((item) => item.language === language && item.studentAge === parseInt(activeAge)))
+  // Handlers with the filtering function (receiving requests from ItemsList.js):
+  const filteredByLanguage = () => {
+    !activeLocation ? setFilteredItems(allItems.filter((item) => item.language === activeLanguage)) : setFilteredItems(allItems.filter((item) => item.language === activeLanguage && item.location === activeLocation))
   }
 
-  const filteredByAge = (age) => {
-    !activeLanguage ? setFilteredItems(allItems.filter((item) => item.studentAge === parseInt(age))) : setFilteredItems(allItems.filter((item) => item.language === activeLanguage && item.studentAge === parseInt(age)))
+  const filteredByLocation = () => {
+!activeLanguage ? setFilteredItems(allItems.filter((item) => item.location === activeLocation)) : setFilteredItems(allItems.filter((item) => item.language === activeLanguage && item.location === activeLocation))
 }
 
   const context = {
     filteredItems: filteredItems,
     allItems: allItems,
     activeLanguage: activeLanguage,
-    activeAge: activeAge,
+    activeLocation: activeLocation,
     allItemsHandler: allItemsHandler,
     setActiveLanguageHandler: setActiveLanguageHandler,
-    setActiveAgeHandler: setActiveAgeHandler,
+    setActiveLocationHandler: setActiveLocationHandler,
     filterAll: filterAll,
     filteredByLanguage: filteredByLanguage,
-    filteredByAge: filteredByAge
+    filteredByLocation: filteredByLocation
   };
 
   return (
@@ -65,3 +69,5 @@ export const FilterContextProvider = (props) => {
 }
 
 export default FilterContext
+
+// !activeLanguage ? setFilteredItems(allItems.filter((item) => item.studentAge === parseInt(age))) : setFilteredItems(allItems.filter((item) => item.language === activeLanguage && item.studentAge === parseInt(age)))
