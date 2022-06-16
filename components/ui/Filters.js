@@ -8,10 +8,10 @@ export default function Filters({items, active}) {
   const filteredItems = filterCtx.filteredItems
 
   // Returning unique languages & locations from the items array
-    const uniqueLanguages = items.map(item => item.language)
+    const uniqueLanguages = filteredItems.map(item => item.language)
   .filter((value, index, self) => self.indexOf(value) === index)
 
-  const uniqueLocations = items.map(item => item.location)
+  const uniqueLocations = filteredItems.map(item => item.location)
   .filter((value, index, self) => self.indexOf(value) === index)
 
   // Handlers changing the state of the language and location in the Context API
@@ -38,7 +38,7 @@ export default function Filters({items, active}) {
               {uniqueLanguages.map(language => (
                 <p
                   key={language}
-                  className={`${filterCtx.activeLanguage === language ? classes.selected : null} `}
+                  className={`${filterCtx.activeLanguage === language ? classes.selected : null}`}
                   onClick={toggleSelectLanguageHandler}
                   >{language}</p>
               ))}
@@ -52,7 +52,7 @@ export default function Filters({items, active}) {
             {uniqueLocations.map(location => (
                 <p
                 key={location}
-                className={`${filterCtx.activeLocation === location ? classes.selected : null} `}
+                className={`${filterCtx.activeLocation === location ? classes.selected : null}`}
                 onClick={toggleSelectLocationHandler}
                 >{location}</p>
               ))}
