@@ -1,6 +1,16 @@
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 16px;
+@media (max-width: 450px) {
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 16px;
+  }
+}
+
+@media (min-width: 450px) {
+  .container {
+    margin-top: 16px;
+    justify-content: flex;
+    display: flex;
+  }
 }

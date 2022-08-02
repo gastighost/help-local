@@ -1,39 +1,83 @@
 @import "../../styles/global_styles.scss";
 
-.carded {
-  background: #FFFFFF;
-  border-radius: 10px;
-  border: 1px solid #EEF2F9;
-  box-shadow: 3px 3px 10px -2px rgba(8, 18, 36, 0.15);
-  width: 164px;
-  height: 243px;
-  overflow: hidden;
-}
+@media (max-width: 450px) {
+  .carded {
+    background: #FFFFFF;
+    border-radius: 10px;
+    border: 1px solid #EEF2F9;
+    box-shadow: 3px 3px 10px -2px rgba(8, 18, 36, 0.15);
+    width: 164px;
+    height: 243px;
+    overflow: hidden;
+  }
 
-.image {
-  margin-left: 33px;
-  margin-right: 32px;
-  height: 98px;
-  width: 98px;
-}
+  .image {
+    margin-left: 33px;
+    margin-right: 32px;
+    height: 98px;
+    width: 98px;
+  }
 
-.caption {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  color: white;
-  background: #17356D;
-}
+  .caption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    color: white;
+    background: #17356D;
+  }
 
-.main {
-  margin-top: 12px;
-  margin-bottom: 4px;
-  font-size: 18px;
-}
+  .main {
+    margin-top: 12px;
+    margin-bottom: 4px;
+    font-size: 18px;
+  }
 
-.support {
-  margin-top: 0px;
-  font-size: 14px;
-  text-align: center;
+  .support {
+    margin-top: 0px;
+    font-size: 14px;
+    color: white;
+    text-align: center;
+  }
+}
+@media (min-width: 450px) {
+  .carded {
+    margin-top: 16px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    border: 1px solid #EEF2F9;
+    box-shadow: 3px 3px 10px -2px rgba(8, 18, 36, 0.15);
+    width: 400px;
+    height: 300px;
+    overflow: hidden;
+  }
+
+  .image {
+    height: 200px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .caption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    color: white;
+    background: #17356D;
+  }
+
+  .main {
+    margin-top: 12px;
+    margin-bottom: 4px;
+    font-size: 24px;
+  }
+
+  .support {
+    margin-top: 0px;
+    font-size: 14px;
+    text-align: center;
+    color: white;
+  }
 }
