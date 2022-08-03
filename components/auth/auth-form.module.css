@@ -1,9 +1,9 @@
 .auth {
   margin: 3rem auto;
   width: 95%;
-  max-width: 25rem;
+  max-width: 30rem;
   border-radius: 6px;
-  background-color: #9ba573;
+  background-color: #f6faff;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   padding: 1rem;
   text-align: center;
@@ -11,6 +11,7 @@
 
 .auth h1 {
   text-align: center;
+  overflow: hidden;
   color: rgb(0, 0, 0);
 }
 
@@ -27,11 +28,11 @@
 
 .control input {
   font: inherit;
-  background-color: #fff7d1;
+  background-color: #cedffd;
   color: black;
   border-radius: 4px;
   border: 1px solid white;
-  width: 100%;
+  width: 50%;
   text-align: left;
   padding: 0.25rem;
 }
@@ -46,16 +47,16 @@
 .actions button {
   cursor: pointer;
   font: inherit;
-  color: black;
-  background-color: #c8d492;
+  color: white;
+  background-color: #17356d;
   border: 1px solid #00000034;
   border-radius: 4px;
   padding: 0.5rem 2.5rem;
 }
 
 .actions button:hover {
-  background-color: #777e5c;
-  border-color: #777e5c;
+  background-color: #2659B5;
+  border-color: #2659B5;
 }
 
 .actions .toggle {
@@ -68,5 +69,5 @@
 
 .actions .toggle:hover {
   background-color: transparent;
-  color: #c8d492;
+  color: #17356d;
 }
