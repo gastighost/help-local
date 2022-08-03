@@ -1,6 +1,6 @@
 @import "../../styles/global_styles.scss";
 
-.footer {
+.mobilefoot {
   display: flex;
   justify-content: space-around;
   align-items: baseline;
@@ -22,4 +22,15 @@
   margin-bottom: 22px;
   margin-top: 0;
   cursor: pointer;
+}
+
+.webfoot {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background-color: $navbarColor;
+}
+
+.titlefoot {
+  margin-left: 16px;
 }

@@ -1,6 +1,6 @@
 @import "../../styles/global_styles.scss";
 
-@media (max-width: 450px) {
+@media (max-width: 600px) {
   .carded {
     background: #FFFFFF;
     border-radius: 10px;
@@ -40,7 +40,7 @@
     text-align: center;
   }
 }
-@media (min-width: 450px) {
+@media (min-width: 600px) {
   .carded {
     margin-top: 16px;
     margin-left: 16px;
