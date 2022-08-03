@@ -1,9 +1,9 @@
 import classes from "./greeting-card.module.scss"
 
-function GreetingCard(props) {
+function GreetingCard() {
   return (
     <div>
-      <h1 className={classes.header}>Hey, Ahtoh!</h1>
+      <h1 className={classes.header}>Hey!</h1>
       <h2 className={classes.support}>What are you looking for?</h2>
     </div>
   );
